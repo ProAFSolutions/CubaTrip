@@ -10,9 +10,6 @@ import com.activeandroid.annotation.Table;
 @Table(name = "address")
 public class Address extends Model {
 
-    @Column(name = "addressId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
-    public int addressId;
-
     @Column(name = "street")
     public String street;
 

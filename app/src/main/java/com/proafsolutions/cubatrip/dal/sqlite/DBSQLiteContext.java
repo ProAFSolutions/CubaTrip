@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 /**
  * Created by alex on 4/15/2016.
  */
-public class DBSQLiteHelper extends SQLiteOpenHelper {
+public class DBSQLiteContext extends SQLiteOpenHelper {
 
     // Database Info
     private static final String DATABASE_NAME = "cubatrip";
@@ -25,7 +25,7 @@ public class DBSQLiteHelper extends SQLiteOpenHelper {
     private static final String KEY_ADDRESS_ID = "addressId";
 
 
-    public DBSQLiteHelper(Context context) {
+    public DBSQLiteContext(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
 

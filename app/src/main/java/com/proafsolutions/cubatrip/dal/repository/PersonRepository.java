@@ -12,14 +12,6 @@ import java.util.List;
  */
 public class PersonRepository {
 
-    public static List<Person> getAll(Address address) {
-        // This is how you execute a query
-        return new Select()
-                .from(Person.class)
-                .where("address = ?", address.addressId)
-                .execute();
-    }
-
     public static void save(Person person) {
         person.save();
     }
@@ -27,4 +19,24 @@ public class PersonRepository {
     public static void delete(int personId) {
         new Delete().from(Person.class).where("personId = ?", personId).execute();
     }
+
+    public static Person load(long generatedId){
+        return Person.load(Person.class, generatedId);
+    }
+
+    public static Person get(int personId) {
+        return  new Select()
+                .from(Person.class)
+                .where("personId = ?", personId)
+                .executeSingle();
+    }
+
+    public static List<Person> getAll(Address address) {
+        // This is how you execute a query
+        return new Select()
+                .from(Person.class)
+                .where("address = ?", address.getId().intValue())
+                .execute();
+    }
 }
+
