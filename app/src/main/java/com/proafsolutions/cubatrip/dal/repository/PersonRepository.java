@@ -28,5 +28,15 @@ public class PersonRepository {
         new Delete().from(Person.class).where("personId = ?", personId).execute();
     }
 
+    public static Person load(long generatedId){
+        return Person.load(Person.class, generatedId);
+    }
+
+    public static Person get(int personId) {
+        return new Select()
+                .from(Person.class)
+                .where("personId = ?", personId)
+                .executeSingle();
+    }
 }
 
