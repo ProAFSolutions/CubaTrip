@@ -13,4 +13,10 @@ public class CubaTripApp extends Application {
         super.onCreate();
         ActiveAndroid.initialize(this);
     }
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        ActiveAndroid.dispose();
+    }
 }
