@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
@@ -38,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         this.mapView.setClickable(true);
         this.mapView.getMapScaleBar().setVisible(true);
         this.mapView.setBuiltInZoomControls(true);
-        //this.mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
-        //this.mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
+        this.mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
+        this.mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
 
         // create a tile cache of suitable size
         this.tileCache = AndroidUtil.createTileCache(this, "mapcache",
@@ -55,8 +56,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onStart() {
         super.onStart();
 
-        //   this.mapView.getModel().mapViewPosition.setCenter(new LatLong(52.517037, 13.38886));
-        //   this.mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
+           this.mapView.getModel().mapViewPosition.setCenter(new LatLong(23.1355443, -82.3620573));
+           this.mapView.getModel().mapViewPosition.setZoomLevel((byte) 16);
 
         // tile renderer layer using internal render theme
         MapDataStore mapDataStore = new MapFile(getMapFile());
