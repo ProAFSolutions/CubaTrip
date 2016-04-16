@@ -16,7 +16,7 @@ public class PersonRepository {
         // This is how you execute a query
         return new Select()
                 .from(Person.class)
-                .where("address = ?", address.addressId)
+                .where("address = ?", address.getId().intValue())
                 .execute();
     }
 
@@ -27,4 +27,6 @@ public class PersonRepository {
     public static void delete(int personId) {
         new Delete().from(Person.class).where("personId = ?", personId).execute();
     }
+
 }
+

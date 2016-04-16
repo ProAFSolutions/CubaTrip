@@ -13,22 +13,40 @@ import java.util.List;
 public class Person extends Model {
 
     @Column(name = "personId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
-    public long personId;
+    private long personId;
 
     @Column(name = "name")
-    public String name;
+    private String name;
 
     @Column(name = "address", onUpdate = Column.ForeignKeyAction.CASCADE, onDelete = Column.ForeignKeyAction.CASCADE)
-    public Address address;
+    private Address address;
 
     public Person(){
         super();
     }
 
 
-    // Used to return items from another table based on the foreign key
-    public List<Person> getPersons() {
-        return this.getMany(Person.class, "address");
+    public long getPersonId() {
+        return personId;
     }
 
+    public void setPersonId(long personId) {
+        this.personId = personId;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
 }
