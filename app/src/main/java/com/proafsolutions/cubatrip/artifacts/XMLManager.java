@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.util;
+package com.proafsolutions.cubatrip.artifacts;
 
 /**
  * Created by alex on 4/16/2016.

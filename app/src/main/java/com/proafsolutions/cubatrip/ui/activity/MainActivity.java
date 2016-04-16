@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 
+import com.proafsolutions.cubatrip.artifacts.Constants;
+
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
@@ -18,9 +20,6 @@ import org.mapsforge.map.rendertheme.InternalRenderTheme;
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
-
-    // name of the map file in the external storage
-    private static final String MAPFILE = "cuba.map";
 
     private MapView mapView;
     private TileCache tileCache;
@@ -79,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     private File getMapFile() {
         // File file = new File(Environment.getExternalStorageDirectory(), MAPFILE);
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), MAPFILE);
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), Constants.MAPFILE);
         return file;
     }
 }
