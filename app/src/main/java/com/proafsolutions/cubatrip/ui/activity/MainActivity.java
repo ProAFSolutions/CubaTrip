@@ -78,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
 
     private File getMapFile() {
         // File file = new File(Environment.getExternalStorageDirectory(), MAPFILE);
-        File file = new File(Environment.getExternalStorageDirectory(),MAPFILE);
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), MAPFILE);
         return file;
     }
 }
