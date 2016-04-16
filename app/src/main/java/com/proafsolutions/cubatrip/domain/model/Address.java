@@ -10,40 +10,20 @@ import com.activeandroid.annotation.Table;
 @Table(name = "address")
 public class Address extends Model {
 
+    @Column(name = "addressId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
+    public int addressId;
+
     @Column(name = "street")
-    private String street;
+    public String street;
 
     @Column(name = "city")
-    private String city;
+    public String city;
 
     @Column(name = "state")
-    private String state;
+    public String state;
 
     public Address(){
         super();
     }
 
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public void setState(String state) {
-        this.state = state;
-    }
 }
