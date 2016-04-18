@@ -6,7 +6,7 @@ import java.util.Map;
 /**
  * Created by alex on 4/17/2016.
  */
-public class ItemDetails {
+public class ProductDetails {
 
     private String contact;
 
@@ -20,7 +20,7 @@ public class ItemDetails {
 
     private Map<String, String> services;
 
-    public ItemDetails(String contact, String address, String phone, String email, String webSiteUrl, Map<String, String> services) {
+    public ProductDetails(String contact, String address, String phone, String email, String webSiteUrl, Map<String, String> services) {
         this.contact = contact;
         this.address = address;
         this.phone = phone;

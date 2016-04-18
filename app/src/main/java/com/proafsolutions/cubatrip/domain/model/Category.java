@@ -7,7 +7,7 @@ import com.activeandroid.annotation.Table;
 /**
  * Created by alex on 4/17/2016.
  */
-@Table(name = "Category")
+@Table(name = "Category", id = "id")
 public class Category extends Model{
 
     @Column(name = "name")

@@ -3,7 +3,7 @@ package com.proafsolutions.cubatrip.domain.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
-import com.proafsolutions.cubatrip.domain.specification.ItemDetails;
+import com.proafsolutions.cubatrip.domain.specification.ProductDetails;
 import com.proafsolutions.cubatrip.domain.specification.GeoLocation;
 
 import java.util.ArrayList;
@@ -66,14 +66,14 @@ public class Product extends Model{
     @Column( name = "province", onDelete = Column.ForeignKeyAction.CASCADE)
     private Province province;
 
-    private ItemDetails _details;
+    private ProductDetails _details;
     private GeoLocation _location;
 
     public Product() {
         super();
     }
 
-    public Product(int remoteId, String name, String description, Category category, Province province, ItemDetails details, GeoLocation location) {
+    public Product(int remoteId, String name, String description, Category category, Province province, ProductDetails details, GeoLocation location) {
         this();
         this.remoteId = remoteId;
         this.name = name;
@@ -94,9 +94,9 @@ public class Product extends Model{
         this.longitude = location.getLongitude();
     }
 
-    public ItemDetails Details(){
+    public ProductDetails Details(){
         if(_details == null){
-            _details = new ItemDetails(contact, address,phone, email, webSiteUrl, services);
+            _details = new ProductDetails(contact, address,phone, email, webSiteUrl, services);
         }
         return _details;
     }
