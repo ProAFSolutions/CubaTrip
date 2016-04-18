@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.dal.sqlite;
+package com.proafsolutions.cubatrip.infrastructure.dal.sqlite;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.proafsolutions.cubatrip.android">
 
+    <!-- START Permission Settings -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <!-- END Permission Settings -->
+
     <application
         android:name="com.proafsolutions.cubatrip.app.CubaTripApp"
         android:allowBackup="true"
@@ -10,28 +15,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
 
+        <!-- START Activities -->
+            <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity">
+                <intent-filter>
+                    <action android:name="android.intent.action.MAIN" />
+                    <category android:name="android.intent.category.LAUNCHER" />
+                </intent-filter>
+            </activity>
+            <activity android:name="com.proafsolutions.cubatrip.ui.activity.DatabaseActivity"></activity>
+        <!-- END Activities -->
+
+        <!-- START Database Settings -->
         <meta-data
             android:name="AA_DB_NAME"
             android:value="cuba_trip.db" />
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
-
-        <!--This approach speeds up the startup load-->
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.proafsolutions.cubatrip.domain.model.Person,
-   		                   com.proafsolutions.cubatrip.domain.model.Address" />
-
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:value="com.proafsolutions.cubatrip.domain.model.Product,com.proafsolutions.cubatrip.domain.model.Category,com.proafsolutions.cubatrip.domain.model.Review,com.proafsolutions.cubatrip.domain.model.Province" />
+        <meta-data
+            android:name="AA_SERIALIZERS"
+            android:value="com.proafsolutions.cubatrip.domain.serializer.StringListSerializer,com.proafsolutions.cubatrip.domain.serializer.StringMapSerializer,com.proafsolutions.cubatrip.domain.serializer.DateSerializer" />
+        <!-- END Database Settings -->
 
     </application>
-
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
 </manifest>
