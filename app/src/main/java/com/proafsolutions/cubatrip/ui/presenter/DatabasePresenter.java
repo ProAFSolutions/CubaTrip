@@ -3,6 +3,7 @@ package com.proafsolutions.cubatrip.ui.presenter;
 import android.app.Activity;
 import android.os.Bundle;
 
+import com.proafsolutions.cubatrip.artifacts.Constants;
 import com.proafsolutions.cubatrip.domain.model.Category;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 import com.proafsolutions.cubatrip.ui.activity.DatabaseActivity;
@@ -46,8 +47,9 @@ public class DatabasePresenter extends AbstractPresenter{
 
     public void openMap(){
         Bundle params = new Bundle();
-        params.putString("param1", "Alex");
-        params.putString("param1", "Jonito");
+        params.putString(Constants.MAIN_ACTIVITY_PARAM1, "Alex");
+        params.putString(Constants.MAIN_ACTIVITY_PARAM2, "Jonito");
+        params.putFloat(Constants.MAIN_ACTIVITY_PARAM3, 85.40F);
         openNewActivityPassingData(MainActivity.class, params);
     }
 
