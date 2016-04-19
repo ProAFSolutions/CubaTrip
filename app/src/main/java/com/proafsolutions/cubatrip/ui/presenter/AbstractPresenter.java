@@ -23,4 +23,7 @@ public abstract class AbstractPresenter {
         getCurrentActivity().startActivity(intent);
     }
 
+    public Bundle getActivityParameters(){
+        return getCurrentActivity().getIntent().getExtras();
+    }
 }
