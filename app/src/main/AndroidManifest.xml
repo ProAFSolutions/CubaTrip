@@ -29,7 +29,7 @@
         <!-- START Database Settings -->
         <meta-data
             android:name="AA_DB_NAME"
-            android:value="cubatrip.db" />
+            android:value="/mnt/sdcard/Download/cubatrip.db" />
         <meta-data
             android:name="AA_DB_VERSION"
             android:value="1" />
