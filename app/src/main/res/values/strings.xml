@@ -9,4 +9,13 @@
     <string name="Sport">Active Life</string>
     <string name="Art">Art</string>
     <string name="Automotive">Automotive</string>
+    <string name="Beauty">Beauty</string>
+    <string name="Education">Education</string>
+    <string name="Events">Events</string>
+    <string name="Medical">Medical</string>
+    <string name="Services">Services</string>
+    <string name="Hotel">Hotel</string>
+    <string name="Pets">Pets</string>
+    <string name="Gas">Gas</string>
+    <string name="Wifi">Wifi</string>
 </resources>
