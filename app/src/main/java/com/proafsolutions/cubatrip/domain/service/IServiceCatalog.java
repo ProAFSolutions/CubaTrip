@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Created by alex on 4/17/2016.
  */
-public interface IProductServiceCatalog {
+public interface IServiceCatalog {
 
     Product getProductById(long id);
 

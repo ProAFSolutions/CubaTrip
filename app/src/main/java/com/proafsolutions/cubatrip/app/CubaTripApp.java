@@ -20,6 +20,6 @@ public class CubaTripApp extends Application {
     @Override
     public void onTerminate() {
         super.onTerminate();
-       // ActiveAndroid.dispose();
+        ActiveAndroid.dispose();
     }
 }

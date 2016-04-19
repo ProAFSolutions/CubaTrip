@@ -1,48 +1,33 @@
 package com.proafsolutions.cubatrip.ui.activity;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.activeandroid.ActiveAndroid;
-import com.activeandroid.Configuration;
 import com.proafsolutions.cubatrip.android.R;
-import com.proafsolutions.cubatrip.artifacts.Constants;
-import com.proafsolutions.cubatrip.domain.model.Category;
-import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
-
-import java.util.List;
+import com.proafsolutions.cubatrip.ui.presenter.DatabasePresenter;
 
 
 public class DatabaseActivity extends AppCompatActivity {
+
+    private DatabasePresenter presenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
+        presenter = new DatabasePresenter(DatabaseActivity.this);
     }
 
-    public void onCreateCategoryClick(View view)
-    {
-        try{
+    public void onCreateCategoryClick(View view) {
+       presenter.createCategory();
+    }
 
-            RepositoryProvider.getCategoryRepository().save(new Category("Restaurants", "restaurant_logo.png"));
-            RepositoryProvider.getCategoryRepository().save(new Category("Cafeteria", "cafeteria.png"));
-
-            List<Category> categories = RepositoryProvider.getCategoryRepository().loadAll();
-
-            for (Category c: categories) {
-                System.out.println(c.getName());
-            }
-
-        }catch (Exception ex){
-            System.out.println(ex.getMessage() + " " + ex.getStackTrace().toString());
-        }
+    public void onCreateProductClick(View view){
 
     }
 
-    public void onCreateProductClick(View view)
-    {
-
+    public void onOpenMapClick(View view){
+        presenter.openMap();
     }
 }

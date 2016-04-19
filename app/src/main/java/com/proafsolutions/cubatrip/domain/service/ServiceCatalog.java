@@ -9,7 +9,23 @@ import java.util.List;
 /**
  * Created by alex on 4/17/2016.
  */
-public class ProductServiceCatalog implements IProductServiceCatalog {
+public class ServiceCatalog implements IServiceCatalog {
+
+    private static volatile IServiceCatalog INSTANCE = null;
+
+    protected ServiceCatalog(){}
+
+    public static IServiceCatalog getInstance() {
+        if (INSTANCE == null) {
+            synchronized (ServiceCatalog.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = new ServiceCatalog();
+                }
+            }
+        }
+        return INSTANCE;
+    }
+
 
     @Override
     public Product getProductById(long id) {
@@ -52,4 +68,7 @@ public class ProductServiceCatalog implements IProductServiceCatalog {
     public void doCheckIn() {
 
     }
+
+
+
 }

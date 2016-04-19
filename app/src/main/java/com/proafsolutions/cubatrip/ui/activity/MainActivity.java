@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 
 import com.proafsolutions.cubatrip.artifacts.Constants;
+import com.proafsolutions.cubatrip.ui.presenter.MainPresenter;
 
 import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
@@ -24,14 +25,19 @@ public class MainActivity extends AppCompatActivity {
     private MapView mapView;
     private TileCache tileCache;
     private TileRendererLayer tileRendererLayer;
+    private MainPresenter presenter;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         AndroidGraphicFactory.createInstance(this.getApplication());
+        presenter = new MainPresenter(MainActivity.this);
+        setupMapSettings();
+        //setContentView(R.layout.activity_main);
+    }
 
+    private void setupMapSettings(){
         this.mapView = new MapView(this);
         setContentView(this.mapView);
 
@@ -45,11 +51,13 @@ public class MainActivity extends AppCompatActivity {
         this.tileCache = AndroidUtil.createTileCache(this, "mapcache",
                 mapView.getModel().displayModel.getTileSize(), 1f,
                 this.mapView.getModel().frameBufferModel.getOverdrawFactor());
-
-
-        //setContentView(R.layout.activity_main);
     }
 
+    private File getMapFile() {
+        // File file = new File(Environment.getExternalStorageDirectory(), MAPFILE);
+        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), Constants.MAPFILE);
+        return file;
+    }
 
     @Override
     protected void onStart() {
@@ -76,9 +84,5 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private File getMapFile() {
-        // File file = new File(Environment.getExternalStorageDirectory(), MAPFILE);
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), Constants.MAPFILE);
-        return file;
-    }
+
 }
