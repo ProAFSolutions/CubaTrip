@@ -8,6 +8,7 @@ import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvi
 import com.proafsolutions.cubatrip.ui.activity.DatabaseActivity;
 import com.proafsolutions.cubatrip.ui.activity.MainActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
