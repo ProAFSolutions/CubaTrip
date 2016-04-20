@@ -10,362 +10,376 @@
     tools:context="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity"
     android:background="#d9d9d9">
 
-    <LinearLayout android:id="@+id/linLayout1"
+    <LinearLayout android:id="@+id/fullLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
-
-
-        <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        <LinearLayout android:id="@+id/linLayout1"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
-            <LinearLayout
+            <HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:animateLayoutChanges="true"
-                android:orientation="horizontal"
-                android:scrollbars="horizontal"
-                android:layout_marginTop="4dp">
+                android:layout_height="match_parent">
 
                 <LinearLayout
-            android:layout_width="80dp"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-                    android:layout_marginLeft="4dp">
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:animateLayoutChanges="true"
+                    android:orientation="horizontal"
+                    android:scrollbars="horizontal"
+                    android:layout_marginTop="4dp"
+                    android:id="@+id/LayoutMenu">
 
-            <ImageButton
-                android:id="@+id/imgRestaurants"
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:layout_gravity="center"
-                android:background="@mipmap/food_cat" />
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:layout_marginLeft="4dp">
 
-            <TextView
-                android:id="@+id/txtRestaurants"
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="@string/Restaurants"
-                android:textColor="#FFFFFF"
-                android:textStyle="bold" />
+                        <ImageButton
+                            android:id="@+id/imgRestaurants"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/food_cat"
+                            android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtRestaurants"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Restaurants"
+                            android:textColor="#1E88E5"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgNightlife"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/night_cat" android:onClick="onImageSelectClick" />
+
+                        <TextView
+                            android:id="@+id/txtNightlife"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Nightlife"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"   android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgShopping"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/shopping_cat" android:onClick="onImageSelectClick" />
+
+                        <TextView
+                            android:id="@+id/txtShopping"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Shopping"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgSport"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/sport_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtSport"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Sport"
+                            android:textColor="#FFFFFF"
+                        android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgArt"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/art_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtArt"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Art"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgAutomotive"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/car_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtAutomotive"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Automotive"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgBeauty"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/beauty_car" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtBeauty"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Beauty"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgEducation"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/education_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtEducation"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Education"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgEvents"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/event_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtEvents"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Events"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgMedical"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/medical_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtMedical"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Medical"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgServices"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/services_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtServices"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Services"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgHotel"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/hotel_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtHotel"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Hotel"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgPets"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/pet_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtPets"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Pets"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgGas"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/gas_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtGas"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Gas"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="80dp"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical" android:layout_marginLeft="10dp">
+
+                        <ImageButton
+                            android:id="@+id/imgWifi"
+                            android:layout_width="90dp"
+                            android:layout_height="90dp"
+                            android:layout_gravity="center"
+                            android:background="@mipmap/wifi_cat" android:onClick="onImageSelectClick"/>
+
+                        <TextView
+                            android:id="@+id/txtWifi"
+                            android:layout_width="80dp"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="@string/Wifi"
+                            android:textColor="#FFFFFF"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </HorizontalScrollView>
+
+
         </LinearLayout>
 
-                <LinearLayout
-                android:layout_width="80dp"
-                android:layout_height="wrap_content"
-                android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                <ImageButton
-                    android:id="@+id/imgNightlife"
-                    android:layout_width="90dp"
-                    android:layout_height="90dp"
-                    android:layout_gravity="center"
-                    android:background="@mipmap/night_cat" />
-
-                <TextView
-                    android:id="@+id/txtNightlife"
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:text="@string/Nightlife"
-                    android:textColor="#FFFFFF"
-                    android:textStyle="bold" />
-            </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"   android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgShopping"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/shopping_cat" />
-
-                    <TextView
-                        android:id="@+id/txtShopping"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Shopping"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgSport"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/sport_cat" />
-
-                    <TextView
-                        android:id="@+id/txtSport"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Sport"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgArt"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/art_cat" />
-
-                    <TextView
-                        android:id="@+id/txtArt"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Art"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgAutomotive"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/car_cat" />
-
-                    <TextView
-                        android:id="@+id/txtAutomotive"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Automotive"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgBeauty"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/beauty_car" />
-
-                    <TextView
-                        android:id="@+id/txtBeauty"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Beauty"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgEducation"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/education_cat" />
-
-                    <TextView
-                        android:id="@+id/txtEducation"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Education"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgEvents"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/event_cat" />
-
-                    <TextView
-                        android:id="@+id/txtEvents"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Events"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgMedical"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/medical_cat" />
-
-                    <TextView
-                        android:id="@+id/txtMedical"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Medical"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgServices"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/services_cat" />
-
-                    <TextView
-                        android:id="@+id/txtServices"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Services"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
 
 
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgHotel"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/hotel_cat" />
-
-                    <TextView
-                        android:id="@+id/txtHotel"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Hotel"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgPets"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/pet_cat" />
-
-                    <TextView
-                        android:id="@+id/txtPets"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Pets"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgGas"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/gas_cat" />
-
-                    <TextView
-                        android:id="@+id/txtGas"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Gas"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="80dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical" android:layout_marginLeft="10dp">
-
-                    <ImageButton
-                        android:id="@+id/imgWifi"
-                        android:layout_width="90dp"
-                        android:layout_height="90dp"
-                        android:layout_gravity="center"
-                        android:background="@mipmap/wifi_cat" />
-
-                    <TextView
-                        android:id="@+id/txtWifi"
-                        android:layout_width="80dp"
-                        android:layout_height="wrap_content"
-                        android:gravity="center"
-                        android:text="@string/Wifi"
-                        android:textColor="#FFFFFF"
-                        android:textStyle="bold" />
-                </LinearLayout>
-
-            </LinearLayout>
-
-        </HorizontalScrollView>
-
+        <ListView
+            android:id="@+id/android:list"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" />
 
     </LinearLayout>
 
