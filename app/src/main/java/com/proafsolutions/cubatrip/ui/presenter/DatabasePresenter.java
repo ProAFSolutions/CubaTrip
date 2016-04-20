@@ -2,6 +2,7 @@ package com.proafsolutions.cubatrip.ui.presenter;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.proafsolutions.cubatrip.artifacts.Constants;
 import com.proafsolutions.cubatrip.domain.model.Category;
@@ -29,16 +30,14 @@ public class DatabasePresenter extends AbstractPresenter{
 
     public void createCategory(){
         try{
-
             RepositoryProvider.getCategoryRepository().save(new Category("Restaurants", "restaurant_logo.png"));
             RepositoryProvider.getCategoryRepository().save(new Category("Cafeteria", "cafeteria.png"));
             List<Category> categories = RepositoryProvider.getCategoryRepository().loadAll();
             for (Category c: categories) {
-                System.out.println(c.getName());
+                Log.i("info", c.getName());
             }
-
         }catch (Exception ex){
-            System.out.println(ex.getMessage() + " " + ex.getStackTrace().toString());
+            Log.e("error", ex.getMessage() + " " + ex.getStackTrace().toString());
         }
     }
 
