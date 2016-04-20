@@ -19,6 +19,7 @@ public class DatabaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_database);
         presenter = new DatabasePresenter(DatabaseActivity.this);
+        initServiceForUpdates();
     }
 
     private void initServiceForUpdates(){

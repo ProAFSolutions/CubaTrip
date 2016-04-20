@@ -4,6 +4,8 @@ import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.util.Log;
 
@@ -26,19 +28,29 @@ public class BackgroundService extends Service implements IUpdateService {
     @Override
     public void onCreate() {
         super.onCreate();
+        initReceiver();
+    }
+
+    private void initReceiver(){
         _eventsReceiver = new EventsReceiver();
+
+        IntentFilter aFilter = new IntentFilter();
+        aFilter.addAction(Constants.ANDROID_ACTION_CONNECTIVITY_CHANGE);
+
+        registerReceiver(_eventsReceiver, aFilter);
     }
 
     @Override
     public void sendReviewsToServer() {
-        Log.i("info", "Sending review information to the server");
+        Log.i("info", "**************Sending review information to the server******************");
         this.stopSelf();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("info", "BackgrounfService Destroyed!!!!");
+        Log.i("info", "********************Background Service Destroyed**************************");
+        unregisterReceiver(_eventsReceiver);
     }
 
     private class EventsReceiver extends BroadcastReceiver
@@ -49,6 +61,7 @@ public class BackgroundService extends Service implements IUpdateService {
             switch(action){
                 case Constants.ANDROID_ACTION_CONNECTIVITY_CHANGE:{
                     boolean internetConnection =  InternetConnectionDetector.isConnected(context);
+                    Log.i("info", "********************Connection "+ internetConnection +"**************************");
                     if(internetConnection){
                         sendReviewsToServer();
                     }

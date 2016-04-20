@@ -6,6 +6,7 @@ import android.util.Log;
 
 import com.proafsolutions.cubatrip.artifacts.Constants;
 import com.proafsolutions.cubatrip.domain.model.Category;
+import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 import com.proafsolutions.cubatrip.ui.activity.DatabaseActivity;
 import com.proafsolutions.cubatrip.ui.activity.MainActivity;
@@ -36,6 +37,16 @@ public class DatabasePresenter extends AbstractPresenter{
             for (Category c: categories) {
                 Log.i("info", c.getName());
             }
+        }catch (Exception ex){
+            Log.e("error", ex.getMessage() + " " + ex.getStackTrace().toString());
+        }
+    }
+
+    public void createProduct(){
+        try{
+            Product product = new Product();
+
+           // RepositoryProvider.getProductRepository().save(product);
         }catch (Exception ex){
             Log.e("error", ex.getMessage() + " " + ex.getStackTrace().toString());
         }

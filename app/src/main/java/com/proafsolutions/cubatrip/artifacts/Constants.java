@@ -1,5 +1,7 @@
 package com.proafsolutions.cubatrip.artifacts;
 
+import android.net.ConnectivityManager;
+
 /**
  * Created by alex on 4/16/2016.
  */
@@ -11,7 +13,7 @@ public interface Constants {
     public static final String ACTIVITY_PARAM_TEST = "param3";
 
     //Android Actions
-    public static final String ANDROID_ACTION_CONNECTIVITY_CHANGE = "android.net.conn.CONNECTIVITY_CHANGE";
+    public static final String ANDROID_ACTION_CONNECTIVITY_CHANGE = ConnectivityManager.CONNECTIVITY_ACTION;
 
     //Remote Server Settings
     public static final String SERVER_URL = "http://www.google.com/";
