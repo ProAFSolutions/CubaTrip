@@ -23,7 +23,6 @@
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DatabaseActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -46,7 +45,7 @@
 
         <!-- START Services -->
         <service
-            android:name="com.proafsolutions.cubatrip.app.BackgroundService"
+            android:name="com.proafsolutions.cubatrip.app.UpdateService"
             android:enabled="true"
             android:exported="true">
         </service>

@@ -5,18 +5,17 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.net.ConnectivityManager;
 import android.os.IBinder;
 import android.util.Log;
 
 import com.proafsolutions.cubatrip.artifacts.Constants;
 import com.proafsolutions.cubatrip.infrastructure.connection.InternetConnectionDetector;
 
-public class BackgroundService extends Service implements IUpdateService {
+public class UpdateService extends Service implements IUpdateService {
 
     private EventsReceiver _eventsReceiver;
 
-    public BackgroundService() {
+    public UpdateService() {
     }
 
     @Override

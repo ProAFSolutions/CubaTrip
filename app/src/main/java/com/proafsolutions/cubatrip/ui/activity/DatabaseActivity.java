@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
 import com.proafsolutions.cubatrip.android.R;
-import com.proafsolutions.cubatrip.app.BackgroundService;
+import com.proafsolutions.cubatrip.app.UpdateService;
 import com.proafsolutions.cubatrip.ui.presenter.DatabasePresenter;
 
 
@@ -23,7 +23,7 @@ public class DatabaseActivity extends AppCompatActivity {
     }
 
     private void initServiceForUpdates(){
-        startService(new Intent(this, BackgroundService.class));
+        startService(new Intent(this, UpdateService.class));
     }
 
     @Override
