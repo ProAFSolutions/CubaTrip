@@ -9,7 +9,6 @@ import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvi
 import com.proafsolutions.cubatrip.ui.activity.DatabaseActivity;
 import com.proafsolutions.cubatrip.ui.activity.MainActivity;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -33,9 +32,7 @@ public class DatabasePresenter extends AbstractPresenter{
 
             RepositoryProvider.getCategoryRepository().save(new Category("Restaurants", "restaurant_logo.png"));
             RepositoryProvider.getCategoryRepository().save(new Category("Cafeteria", "cafeteria.png"));
-
             List<Category> categories = RepositoryProvider.getCategoryRepository().loadAll();
-
             for (Category c: categories) {
                 System.out.println(c.getName());
             }
@@ -47,12 +44,10 @@ public class DatabasePresenter extends AbstractPresenter{
 
     public void openMap(){
         Bundle params = new Bundle();
-        params.putString(Constants.MAIN_ACTIVITY_PARAM1, "Alex");
-        params.putString(Constants.MAIN_ACTIVITY_PARAM2, "Jonito");
-        params.putFloat(Constants.MAIN_ACTIVITY_PARAM3, 85.40F);
+        params.putString(Constants.ACTIVITY_PARAM_LATITUDE, "-83.12121212");
+        params.putString(Constants.ACTIVITY_PARAM_LONGITUDE, "92.45454556");
+        params.putFloat(Constants.ACTIVITY_PARAM_TEST, 85.40F);
         openNewActivityPassingData(MainActivity.class, params);
     }
-
-
 
 }

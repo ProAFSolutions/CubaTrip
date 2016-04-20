@@ -12,10 +12,10 @@ public interface Constants {
     public static final String MAPFILE = "cuba.map";
 
    /*
-   * Acivities Parameters
-   * */
-    //Main Activity Params Key
-    public static final String MAIN_ACTIVITY_PARAM1 = "param1";
-    public static final String MAIN_ACTIVITY_PARAM2 = "param2";
-    public static final String MAIN_ACTIVITY_PARAM3 = "param3";
+   * Activities Parameters
+   */
+
+    public static final String ACTIVITY_PARAM_LONGITUDE = "param1";
+    public static final String ACTIVITY_PARAM_LATITUDE = "param2";
+    public static final String ACTIVITY_PARAM_TEST = "param3";
 }
