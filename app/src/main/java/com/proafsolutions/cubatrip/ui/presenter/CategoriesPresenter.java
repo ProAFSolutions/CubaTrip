@@ -2,16 +2,16 @@ package com.proafsolutions.cubatrip.ui.presenter;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.text.TextUtils;
+
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import android.widget.Toast;
+
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
-import com.proafsolutions.cubatrip.ui.activity.MainActivity;
+
 
 import java.util.ArrayList;
 

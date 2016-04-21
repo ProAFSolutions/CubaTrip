@@ -1,8 +1,9 @@
 package com.proafsolutions.cubatrip.domain.serializer;
 
 import com.activeandroid.serializer.TypeSerializer;
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.proafsolutions.cubatrip.artifacts.JsonManager;
+
 import java.lang.reflect.Type;
 import java.util.HashMap;
 import java.util.Map;
@@ -27,7 +28,7 @@ public class StringMapSerializer extends TypeSerializer{
         if (data == null) {
             return null;
         }
-        return new Gson().toJson((Map<String, String>) data);
+        return JsonManager.toJson((Map<String, String>) data);
     }
 
     @Override
@@ -35,8 +36,6 @@ public class StringMapSerializer extends TypeSerializer{
         if (data == null) {
             return null;
         }
-        Type mapType = new TypeToken<Map<String, String>>() {}.getType();
-        Map<String, String> map = new Gson().fromJson((String) data, mapType);
-        return map;
+        return JsonManager.toObject((String) data, new TypeReference<Map<String, String>>(){});
     }
 }
