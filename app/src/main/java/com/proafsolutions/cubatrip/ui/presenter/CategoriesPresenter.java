@@ -32,6 +32,7 @@ public class CategoriesPresenter extends AbstractPresenter {
     }
 
     public void ClickImage(int id){
+        RefreshList(0);
         LinearLayout menu = (LinearLayout)activity.findViewById(R.id.LayoutMenu);
         boolean NextSelect = false;
 
@@ -79,13 +80,15 @@ public class CategoriesPresenter extends AbstractPresenter {
         return result;
     }
 
-    public void RefreshList()
+    public void RefreshList(int catagory)
     {
-        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-                "Linux", "OS/2" };
+        String[] values = new String[] { "La Reliquea", "La Florentina", "AnaCapri",
+            "Versus1900" };
 
-        ListAdapter adapter = new ListAdapter(activity, values);
+        String[] valuesDescription = new String[] { "Cocina: Cubana","Cocina: Cubana, Internacional",
+                "Description","Description"};
+
+        ListAdapter adapter = new ListAdapter(activity, values,valuesDescription);
 
         ListView lv = (ListView)activity.findViewById(R.id.listCategories);
         lv.setAdapter(adapter);

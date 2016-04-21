@@ -36,7 +36,7 @@ public class CategoriesActivity extends AppCompatActivity {
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);*/
 
-        presenter.RefreshList();
+        presenter.RefreshList(0);
 
     }
 
