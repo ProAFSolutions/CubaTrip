@@ -16,12 +16,14 @@ import com.proafsolutions.cubatrip.android.R;
 
 public class ListAdapter extends ArrayAdapter<String> {
     private final Context context;
-    private final String[] values;
+    private final String[] valuesTitle;
+    private final String[] valuesDescription;
 
-    public ListAdapter(Context context, String[] values) {
-        super(context, -1, values);
+    public ListAdapter(Context context, String[] valuesTitles,String[] valuesDescription) {
+        super(context, -1, valuesTitles);
         this.context = context;
-        this.values = values;
+        this.valuesTitle = valuesTitles;
+        this.valuesDescription = valuesDescription;
     }
 
     @Override
@@ -30,9 +32,11 @@ public class ListAdapter extends ArrayAdapter<String> {
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.list_categories, parent, false);
         TextView textView = (TextView) rowView.findViewById(R.id.firstLine);
+        TextView textDescription = (TextView) rowView.findViewById(R.id.secondLine);
         ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
-        textView.setText(values[position]);
-        String s = values[position];
+        textView.setText(valuesTitle[position]);
+        textDescription.setText(valuesDescription[position]);
+        //String s = valuesTitle[position];
         imageView.setImageResource(R.mipmap.no_image);
 
         return rowView;
