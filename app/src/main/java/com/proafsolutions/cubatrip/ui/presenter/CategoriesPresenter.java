@@ -6,12 +6,14 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
 import com.proafsolutions.cubatrip.ui.activity.MainActivity;
+import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
 
 import java.util.ArrayList;
 
@@ -75,5 +77,17 @@ public class CategoriesPresenter extends AbstractPresenter {
             result.addAll(viewArrayList);
         }
         return result;
+    }
+
+    public void RefreshList()
+    {
+        String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
+                "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
+                "Linux", "OS/2" };
+
+        ListAdapter adapter = new ListAdapter(activity, values);
+
+        ListView lv = (ListView)activity.findViewById(R.id.listCategories);
+        lv.setAdapter(adapter);
     }
 }
