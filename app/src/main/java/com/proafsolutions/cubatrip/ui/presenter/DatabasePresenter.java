@@ -35,10 +35,10 @@ public class DatabasePresenter extends AbstractPresenter{
             RepositoryProvider.getCategoryRepository().save(new Category("Cafeteria", "cafeteria.png"));
             List<Category> categories = RepositoryProvider.getCategoryRepository().loadAll();
             for (Category c: categories) {
-                Log.i("info", c.getName());
+                Log.i("DatabasePresenter", c.getName());
             }
         }catch (Exception ex){
-            Log.e("error", ex.getMessage() + " " + ex.getStackTrace().toString());
+            Log.e("DatabasePresenter", ex.getMessage() + " " + ex.getStackTrace().toString());
         }
     }
 
@@ -48,7 +48,7 @@ public class DatabasePresenter extends AbstractPresenter{
 
            // RepositoryProvider.getProductRepository().save(product);
         }catch (Exception ex){
-            Log.e("error", ex.getMessage() + " " + ex.getStackTrace().toString());
+            Log.e("DatabasePresenter", ex.getMessage() + " " + ex.getStackTrace().toString());
         }
     }
 

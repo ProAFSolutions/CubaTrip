@@ -17,28 +17,11 @@ public interface Constants {
 
     //Remote Server Settings
     public static final String SERVER_URL = "http://www.google.com/";
+    public static final String WEB_SERVICE_URL = "http://localhost:60503/api/CubaTrip/%s";
 
     // name of database
     public static final String DATABASE_NAME = "cuba_trip.db";
 
     // name of the map file
     public static final String MAPFILE = "cuba.map";
-
-    public static enum Categories {
-        Restaurants,
-        Nightlife,
-        Shopping,
-        Sport,
-        Art,
-        Automotive,
-        Beauty,
-        Education,
-        Events,
-        Medical,
-        Services,
-        Hotel,
-        Pets,
-        Gas,
-        Wifi
-    }
 }

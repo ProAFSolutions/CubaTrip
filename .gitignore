@@ -6,3 +6,6 @@
 .DS_Store
 /build
 /captures
+/webAPI/webAPI/obj
+/webAPI/webAPI/bin
+/webAPI/packages
