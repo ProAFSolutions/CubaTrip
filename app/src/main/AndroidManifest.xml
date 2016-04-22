@@ -19,19 +19,14 @@
 
         <!-- START Activities -->
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity"></activity>
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DatabaseActivity"></activity>
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
-
-        </activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity"></activity>
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!-- END Activities -->
-
 
         <!-- START Database Settings -->
         <meta-data
