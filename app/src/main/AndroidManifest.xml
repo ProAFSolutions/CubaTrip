@@ -3,12 +3,12 @@
     package="com.proafsolutions.cubatrip.android">
 
     <!-- START Permission Settings -->
-        <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-        <uses-permission android:name="android.permission.INTERNET" />
-        <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-        <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-    <!-- END Permission Settings -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
+    <!-- END Permission Settings -->
     <application
         android:name="com.proafsolutions.cubatrip.app.CubaTripApp"
         android:allowBackup="true"
@@ -18,15 +18,20 @@
         android:theme="@style/AppTheme">
 
         <!-- START Activities -->
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity">
-        </activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity"></activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DatabaseActivity"></activity>
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
+
+        </activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <!-- END Activities -->
+
 
         <!-- START Database Settings -->
         <meta-data
@@ -43,13 +48,14 @@
             android:value="com.proafsolutions.cubatrip.domain.serializer.StringListSerializer, com.proafsolutions.cubatrip.domain.serializer.StringMapSerializer, com.proafsolutions.cubatrip.domain.serializer.DateSerializer" />
         <!-- END Database Settings -->
 
+
         <!-- START Services -->
         <service
             android:name="com.proafsolutions.cubatrip.app.UpdateService"
             android:enabled="true"
-            android:exported="true">
-        </service>
-        <!-- END Services  -->
+            android:exported="true"></service>
+        <!-- END Services -->
+
     </application>
 
 </manifest>
