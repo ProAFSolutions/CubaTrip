@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
+
+    <ImageView
+        android:id="@+id/ImageProduct"
+        android:layout_width="match_parent"
+        android:layout_height="700px"
+        android:src="@drawable/image_test"
+        android:scaleType="fitXY"></ImageView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="350px" android:layout_toRightOf="@id/icon"
+        android:orientation="vertical"
+        android:id="@+id/linearLayout"
+        android:background="@color/colorPrimary"
+        android:layout_below="@+id/ImageProduct">
+
+        <TextView
+            android:id="@+id/firstLine"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignWithParentIfMissing="true"
+            android:gravity="center_vertical"
+            android:text="Example application"
+            android:textSize="18sp" android:textColor="@android:color/background_light"/>
+
+        <TextView
+            android:id="@+id/secondLine"
+            android:layout_width="fill_parent"
+            android:layout_height="26dip"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:ellipsize="marquee"
+            android:text="Description"
+            android:textSize="12sp" android:textColor="@android:color/background_light"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <RatingBar
+                android:id="@+id/ratingBar"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:rating="2.4"
+                android:isIndicator="true"
+                android:scaleX="0.4"
+                android:scaleY="0.4"
+                android:transformPivotX="0dp"
+                android:transformPivotY="0dp"
+                android:max="5"
+                android:indeterminateOnly="false" />
+
+            <TextView
+                android:id="@+id/lineReviews"
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
+                android:ellipsize="marquee"
+                android:text="(5) Reviews"
+                android:textSize="12sp" android:textColor="@android:color/background_light"
+                android:layout_toRightOf="@+id/ratingBar"/>
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical" android:layout_below="@+id/linearLayout">
+      <!--  <View
+            android:layout_width="match_parent"
+            android:layout_height="3dp"
+            android:background="@color/colorPrimaryDark" />-->
+
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content">
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView android:src="@mipmap/address_ico"/>
+
+                <TextView
+         android:id="@+id/Address"
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:text="2567 W 70 TH"
+                    android:layout_gravity="center|left"
+                    android:gravity="center|left"
+         android:textSize="12sp" android:textColor="@color/colorPrimary" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView android:src="@mipmap/cellphone_ico"/>
+
+                <TextView
+                    android:id="@+id/Phone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="555 -55555"
+                    android:layout_gravity="center|left"
+                    android:gravity="center"
+                    android:textSize="12sp" android:textColor="@color/colorPrimary" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView android:src="@mipmap/time_ico"/>
+
+                <TextView
+                    android:id="@+id/Clock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="9AM - 8PM"
+                    android:layout_gravity="center|left"
+                    android:gravity="center|left"
+                    android:textSize="12sp" android:textColor="@color/colorPrimary" />
+
+            </TableRow>
+
+            <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+                <ImageView android:src="@mipmap/web_ico"/>
+
+                <TextView
+                    android:id="@+id/Web"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:text="www.cubatrip.com"
+                    android:layout_gravity="center|left"
+                    android:gravity="center"
+                    android:textSize="12sp" android:textColor="@color/colorPrimary" />
+
+            </TableRow>
+        </TableLayout>
+
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark" />
+
+
+    </LinearLayout>
+
+</RelativeLayout>
+
+</ScrollView>
