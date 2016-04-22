@@ -18,4 +18,6 @@
     <string name="Pets">Pets</string>
     <string name="Gas">Gas</string>
     <string name="Wifi">Wifi</string>
+    <string name="About">About This Place</string>
+    <string name="WriteReview">Write Review</string>
 </resources>
