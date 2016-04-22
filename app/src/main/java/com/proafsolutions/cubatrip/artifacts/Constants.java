@@ -24,22 +24,4 @@ public interface Constants {
 
     // name of the map file
     public static final String MAPFILE = "cuba.map";
-
-    public static enum Categories {
-        Restaurants,
-        Nightlife,
-        Shopping,
-        Sport,
-        Art,
-        Automotive,
-        Beauty,
-        Education,
-        Events,
-        Medical,
-        Services,
-        Hotel,
-        Pets,
-        Gas,
-        Wifi
-    }
 }

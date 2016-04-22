@@ -1,9 +1,11 @@
 package com.proafsolutions.cubatrip.domain.service;
 
-import com.proafsolutions.cubatrip.domain.model.Category;
+import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -40,28 +42,15 @@ public class ServiceCatalog implements IServiceCatalog {
     }
 
     @Override
-    public List<Product> getProductsByCategory(long categoryId) {
+    public List<Product> getProductsByCategory(CategoryEnum category) {
         return RepositoryProvider.getProductRepository()
-                                 .retrieveProductsByCategory(categoryId);
+                                 .retrieveProductsByCategory(category);
     }
 
     @Override
-    public List<Product> getProductsByCategory(long categoryId, long provinceId) {
+    public List<Product> getProductsByCategory(CategoryEnum category, long provinceId) {
         return RepositoryProvider.getProductRepository()
-                                 .retrieveProductsByCategory(categoryId, provinceId);
-    }
-
-    @Override
-    public List<Category> getCategoriesByProvince(long provinceId) {
-        return null;
-    }
-
-    @Override
-    public void rateProduct(long productId, int rate) {
-      Product prod = RepositoryProvider.getProductRepository().load(productId);
-      if(prod != null){
-
-      }
+                                 .retrieveProductsByCategory(category, provinceId);
     }
 
     @Override
@@ -69,6 +58,14 @@ public class ServiceCatalog implements IServiceCatalog {
 
     }
 
+    @Override
+    public void doProductReview(Review review) {
 
+    }
+
+    @Override
+    public List<Review> getReviewsFrom(Date from) {
+        return null;
+    }
 
 }

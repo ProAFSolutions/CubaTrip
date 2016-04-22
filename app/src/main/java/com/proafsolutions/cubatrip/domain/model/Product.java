@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by alex on 4/17/2016.
  */
-@Table(name = "Product", id = "_id")
+@Table(name = "Product")
 public class Product extends Model{
 
     @Column(name = "remoteId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
@@ -60,8 +60,8 @@ public class Product extends Model{
     @Column(name = "longitude")
     private String longitude;
 
-    @Column( name = "category", onDelete = Column.ForeignKeyAction.RESTRICT)
-    private Category category;
+    @Column( name = "category")
+    private CategoryEnum category;
 
     @Column( name = "province", onDelete = Column.ForeignKeyAction.CASCADE)
     private Province province;
@@ -73,7 +73,7 @@ public class Product extends Model{
         super();
     }
 
-    public Product(int remoteId, String name, String description, Category category, Province province, ProductDetails details, GeoLocation location) {
+    public Product(int remoteId, String name, String description, CategoryEnum category, Province province, ProductDetails details, GeoLocation location) {
         this();
         this.remoteId = remoteId;
         this.name = name;
@@ -206,11 +206,11 @@ public class Product extends Model{
         this.services = services;
     }
 
-    public Category getCategory() {
+    public CategoryEnum getCategory() {
         return category;
     }
 
-    public void setCategory(Category category) {
+    public void setCategory(CategoryEnum category) {
         this.category = category;
     }
 
