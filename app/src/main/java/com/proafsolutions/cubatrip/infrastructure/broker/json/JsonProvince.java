@@ -1,7 +1,5 @@
 package com.proafsolutions.cubatrip.infrastructure.broker.json;
 
-import com.proafsolutions.cubatrip.domain.model.Category;
-
 import java.util.List;
 
 /**
@@ -11,8 +9,6 @@ public class JsonProvince {
 
     private String name;
 
-    private List<Category> categories;
-
     public JsonProvince(){}
 
     public String getName() {
@@ -21,13 +17,5 @@ public class JsonProvince {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Category> getCategories() {
-        return categories;
-    }
-
-    public void setCategories(List<Category> categories) {
-        this.categories = categories;
     }
 }

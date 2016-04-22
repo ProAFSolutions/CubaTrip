@@ -1,9 +1,10 @@
 package com.proafsolutions.cubatrip.domain.service;
 
-import com.proafsolutions.cubatrip.domain.model.Category;
+import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.Province;
+import com.proafsolutions.cubatrip.domain.model.Review;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -15,13 +16,13 @@ public interface IServiceCatalog {
 
     Product getProductByRemoteId(long remoteId);
 
-    List<Product> getProductsByCategory(long categoryId);
+    List<Product> getProductsByCategory(CategoryEnum category);
 
-    List<Product> getProductsByCategory(long categoryId, long provinceId);
-
-    List<Category> getCategoriesByProvince(long provinceId);
-
-    void rateProduct(long productId, int rate);
+    List<Product> getProductsByCategory(CategoryEnum category, long provinceId);
 
     void doCheckIn();
+
+    void doProductReview(Review review);
+
+    List<Review> getReviewsFrom(Date from);
 }
