@@ -12,11 +12,11 @@ public class JsonManager {
     private static final Gson _converter = new Gson();
 
     public static <T>  String toJson(T object){
-       return _converter .toJson(object);
+       return _converter.toJson(object);
     }
 
     public static <T> T toObject(String jsonString, Type type){
-       return _converter .fromJson(jsonString, type);
+       return _converter.fromJson(jsonString, type);
     }
 
 }

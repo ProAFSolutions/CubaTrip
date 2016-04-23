@@ -23,8 +23,10 @@ public class AppDatasetExample {
 
 
     public AppDatasetExample(boolean init){
-        createProvince();
-        createProducts(init);
+        if(init){
+            createProvince();
+            createProducts();
+        }
         printOutProducts();
     }
 
@@ -41,13 +43,8 @@ public class AppDatasetExample {
         }
     }
 
-    public void createProducts(boolean init) {
+    public void createProducts() {
         ProductRepository prodRepo = RepositoryProvider.getProductRepository();
-        if(init){
-//            for (Product P :prodRepo.loadAll()) {
-//                P.delete();
-//            }
-        }
 
         Province province = RepositoryProvider.getProvinceRepository().loadAll().get(0);
 
@@ -128,6 +125,7 @@ public class AppDatasetExample {
         prods.add(product3);
 
         prodRepo.saveAll(prods);
+
     }
 
     public void printOutProducts(){

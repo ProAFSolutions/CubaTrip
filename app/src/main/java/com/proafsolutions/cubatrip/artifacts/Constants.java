@@ -17,7 +17,7 @@ public interface Constants {
 
     //Remote Server Settings
     public static final String SERVER_URL = "http://www.google.com/";
-    public static final String WEB_SERVICE_URL = "http://localhost:60503/api/CubaTrip/%s";
+    public static final String WEB_API_BASE_URL = "http://localhost:60503/";
 
     // name of database
     public static final String DATABASE_NAME = "cuba_trip.db";
