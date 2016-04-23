@@ -1,5 +1,6 @@
 package com.proafsolutions.cubatrip.infrastructure.dal.repository;
 
+import com.activeandroid.ActiveAndroid;
 import com.activeandroid.Model;
 import com.activeandroid.query.Delete;
 import com.activeandroid.query.Select;
@@ -16,6 +17,20 @@ public abstract class AbstractRepository<T extends Model> {
     public void save(T object) {
         object.save();
     }
+
+    public void saveAll(List<T> objects){
+        ActiveAndroid.beginTransaction();
+        try {
+            for (T obj: objects) {
+                save(obj);
+            }
+            ActiveAndroid.setTransactionSuccessful();
+        }
+        finally {
+            ActiveAndroid.endTransaction();
+        }
+    }
+
 
     public void detete(T object) {
         object.delete();

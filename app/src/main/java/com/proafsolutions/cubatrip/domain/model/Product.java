@@ -18,7 +18,7 @@ import java.util.Map;
 @Table(name = "Product")
 public class Product extends Model{
 
-    @Column(name = "remoteId", unique = true, onUniqueConflict = Column.ConflictAction.REPLACE)
+    @Column(name = "remoteId", unique = true, onUniqueConflict = Column.ConflictAction.FAIL)
     private int remoteId;
 
     @Column(name = "name")
@@ -73,7 +73,7 @@ public class Product extends Model{
         super();
     }
 
-    public Product(int remoteId, String name, String description, CategoryEnum category, Province province, ProductDetails details, GeoLocation location) {
+    public Product(int remoteId, String name, String description, CategoryEnum category, Province province, ProductDetails details, GeoLocation location, List<String> images) {
         this();
         this.remoteId = remoteId;
         this.name = name;
@@ -92,6 +92,8 @@ public class Product extends Model{
 
         this.latitude = location.getLatitude();
         this.longitude = location.getLongitude();
+
+        this.images = images;
     }
 
     public ProductDetails Details(){

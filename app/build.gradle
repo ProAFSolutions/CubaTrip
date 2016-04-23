@@ -12,11 +12,6 @@ android {
         versionName "1.0"
     }
 
-    packagingOptions {
-        pickFirst  'META-INF/license.txt'
-        pickFirst  'META-INF/notice.txt'
-    }
-
     buildTypes {
         release {
             minifyEnabled false
@@ -34,6 +29,7 @@ dependencies {
     compile 'com.michaelpardo:activeandroid:3.1.0-SNAPSHOT'
     compile 'org.mapsforge:mapsforge-map-android:0.6.0'
     compile 'com.android.support:support-v4:23.3.0'
-    compile 'org.springframework.android:spring-android-rest-template:1.0.1.RELEASE'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.3.2'
+    compile 'com.google.code.gson:gson:2.3.1'
+    compile 'com.squareup.retrofit:retrofit:1.9.0'
+
 }

@@ -1,32 +1,22 @@
 package com.proafsolutions.cubatrip.artifacts;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import com.google.gson.Gson;
 
-import java.io.IOException;
+import java.lang.reflect.Type;
 
 /**
  * Created by alex on 4/20/2016.
  */
 public class JsonManager {
 
+    private static final Gson _converter = new Gson();
+
     public static <T>  String toJson(T object){
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.writeValueAsString(object);
-        } catch (JsonProcessingException e) {
-           return null;
-        }
+       return _converter .toJson(object);
     }
 
-    public static <T> T toObject(String jsonString, TypeReference<T> type){
-        try {
-            ObjectMapper mapper = new ObjectMapper();
-            return mapper.readValue(jsonString, type);
-        } catch (IOException e) {
-            return null;
-        }
+    public static <T> T toObject(String jsonString, Type type){
+       return _converter .fromJson(jsonString, type);
     }
 
 }

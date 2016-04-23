@@ -11,7 +11,9 @@ import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProductReposito
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProvinceRepository;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -23,6 +25,7 @@ public class AppDatasetExample {
     public AppDatasetExample(boolean init){
         createProvince();
         createProducts(init);
+        printOutProducts();
     }
 
     public void createProvince() {
@@ -31,15 +34,19 @@ public class AppDatasetExample {
             Province province = new Province("Habana");
             repo.save(province);
             Log.i("AppDatasetExample","Province inserted: " + province.getId());
+
+            Province province2 = new Province("Camaguey");
+            repo.save(province2);
+            Log.i("AppDatasetExample","Province inserted: " + province2.getId());
         }
     }
 
     public void createProducts(boolean init) {
         ProductRepository prodRepo = RepositoryProvider.getProductRepository();
         if(init){
-            for (Product P :prodRepo.loadAll()) {
-                P.delete();
-            }
+//            for (Product P :prodRepo.loadAll()) {
+//                P.delete();
+//            }
         }
 
         Province province = RepositoryProvider.getProvinceRepository().loadAll().get(0);
@@ -48,8 +55,13 @@ public class AppDatasetExample {
         carretaServices.put("Hours", "From 7:00 am to 10:00 pm");
         carretaServices.put("Dishes", "SeaFood, Italian Food, Cuban Buffet");
 
+        List<String> images = new ArrayList<String>();
+        images.add("image1.jpg");
+        images.add("image2.jpg");
+        images.add("image3.jpg");
+
         Product product1 = new Product(
-                0,//remoteId
+                111,//remoteId
                 "La Carreta", "Delicous Cuban Cousine",
                 CategoryEnum.RESTAURANTS,
                 province,
@@ -64,10 +76,12 @@ public class AppDatasetExample {
                 new GeoLocation(
                         "-83.98765143",
                         "92.45788967"
-                ));
+                ),
+                images
+        );
 
         Product product2 = new Product(
-                0,//remoteId
+                222,//remoteId
                 "Universidad de La Habana",
                 "Universidad",
                 CategoryEnum.EDUCATION,
@@ -78,17 +92,54 @@ public class AppDatasetExample {
                         "537867876",
                         "alex@gmail.com",
                         "www.cubatrip.com/uc",
-                        new HashMap<String, String>()
+                        carretaServices
                 ),
                 new GeoLocation(
                         "-83.34562334",
                         "92.839379990"
-                ));
+                ),
+                images
+        );
 
-        prodRepo.save(product1);
-        Log.i("AppDatasetExample","Product inserted: " + product1.getId());
+        Product product3 = new Product(
+                333,//remoteId
+                "Habana Libre",
+                "Hotel",
+                CategoryEnum.HOTEL,
+                province,
+                new ProductDetails(
+                        "Bebilla",
+                        "vedado",
+                        "537867334",
+                        "bebi@gmail.com",
+                        "www.cubatrip.com/hotels",
+                        carretaServices
+                ),
+                new GeoLocation(
+                        "-83.345232334",
+                        "92.8393445990"
+                ),
+                images
+        );
 
-        prodRepo.save(product2);
-        Log.i("AppDatasetExample","Product inserted: " + product2.getId());
+        List<Product> prods = new ArrayList<Product>();
+        prods.add(product1);
+        prods.add(product2);
+        prods.add(product3);
+
+        prodRepo.saveAll(prods);
+    }
+
+    public void printOutProducts(){
+
+        for (Province P :RepositoryProvider.getProvinceRepository().loadAll()) {
+            Log.i("AppDatasetExample", (P.getName() != null ? P.getName() : "NULL"));
+        }
+
+        for (Product P :RepositoryProvider.getProductRepository().loadAll()) {
+            Log.i("AppDatasetExample", String.format("Id: %s, Name: %s, Province: %s, Services Count: %s, Images: %s",
+                P.getId(), P.getName(), P.getProvince().getName(), P.getServices().size(), P.getImages().size()
+            ));
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.proafsolutions.cubatrip.domain.model;
 
 import com.activeandroid.Model;
+import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
 /**
@@ -9,6 +10,7 @@ import com.activeandroid.annotation.Table;
 @Table(name = "Province")
 public class Province extends Model{
 
+    @Column(name = "name")
     private String name;
 
     public Province(){

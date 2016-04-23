@@ -37,7 +37,7 @@
             android:value="1" />
         <meta-data
             android:name="AA_MODELS"
-            android:value="com.proafsolutions.cubatrip.domain.model.Product, com.proafsolutions.cubatrip.domain.model.Category, com.proafsolutions.cubatrip.domain.model.Review, com.proafsolutions.cubatrip.domain.model.Province" />
+            android:value="com.proafsolutions.cubatrip.domain.model.Product, com.proafsolutions.cubatrip.domain.model.Review, com.proafsolutions.cubatrip.domain.model.Province" />
         <meta-data
             android:name="AA_SERIALIZERS"
             android:value="com.proafsolutions.cubatrip.domain.serializer.StringListSerializer, com.proafsolutions.cubatrip.domain.serializer.StringMapSerializer, com.proafsolutions.cubatrip.domain.serializer.DateSerializer" />
