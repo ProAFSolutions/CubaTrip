@@ -169,6 +169,7 @@
             android:textSize="22sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:id="@+id/ServicesText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"

@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -13,6 +14,7 @@ import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.proafsolutions.cubatrip.android.R;
+import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
 import com.proafsolutions.cubatrip.ui.presenter.CategoriesPresenter;
 
@@ -36,7 +38,17 @@ public class CategoriesActivity extends AppCompatActivity {
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);*/
 
-        presenter.RefreshList(0);
+        ListView lv = (ListView)findViewById(R.id.listCategories);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                presenter.ClickProduct(position);
+
+            }
+        });
+
+        presenter.RefreshList(CategoryEnum.RESTAURANTS);
 
     }
 

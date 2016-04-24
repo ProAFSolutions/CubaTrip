@@ -2,6 +2,7 @@ package com.proafsolutions.cubatrip.ui.presenter;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +12,21 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.proafsolutions.cubatrip.android.R;
+import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.service.IServiceCatalog;
+import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
+import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.activity.MainActivity;
 import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
+import com.proafsolutions.cubatrip.util.Utils;
+
 
 import java.util.ArrayList;
+import java.util.List;
+
+import okhttp3.internal.Util;
 
 
 public class CategoriesPresenter extends AbstractPresenter {
@@ -26,13 +37,16 @@ public class CategoriesPresenter extends AbstractPresenter {
         this.activity = activity;
     }
 
+    List<Product> products;
+
+
     @Override
     protected Activity getCurrentActivity() {
         return activity;
     }
 
     public void ClickImage(int id){
-        RefreshList(0);
+        RefreshList(Utils.GetCategoryFromResourceId(id));
         LinearLayout menu = (LinearLayout)activity.findViewById(R.id.LayoutMenu);
         boolean NextSelect = false;
 
@@ -80,17 +94,21 @@ public class CategoriesPresenter extends AbstractPresenter {
         return result;
     }
 
-    public void RefreshList(int catagory)
+    public void RefreshList(CategoryEnum category)
     {
-        String[] values = new String[] { "La Reliquea", "La Florentina", "AnaCapri",
-            "Versus1900" };
+        products = ServiceCatalog.getInstance().getProductsByCategory(category);
 
-        String[] valuesDescription = new String[] { "Cocina: Cubana","Cocina: Cubana, Internacional",
-                "Description","Description"};
+        String[] stringsNames = new String[products.size()];
 
-        ListAdapter adapter = new ListAdapter(activity, values,valuesDescription);
+        ListAdapter adapter = new ListAdapter(activity,stringsNames, products);
 
         ListView lv = (ListView)activity.findViewById(R.id.listCategories);
         lv.setAdapter(adapter);
+    }
+
+    public void ClickProduct(int position){
+        Bundle params = new Bundle();
+        params.putLong("idProduct",products.get(position).getId());
+        this.openNewActivityPassingData(DetailsActivity.class,params);
     }
 }

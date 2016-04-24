@@ -379,7 +379,7 @@
             android:id="@+id/listCategories"
             android:layout_width="fill_parent"
             android:layout_height="fill_parent"
-            android:paddingTop="20dp"/>
+            android:paddingTop="20dp"  />
 
     </LinearLayout>
 
