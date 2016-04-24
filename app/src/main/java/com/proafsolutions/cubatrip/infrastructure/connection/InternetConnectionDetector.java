@@ -16,30 +16,8 @@ import java.net.URL;
 public class InternetConnectionDetector {
 
     public static boolean isConnected(Context context){
-
         ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
-        boolean isActive = activeNetwork != null && activeNetwork.isConnected();
-
-        if(isActive){
-            /*try {
-                URL url = new URL(Constants.SERVER_URL);
-                HttpURLConnection urlc = (HttpURLConnection)url.openConnection();
-                urlc.setRequestProperty("User-Agent", "test");
-                urlc.setRequestProperty("Connection", "close");
-                urlc.setConnectTimeout(1000); // mTimeout is in seconds
-                urlc.connect();
-                if (urlc.getResponseCode() == 200) {
-                    return true;
-                } else {
-                    return false;
-                }
-            } catch (IOException e) {
-                Log.e("error",e.getMessage());
-                return false;
-            }*/
-            return true;
-        }
-        return false;
+        return activeNetwork != null && activeNetwork.isConnected();
     }
 }
