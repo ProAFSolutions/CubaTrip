@@ -22,9 +22,7 @@ import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
-    private MapView mapView;
-    private TileCache tileCache;
-    private TileRendererLayer tileRendererLayer;
+
     private MainPresenter presenter;
 
 
@@ -33,54 +31,23 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         AndroidGraphicFactory.createInstance(this.getApplication());
         presenter = new MainPresenter(MainActivity.this);
-        setupMapSettings();
+        presenter.setupMapSettings();
         //setContentView(R.layout.activity_main);
     }
 
-    private void setupMapSettings(){
-        this.mapView = new MapView(this);
-        setContentView(this.mapView);
 
-        this.mapView.setClickable(true);
-        this.mapView.getMapScaleBar().setVisible(true);
-        this.mapView.setBuiltInZoomControls(true);
-        this.mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
-        this.mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
-
-        // create a tile cache of suitable size
-        this.tileCache = AndroidUtil.createTileCache(this, "mapcache",
-                mapView.getModel().displayModel.getTileSize(), 1f,
-                this.mapView.getModel().frameBufferModel.getOverdrawFactor());
-    }
-
-    private File getMapFile() {
-        // File file = new File(Environment.getExternalStorageDirectory(), MAPFILE);
-        File file = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS), Constants.MAPFILE);
-        return file;
-    }
 
     @Override
     protected void onStart() {
         super.onStart();
 
-           this.mapView.getModel().mapViewPosition.setCenter(new LatLong(23.1355443, -82.3620573));
-           this.mapView.getModel().mapViewPosition.setZoomLevel((byte) 16);
-
-        // tile renderer layer using internal render theme
-        MapDataStore mapDataStore = new MapFile(getMapFile());
-        this.tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,
-                this.mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE);
-        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-
-        // only once a layer is associated with a mapView the rendering starts
-        this.mapView.getLayerManager().getLayers().add(tileRendererLayer);
-
+          presenter.Start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        this.mapView.destroyAll();
+        presenter.Destroy();
     }
 
 
