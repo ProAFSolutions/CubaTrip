@@ -49,8 +49,8 @@ public class DetailsPresenter extends AbstractPresenter {
     public void SetLocation()
     {
         Bundle params = new Bundle();
-        params.putString("longitude",product.GeoLocation().getLongitude());
-        params.putString("latitude",product.GeoLocation().getLatitude());
+        params.putString("longitude",product.getLongitude());
+        params.putString("latitude",product.getLatitude());
         this.openNewActivityPassingData(MainActivity.class,params);
     }
 }
