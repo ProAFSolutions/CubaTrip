@@ -9,12 +9,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
 
+
     <ImageView
         android:id="@+id/ImageProduct"
         android:layout_width="match_parent"
         android:layout_height="700px"
         android:src="@drawable/image_test"
         android:scaleType="fitXY"></ImageView>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -224,6 +227,37 @@
             android:text="Post"
             android:textColor="@android:color/background_light"
             app:backgroundTint="@color/colorPrimary"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="550px"
+        android:orientation="horizontal">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_map"
+            app:layout_anchor="@+id/buttonMap"
+            app:layout_anchorGravity="bottom|end"
+            android:focusableInTouchMode="true"
+            app:backgroundTint="@color/colorPrimary"
+            android:onClick=""/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_email"
+            app:layout_anchor="@+id/buttonContact"
+            app:layout_anchorGravity="bottom"
+            android:layout_marginLeft="15px"
+            app:backgroundTint="@color/colorPrimary"
+            />
+
     </LinearLayout>
 
 </RelativeLayout>

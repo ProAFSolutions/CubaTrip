@@ -1,6 +1,7 @@
 package com.proafsolutions.cubatrip.ui.presenter;
 
 import android.app.Activity;
+import android.os.Bundle;
 import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
@@ -43,5 +44,13 @@ public class DetailsPresenter extends AbstractPresenter {
 
         ((TextView)activity.findViewById(R.id.ServicesText)).setText(product.getServices().get("Dishes"));
 
+    }
+
+    public void SetLocation()
+    {
+        Bundle params = new Bundle();
+        params.putString("longitude",product.GeoLocation().getLongitude());
+        params.putString("latitude",product.GeoLocation().getLatitude());
+        this.openNewActivityPassingData(MainActivity.class,params);
     }
 }
