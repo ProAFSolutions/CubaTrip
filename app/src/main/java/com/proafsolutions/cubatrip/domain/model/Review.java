@@ -9,11 +9,11 @@ import java.util.Date;
 /**
  * Created by alex on 4/17/2016.
  */
-@Table(name = "Review")
+@Table(name = "review")
 public class Review extends Model {
 
     @Column(name = "rate")
-    private int rate;
+    private RateEnum rate;
 
     @Column(name = "comments")
     private String comments;
@@ -27,28 +27,33 @@ public class Review extends Model {
     @Column(name = "sync")
     private boolean sync;
 
-    @Column(name = "product", onDelete = Column.ForeignKeyAction.CASCADE)
+    @Column(name = "productId", onDelete = Column.ForeignKeyAction.CASCADE)
     private Product product;
 
     public Review(){
         super();
     }
 
-    public Review(int rate, String comments, Date date, boolean sync, Product product) {
+    public Review(RateEnum rate, String comments,Product product) {
         this();
         this.rate = rate;
         this.comments = comments;
-        this.date = date;
-        this.sync = sync;
+        this.date = new Date();
+        this.sync = false;
         this.product = product;
     }
 
+    public Review(RateEnum rate, String comments, String contact, Product product) {
+        this(rate, comments, product);
+        this.contact = contact;
+    }
+
     //Getter and Setter
-    public int getRate() {
+    public RateEnum getRate() {
         return rate;
     }
 
-    public void setRate(int rate) {
+    public void setRate(RateEnum rate) {
         this.rate = rate;
     }
 

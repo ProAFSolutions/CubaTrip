@@ -15,7 +15,7 @@ import java.util.Map;
 /**
  * Created by alex on 4/17/2016.
  */
-@Table(name = "Product")
+@Table(name = "product")
 public class Product extends Model{
 
     @Column(name = "remoteId", unique = true, onUniqueConflict = Column.ConflictAction.FAIL)
@@ -45,6 +45,9 @@ public class Product extends Model{
     @Column(name = "email")
     private String email;
 
+    @Column(name = "hours")
+    private String hours;
+
     @Column(name = "webSiteUrl")
     private String webSiteUrl;
 
@@ -63,22 +66,23 @@ public class Product extends Model{
     @Column( name = "category")
     private CategoryEnum category;
 
-    @Column( name = "province", onDelete = Column.ForeignKeyAction.CASCADE)
+    @Column( name = "provinceId", onDelete = Column.ForeignKeyAction.CASCADE)
     private Province province;
 
-    private ProductDetails _details;
-    private GeoLocation _location;
+    private ProductDetails details;
+    private GeoLocation location;
 
     public Product() {
         super();
     }
 
-    public Product(int remoteId, String name, String description, CategoryEnum category, Province province, ProductDetails details, GeoLocation location, List<String> images) {
+    public Product(int remoteId, String name, String description, String hours, CategoryEnum category, Province province, ProductDetails details, GeoLocation location, List<String> images) {
         this();
         this.remoteId = remoteId;
         this.name = name;
         this.description = description;
         this.created = this.lastUpdated = new Date();
+        this.hours = hours;
 
         this.category = category;
         this.province = province;
@@ -96,20 +100,13 @@ public class Product extends Model{
         this.images = images;
     }
 
-    public ProductDetails Details(){
-        if(_details == null){
-            _details = new ProductDetails(contact, address,phone, email, webSiteUrl, services);
-        }
-        return _details;
+    public ProductDetails getDetails(){
+        return  new ProductDetails(contact, address,phone, email, webSiteUrl, services);
     }
 
-    public GeoLocation GeoLocation(){
-        if(_location == null){
-            _location = new GeoLocation(latitude, longitude);
-        }
-        return _location;
+    public GeoLocation getGeoLocation(){
+        return new GeoLocation(latitude, longitude);
     }
-
 
     //Getter and Setter
     public int getRemoteId() {
@@ -238,6 +235,14 @@ public class Product extends Model{
 
     public void setLongitude(String longitude) {
         this.longitude = longitude;
+    }
+
+    public String getHours() {
+        return hours;
+    }
+
+    public void setHours(String hours) {
+        this.hours = hours;
     }
 }
 

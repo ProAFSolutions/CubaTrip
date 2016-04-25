@@ -34,7 +34,7 @@ public class ProductRepository extends AbstractRepository<Product>{
         return new Select()
                 .from(Product.class)
                 .where("category = ?", category)
-                .where("province = ?", provinceId)
+                .where("provinceId = ?", provinceId)
                 .execute();
     }
 

@@ -2,6 +2,7 @@ package com.proafsolutions.cubatrip.domain.service;
 
 import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.model.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 
 import java.util.Date;
@@ -24,5 +25,9 @@ public interface IServiceCatalog {
 
     void doProductReview(Review review);
 
-    List<Review> getReviewsFrom(Date from);
+    List<Review> getReviews(long productId);
+
+    List<Review> getReviewsByRate(long productId, RateEnum rate);
+
+    List<Review> getReviewsFrom(long productId, Date from);
 }

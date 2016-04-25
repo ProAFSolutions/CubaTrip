@@ -10,5 +10,5 @@ public class ProvinceRepository extends  AbstractRepository<Province>{
     @Override
     public Class<Province> getModelClass() {
         return Province.class;
-    };
+    }
 }

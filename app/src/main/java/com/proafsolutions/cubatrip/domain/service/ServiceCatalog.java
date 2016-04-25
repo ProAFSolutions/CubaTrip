@@ -2,6 +2,7 @@ package com.proafsolutions.cubatrip.domain.service;
 
 import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.model.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
@@ -60,12 +61,23 @@ public class ServiceCatalog implements IServiceCatalog {
 
     @Override
     public void doProductReview(Review review) {
-
+        RepositoryProvider.getReviewRepository().save(review);
     }
 
     @Override
-    public List<Review> getReviewsFrom(Date from) {
+    public List<Review> getReviews(long productId) {
+       return RepositoryProvider.getReviewRepository().retrieveReviews(productId);
+    }
+
+    @Override
+    public List<Review> getReviewsByRate(long productId, RateEnum rate) {
+        return RepositoryProvider.getReviewRepository().retrieveReviewsByRate(productId, rate);
+    }
+
+    @Override
+    public List<Review> getReviewsFrom(long productId, Date from) {
         return null;
     }
+
 
 }
