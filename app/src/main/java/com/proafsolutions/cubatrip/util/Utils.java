@@ -2,6 +2,7 @@ package com.proafsolutions.cubatrip.util;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.RateEnum;
 
 /**
  * Created by Fily on 4/24/2016.
@@ -28,4 +29,39 @@ public class Utils {
 
         return CategoryEnum.RESTAURANTS;
     }
+
+    public static RateEnum GetRateEnum(int id)
+    {
+        switch (id)
+        {
+            case 0:
+            {
+                return RateEnum.NONE;
+            }
+            case 1:
+            {
+                return RateEnum.VERY_BAD;
+            }
+
+            case 2:
+            {
+                 return RateEnum.BAD;
+            }
+            case 3:
+            {
+                return RateEnum.AVERAGE;
+            }
+            case 4:
+            {
+                return RateEnum.EXCELENT;
+            }
+            case 5:
+            {
+                return RateEnum.GOOD;
+            }
+        }
+
+         return RateEnum.NONE;
+    }
+
 }

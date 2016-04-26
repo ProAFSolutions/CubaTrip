@@ -12,7 +12,7 @@ public class CubaTripApp extends Application {
     public void onCreate() {
         super.onCreate();
         ActiveAndroid.initialize(this);
-        new AppDatasetExample(true);
+        new AppDatasetExample(false);
     }
 
 
