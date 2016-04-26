@@ -8,17 +8,15 @@ import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
-import com.proafsolutions.cubatrip.ui.activity.MainActivity;
+import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 import com.proafsolutions.cubatrip.ui.activity.ReviewsActivity;
 import com.proafsolutions.cubatrip.util.Utils;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by fily on 4/18/2016.
@@ -61,7 +59,7 @@ public class DetailsPresenter extends AbstractPresenter {
         Bundle params = new Bundle();
         params.putString("longitude",product.getLongitude());
         params.putString("latitude",product.getLatitude());
-        this.openNewActivityPassingData(MainActivity.class,params);
+        this.openNewActivityPassingData(MapActivity.class,params);
     }
 
     public void NewReview()
