@@ -8,9 +8,7 @@ import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
-import com.proafsolutions.cubatrip.ui.activity.MainActivity;
-
-import java.util.Map;
+import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 
 /**
  * Created by fily on 4/18/2016.
@@ -51,6 +49,6 @@ public class DetailsPresenter extends AbstractPresenter {
         Bundle params = new Bundle();
         params.putString("longitude",product.getLongitude());
         params.putString("latitude",product.getLatitude());
-        this.openNewActivityPassingData(MainActivity.class,params);
+        this.openNewActivityPassingData(MapActivity.class,params);
     }
 }

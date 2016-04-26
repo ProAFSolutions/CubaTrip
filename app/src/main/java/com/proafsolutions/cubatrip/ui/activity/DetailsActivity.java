@@ -1,15 +1,12 @@
 package com.proafsolutions.cubatrip.ui.activity;
 
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.ui.presenter.DetailsPresenter;
-import com.proafsolutions.cubatrip.ui.presenter.MainPresenter;
 
 public class DetailsActivity extends AppCompatActivity {
 

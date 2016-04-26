@@ -18,7 +18,7 @@
         android:theme="@style/AppTheme">
 
         <!-- START Activities -->
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity" />
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity" />
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

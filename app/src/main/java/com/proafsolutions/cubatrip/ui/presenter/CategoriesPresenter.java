@@ -3,30 +3,24 @@ package com.proafsolutions.cubatrip.ui.presenter;
 import android.app.Activity;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.service.IServiceCatalog;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
-import com.proafsolutions.cubatrip.ui.activity.MainActivity;
 import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
 import com.proafsolutions.cubatrip.util.Utils;
 
 
 import java.util.ArrayList;
 import java.util.List;
-
-import okhttp3.internal.Util;
 
 
 public class CategoriesPresenter extends AbstractPresenter {
