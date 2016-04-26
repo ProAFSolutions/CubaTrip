@@ -13,6 +13,7 @@ import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.activity.MainActivity;
+import com.proafsolutions.cubatrip.ui.activity.ReviewsActivity;
 import com.proafsolutions.cubatrip.util.Utils;
 
 import java.util.Date;
@@ -125,5 +126,12 @@ public class DetailsPresenter extends AbstractPresenter {
         ((RatingBar)activity.findViewById(R.id.reviewRating)).setRating(0);
         ((TextView)activity.findViewById(R.id.reviewContact)).setText("");
 
+    }
+
+    public void ShowReviewsList()
+    {
+        Bundle params = new Bundle();
+        params.putLong("idProduct",product.getId());
+        this.openNewActivityPassingData(ReviewsActivity.class,params);
     }
 }

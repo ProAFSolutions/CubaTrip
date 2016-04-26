@@ -26,7 +26,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity"></activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
         <!-- END Activities -->
 
 
@@ -53,6 +53,7 @@
             android:exported="true" />
         <!-- END Services -->
 
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity"></activity>
     </application>
 
 </manifest>

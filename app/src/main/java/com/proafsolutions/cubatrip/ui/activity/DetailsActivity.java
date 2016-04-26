@@ -45,5 +45,9 @@ public class DetailsActivity extends AppCompatActivity {
 
     }
 
+    public void onClick(View v) {
+        presenter.ShowReviewsList();
+    }
+
 
 }

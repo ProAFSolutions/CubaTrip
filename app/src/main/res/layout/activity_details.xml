@@ -68,12 +68,23 @@
 
             <TextView
                 android:id="@+id/lineReviews"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="26dip"
                 android:ellipsize="marquee"
                 android:text="(5) Reviews"
                 android:textSize="12sp" android:textColor="@android:color/background_light"
-                android:layout_toRightOf="@+id/ratingBar"/>
+                android:layout_toRightOf="@+id/ratingBar"
+                android:layout_marginTop="15px"
+               />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
+                android:ellipsize="marquee"
+                android:textSize="12sp" android:textColor="@android:color/background_light"
+                android:layout_toRightOf="@+id/lineReviews"
+                android:onClick="onClick"
+                android:clickable="true" android:layout_marginLeft="10px" android:drawableLeft="@android:drawable/ic_menu_view"/>
         </RelativeLayout>
 
 
@@ -169,7 +180,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/About"
-            android:textSize="22sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
+            android:textSize="20sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/ServicesText"
@@ -186,7 +197,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="10px" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -195,7 +206,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/WriteReview"
-            android:textSize="22sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
+            android:textSize="20sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
 
 
