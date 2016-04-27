@@ -1,7 +1,13 @@
 package com.proafsolutions.cubatrip.ui.presenter;
 
 import android.app.Activity;
+import android.content.res.AssetManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.util.TypedValue;
 
+import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 import com.proafsolutions.cubatrip.ui.util.MapUtil;
 
@@ -9,6 +15,9 @@ import org.mapsforge.core.model.LatLong;
 import org.mapsforge.map.android.view.MapView;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
+
+import java.io.IOException;
+import java.io.InputStream;
 
 /**
  * Created by alex on 4/18/2016.
@@ -59,6 +68,23 @@ public class MapPresenter extends AbstractPresenter {
         // only once a layer is associated with a mapView the rendering starts
         this.mapView.getLayerManager().getLayers().add(tileRendererLayer);
 
+
+        Drawable image = activity.getResources().getDrawable(R.drawable.location);
+        MapUtil.addMarker(this.mapView, image, new LatLong(23.1355443, -82.3620573));
+
+    }
+
+    private Bitmap getBitmapFromAsset(String strName)
+    {
+        AssetManager assetManager = activity.getAssets();
+        InputStream istr = null;
+        try {
+            istr = assetManager.open(strName);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Bitmap bitmap = BitmapFactory.decodeStream(istr);
+        return bitmap;
     }
 
     public void Destroy()
