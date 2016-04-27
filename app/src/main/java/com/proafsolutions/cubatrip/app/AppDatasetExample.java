@@ -5,6 +5,8 @@ import android.util.Log;
 import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.Province;
+import com.proafsolutions.cubatrip.domain.model.RateEnum;
+import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.specification.GeoLocation;
 import com.proafsolutions.cubatrip.domain.specification.ProductDetails;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProductRepository;
@@ -26,6 +28,7 @@ public class AppDatasetExample {
         if(init){
             createProvince();
             createProducts();
+            createReviews();
         }
         printOutProducts();
     }
@@ -49,7 +52,6 @@ public class AppDatasetExample {
         Province province = RepositoryProvider.getProvinceRepository().loadAll().get(0);
 
         Map<String, String> carretaServices = new HashMap<String, String>();
-        carretaServices.put("Hours", "From 7:00 am to 10:00 pm");
         carretaServices.put("Dishes", "SeaFood, Italian Food, Cuban Buffet");
 
         List<String> images = new ArrayList<String>();
@@ -59,7 +61,9 @@ public class AppDatasetExample {
 
         Product product1 = new Product(
                 111,//remoteId
-                "La Carreta", "Delicous Cuban Cousine",
+                "La Carreta",
+                "Delicous Cuban Cousine",
+                "9:00 am to 10:00pm",
                 CategoryEnum.RESTAURANTS,
                 province,
                 new ProductDetails(
@@ -81,6 +85,7 @@ public class AppDatasetExample {
                 222,//remoteId
                 "Universidad de La Habana",
                 "Universidad",
+                "9:00 am to 5:00pm",
                 CategoryEnum.EDUCATION,
                 province,
                 new ProductDetails(
@@ -102,6 +107,7 @@ public class AppDatasetExample {
                 333,//remoteId
                 "Habana Libre",
                 "Hotel",
+                "24 hours",
                 CategoryEnum.HOTEL,
                 province,
                 new ProductDetails(
@@ -128,15 +134,34 @@ public class AppDatasetExample {
 
     }
 
+    public void createReviews(){
+        Product product = RepositoryProvider.getProductRepository().loadAll().get(0);
+
+        List<Review> reviews = new ArrayList<Review>();
+        reviews.add(new Review(RateEnum.GOOD, "Nice people and nice place", product));
+        reviews.add(new Review(RateEnum.AVERAGE, "Very old place", product));
+        reviews.add(new Review(RateEnum.VERY_BAD, "No internet connection around", product));
+
+        RepositoryProvider.getReviewRepository().saveAll(reviews);
+    }
+
+
     public void printOutProducts(){
 
         for (Province P :RepositoryProvider.getProvinceRepository().loadAll()) {
             Log.i("AppDatasetExample", (P.getName() != null ? P.getName() : "NULL"));
         }
 
-        for (Product P :RepositoryProvider.getProductRepository().loadAll()) {
+        List<Product> prods = RepositoryProvider.getProductRepository().loadAll();
+        for (Product P : prods) {
             Log.i("AppDatasetExample", String.format("Id: %s, Name: %s, Province: %s, Services Count: %s, Images: %s",
                 P.getId(), P.getName(), P.getProvince().getName(), P.getServices().size(), P.getImages().size()
+            ));
+        }
+
+        for (Review R : RepositoryProvider.getReviewRepository().retrieveReviews(prods.get(0).getId())) {
+            Log.i("AppDatasetExample", String.format("Rate: %s, Rate Value: %s, Date: %s",
+                    R.getRate().name(), R.getRate().getRate(), R.getDate().toString()
             ));
         }
     }

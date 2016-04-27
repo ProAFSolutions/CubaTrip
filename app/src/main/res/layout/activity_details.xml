@@ -9,12 +9,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
 
+
     <ImageView
         android:id="@+id/ImageProduct"
         android:layout_width="match_parent"
         android:layout_height="700px"
         android:src="@drawable/image_test"
         android:scaleType="fitXY"></ImageView>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -65,12 +68,23 @@
 
             <TextView
                 android:id="@+id/lineReviews"
-                android:layout_width="fill_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="26dip"
                 android:ellipsize="marquee"
                 android:text="(5) Reviews"
                 android:textSize="12sp" android:textColor="@android:color/background_light"
-                android:layout_toRightOf="@+id/ratingBar"/>
+                android:layout_toRightOf="@+id/ratingBar"
+                android:layout_marginTop="15px"
+               />
+
+            <TextView
+                android:layout_width="fill_parent"
+                android:layout_height="26dip"
+                android:ellipsize="marquee"
+                android:textSize="12sp" android:textColor="@android:color/background_light"
+                android:layout_toRightOf="@+id/lineReviews"
+                android:onClick="onClick"
+                android:clickable="true" android:layout_marginLeft="10px" android:drawableLeft="@android:drawable/ic_menu_view"/>
         </RelativeLayout>
 
 
@@ -166,9 +180,10 @@
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/About"
-            android:textSize="22sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
+            android:textSize="20sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
         <TextView
+            android:id="@+id/ServicesText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
@@ -182,7 +197,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/colorPrimaryDark" />
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="10px" />
 
         <TextView
             android:layout_width="fill_parent"
@@ -191,11 +206,12 @@
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/WriteReview"
-            android:textSize="22sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
+            android:textSize="20sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
 
 
         <RatingBar
+            android:id="@+id/reviewRating"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
@@ -209,7 +225,15 @@
             android:indeterminateOnly="false" />
 
         <EditText
-            android:id="@+id/launch_codes"
+            android:id="@+id/reviewContact"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:hint="Your name..."
+            android:inputType="text"
+            />
+
+        <EditText
+            android:id="@+id/reviewComments"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:hint="Your review..."
@@ -217,12 +241,44 @@
              />
 
         <android.support.v7.widget.AppCompatButton
+            android:id="@+id/buttonPost"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Post"
             android:textColor="@android:color/background_light"
             app:backgroundTint="@color/colorPrimary"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:layout_marginRight="10px"
+        android:layout_marginTop="550px"
+        android:orientation="horizontal">
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonMap"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_map"
+            app:layout_anchor="@+id/buttonMap"
+            app:layout_anchorGravity="bottom|end"
+            android:focusableInTouchMode="true"
+            app:backgroundTint="@color/colorPrimary"
+            android:onClick=""/>
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/buttonContact"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_dialog_email"
+            app:layout_anchor="@+id/buttonContact"
+            app:layout_anchorGravity="bottom"
+            android:layout_marginLeft="15px"
+            app:backgroundTint="@color/colorPrimary"
+            />
+
     </LinearLayout>
 
 </RelativeLayout>

@@ -3,6 +3,8 @@
     package="com.proafsolutions.cubatrip.android">
 
     <!-- START Permission Settings -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -18,17 +20,18 @@
         android:theme="@style/AppTheme">
 
         <!-- START Activities -->
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MainActivity"></activity>
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity"></activity>
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity" />
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
         <!-- END Activities -->
 
-        <!-- START Database Settings -->
+       <!-- START Database Settings -->
         <meta-data
             android:name="AA_DB_NAME"
             android:value="/mnt/sdcard/Download/cubatrip.db" />
@@ -48,9 +51,10 @@
         <service
             android:name="com.proafsolutions.cubatrip.app.UpdateService"
             android:enabled="true"
-            android:exported="true"></service>
+            android:exported="true" />
         <!-- END Services -->
 
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity"></activity>
     </application>
 
 </manifest>
