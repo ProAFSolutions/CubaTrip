@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.artifacts;
+package com.proafsolutions.cubatrip.infrastructure.converter;
 
 import com.google.gson.Gson;
 
@@ -7,7 +7,7 @@ import java.lang.reflect.Type;
 /**
  * Created by alex on 4/20/2016.
  */
-public class JsonManager {
+public class JsonConverter {
 
     private static final Gson _converter = new Gson();
 

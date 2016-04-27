@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.app;
+package com.proafsolutions.cubatrip.app.setup;
 
 import android.util.Log;
 
@@ -38,11 +38,11 @@ public class AppDatasetExample {
         if(repo.loadAll().size() == 0){
             Province province = new Province("Habana");
             repo.save(province);
-            Log.i("AppDatasetExample","Province inserted: " + province.getId());
+            Log.i("AppSetup","Province inserted: " + province.getId());
 
             Province province2 = new Province("Camaguey");
             repo.save(province2);
-            Log.i("AppDatasetExample","Province inserted: " + province2.getId());
+            Log.i("AppSetup","Province inserted: " + province2.getId());
         }
     }
 
@@ -149,18 +149,18 @@ public class AppDatasetExample {
     public void printOutProducts(){
 
         for (Province P :RepositoryProvider.getProvinceRepository().loadAll()) {
-            Log.i("AppDatasetExample", (P.getName() != null ? P.getName() : "NULL"));
+            Log.i("AppSetup", (P.getName() != null ? P.getName() : "NULL"));
         }
 
         List<Product> prods = RepositoryProvider.getProductRepository().loadAll();
         for (Product P : prods) {
-            Log.i("AppDatasetExample", String.format("Id: %s, Name: %s, Province: %s, Services Count: %s, Images: %s",
+            Log.i("AppSetup", String.format("Id: %s, Name: %s, Province: %s, Services Count: %s, Images: %s",
                 P.getId(), P.getName(), P.getProvince().getName(), P.getServices().size(), P.getImages().size()
             ));
         }
 
         for (Review R : RepositoryProvider.getReviewRepository().retrieveReviews(prods.get(0).getId())) {
-            Log.i("AppDatasetExample", String.format("Rate: %s, Rate Value: %s, Date: %s",
+            Log.i("AppSetup", String.format("Rate: %s, Rate Value: %s, Date: %s",
                     R.getRate().name(), R.getRate().getRate(), R.getDate().toString()
             ));
         }

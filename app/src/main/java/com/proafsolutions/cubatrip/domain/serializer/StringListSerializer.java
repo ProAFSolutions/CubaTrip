@@ -2,7 +2,7 @@ package com.proafsolutions.cubatrip.domain.serializer;
 
 import com.activeandroid.serializer.TypeSerializer;
 import com.google.gson.reflect.TypeToken;
-import com.proafsolutions.cubatrip.artifacts.JsonManager;
+import com.proafsolutions.cubatrip.infrastructure.converter.JsonConverter;
 
 import java.lang.reflect.Type;
 import java.util.List;
@@ -28,7 +28,7 @@ public class StringListSerializer extends TypeSerializer {
         if (data == null) {
             return null;
         }
-        return JsonManager.toJson((List<String>)data);
+        return JsonConverter.toJson((List<String>)data);
     }
 
     @Override
@@ -37,6 +37,6 @@ public class StringListSerializer extends TypeSerializer {
             return null;
         }
         Type type = new TypeToken<List<String>>(){}.getType();
-        return JsonManager.toObject(data.toString(), type);
+        return JsonConverter.toObject(data.toString(), type);
     }
 }

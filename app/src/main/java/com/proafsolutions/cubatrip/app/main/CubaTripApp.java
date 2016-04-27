@@ -1,7 +1,8 @@
-package com.proafsolutions.cubatrip.app;
+package com.proafsolutions.cubatrip.app.main;
 
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.app.Application;
+import com.proafsolutions.cubatrip.app.setup.AppDatasetExample;
 
 /**
  * Created by alex on 4/15/2016.

@@ -1,5 +1,17 @@
 package com.proafsolutions.cubatrip.ui.location;
 
+import android.Manifest;
+import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationListener;
+import android.location.LocationManager;
+import android.location.LocationProvider;
+import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+
 import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.graphics.Canvas;
 import org.mapsforge.core.graphics.GraphicFactory;
@@ -15,18 +27,6 @@ import org.mapsforge.map.layer.overlay.Circle;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.model.MapViewPosition;
 
-import android.Manifest;
-import android.app.Activity;
-import android.content.Context;
-import android.content.pm.PackageManager;
-import android.location.Location;
-import android.location.LocationListener;
-import android.location.LocationManager;
-import android.location.LocationProvider;
-import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.content.ContextCompat;
-
 
 /**
  * Created by alex on 4/27/2016.
@@ -37,6 +37,15 @@ public class MyLocationOverlay extends Layer implements LocationListener, Activi
     private float minDistance = 0.0f;
     private long minTime = 0;
     private final Activity activity;
+
+    private boolean centerAtNextFix;
+    private final Circle circle;
+    private Location lastLocation;
+    private final LocationManager locationManager;
+    private final MapViewPosition mapViewPosition;
+    private final Marker marker;
+    private boolean myLocationEnabled;
+    private boolean snapToLocationEnabled;
 
     /**
      * @param location
@@ -63,14 +72,7 @@ public class MyLocationOverlay extends Layer implements LocationListener, Activi
         return paint;
     }
 
-    private boolean centerAtNextFix;
-    private final Circle circle;
-    private Location lastLocation;
-    private final LocationManager locationManager;
-    private final MapViewPosition mapViewPosition;
-    private final Marker marker;
-    private boolean myLocationEnabled;
-    private boolean snapToLocationEnabled;
+
 
     /**
      * Constructs a new {@code MyLocationOverlay} with the default circle paints.
@@ -111,8 +113,6 @@ public class MyLocationOverlay extends Layer implements LocationListener, Activi
 
     }
 
-
-
     /**
      * Stops the receiving of location updates. Has no effect if location updates are already disabled.
      */
@@ -120,7 +120,10 @@ public class MyLocationOverlay extends Layer implements LocationListener, Activi
         if (this.myLocationEnabled) {
             this.myLocationEnabled = false;
             try {
-                this.locationManager.removeUpdates(this);
+               if(ContextCompat.checkSelfPermission( this.activity.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED &&
+                  ContextCompat.checkSelfPermission( this.activity.getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                   this.locationManager.removeUpdates(this);
+               }
             } catch (RuntimeException runtimeException) {
                 // do we need to catch security exceptions for this call on Android 6?
             }
@@ -264,7 +267,10 @@ public class MyLocationOverlay extends Layer implements LocationListener, Activi
         for (String provider : this.locationManager.getProviders(true)) {
             if (LocationManager.GPS_PROVIDER.equals(provider) || LocationManager.NETWORK_PROVIDER.equals(provider)) {
                 result = true;
-                this.locationManager.requestLocationUpdates(provider, minTime, minDistance, this);
+                if(ContextCompat.checkSelfPermission( this.activity.getApplicationContext(), android.Manifest.permission.ACCESS_FINE_LOCATION ) == PackageManager.PERMISSION_GRANTED &&
+                   ContextCompat.checkSelfPermission( this.activity.getApplicationContext(), android.Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED){
+                    this.locationManager.requestLocationUpdates(provider, minTime, minDistance, this);
+                }
             }
         }
         this.myLocationEnabled = result;

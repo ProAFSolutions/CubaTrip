@@ -13,7 +13,7 @@ import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 import com.proafsolutions.cubatrip.ui.activity.ReviewsActivity;
-import com.proafsolutions.cubatrip.util.Utils;
+import com.proafsolutions.cubatrip.ui.util.Utils;
 
 import java.util.Date;
 import java.util.List;

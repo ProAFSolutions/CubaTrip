@@ -1,15 +1,16 @@
-package com.proafsolutions.cubatrip.app;
+package com.proafsolutions.cubatrip.app.service;
 
 import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.IBinder;
 import android.util.Log;
 
-import com.proafsolutions.cubatrip.artifacts.Constants;
-import com.proafsolutions.cubatrip.infrastructure.connection.InternetConnectionDetector;
+import com.proafsolutions.cubatrip.infrastructure.config.Constants;
 
 public class UpdateService extends Service implements IUpdateService {
 
@@ -41,16 +42,22 @@ public class UpdateService extends Service implements IUpdateService {
 
     @Override
     public void sendReviewsToServer() {
-        Log.i("info", "**************Sending review information to the server******************");
-        this.stopSelf();
+        Log.i("UpdateService", "**************Sending review information to the server******************");
+       // this.stopSelf();
+    }
+
+    @Override
+    public void getReviewsFromServer() {
+        Log.i("UpdateService", "**************Receiving reviews from server******************");
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        Log.i("info", "********************Background Service Destroyed**************************");
+        Log.i("UpdateService", "********************Background Service Destroyed**************************");
         unregisterReceiver(_eventsReceiver);
     }
+
 
     private class EventsReceiver extends BroadcastReceiver
     {
@@ -59,14 +66,19 @@ public class UpdateService extends Service implements IUpdateService {
             String action = intent.getAction();
             switch(action){
                 case Constants.ANDROID_ACTION_CONNECTIVITY_CHANGE:{
-                    boolean internetConnection =  InternetConnectionDetector.isConnected(context);
-                    Log.i("info", "********************Connection "+ internetConnection +"**************************");
+                    boolean internetConnection =  checkConnection(context);
                     if(internetConnection){
                         sendReviewsToServer();
                     }
                 } break;
                 //TODO Add new actions below
             }
+        }
+
+        private boolean checkConnection(Context context){
+            ConnectivityManager cm = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+            NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
+            return activeNetwork != null && activeNetwork.isConnected();
         }
     }
 }

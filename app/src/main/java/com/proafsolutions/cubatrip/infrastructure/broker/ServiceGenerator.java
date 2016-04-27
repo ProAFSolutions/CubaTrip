@@ -1,6 +1,6 @@
 package com.proafsolutions.cubatrip.infrastructure.broker;
 
-import com.proafsolutions.cubatrip.artifacts.Constants;
+import com.proafsolutions.cubatrip.infrastructure.config.Constants;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;

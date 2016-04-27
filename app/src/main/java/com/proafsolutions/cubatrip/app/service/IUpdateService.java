@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.app;
+package com.proafsolutions.cubatrip.app.service;
 
 /**
  * Created by alex on 4/19/2016.
@@ -6,5 +6,7 @@ package com.proafsolutions.cubatrip.app;
 public interface IUpdateService {
 
     void sendReviewsToServer();
+
+    void getReviewsFromServer();
 
 }

@@ -10,7 +10,7 @@ import com.proafsolutions.cubatrip.ui.presenter.MapPresenter;
 
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 
-public class MapActivity extends AppCompatActivity implements LocationListener{
+public class MapActivity extends AppCompatActivity {
 
 
     private MapPresenter presenter;
@@ -21,43 +21,18 @@ public class MapActivity extends AppCompatActivity implements LocationListener{
         super.onCreate(savedInstanceState);
         AndroidGraphicFactory.createInstance(this.getApplication());
         presenter = new MapPresenter(MapActivity.this);
-        presenter.setupMapSettings();
-        //setContentView(R.layout.activity_main);
     }
-
-
 
     @Override
     protected void onStart() {
         super.onStart();
-
-          presenter.Start();
+        presenter.start();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        presenter.Destroy();
+        presenter.destroy();
     }
 
-
-    @Override
-    public void onLocationChanged(Location location) {
-
-    }
-
-    @Override
-    public void onStatusChanged(String provider, int status, Bundle extras) {
-
-    }
-
-    @Override
-    public void onProviderEnabled(String provider) {
-
-    }
-
-    @Override
-    public void onProviderDisabled(String provider) {
-
-    }
 }

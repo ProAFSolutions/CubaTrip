@@ -16,7 +16,7 @@ import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
-import com.proafsolutions.cubatrip.util.Utils;
+import com.proafsolutions.cubatrip.ui.util.Utils;
 
 
 import java.util.ArrayList;

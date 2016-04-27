@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.artifacts;
+package com.proafsolutions.cubatrip.infrastructure.io;
 
 import android.util.Log;
 
