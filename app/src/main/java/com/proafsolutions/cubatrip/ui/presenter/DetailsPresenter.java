@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.model.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
@@ -131,5 +132,12 @@ public class DetailsPresenter extends AbstractPresenter {
         Bundle params = new Bundle();
         params.putLong("idProduct",product.getId());
         this.openNewActivityPassingData(ReviewsActivity.class,params);
+    }
+
+    public void ChangeRate()
+    {
+        RatingBar r = (RatingBar)activity.findViewById(R.id.reviewRating);
+        RateEnum rate = Utils.GetRateEnum((int)r.getRating());
+        ((TextView)activity.findViewById(R.id.WriteReviewText)).setText("Write Review ("+rate.toString()+")");
     }
 }

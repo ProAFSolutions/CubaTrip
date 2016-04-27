@@ -180,7 +180,8 @@
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/About"
-            android:textSize="20sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
+            android:layout_marginTop="15sp"
+            android:textSize="18sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
         <TextView
             android:id="@+id/ServicesText"
@@ -192,21 +193,23 @@
             android:text="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."
             android:textStyle="italic"
             android:inputType="textMultiLine"
+            android:layout_marginTop="15sp"
             android:textSize="14sp" android:textColor="@android:color/background_dark" android:layout_marginLeft="10dp"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
-            android:background="@color/colorPrimaryDark" android:layout_marginTop="10px" />
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="20sp" />
 
         <TextView
+            android:id="@+id/WriteReviewText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/WriteReview"
-            android:textSize="20sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
+            android:textSize="18sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
 
 
@@ -222,7 +225,7 @@
             android:transformPivotX="0dp"
             android:transformPivotY="0dp"
             android:max="5"
-            android:indeterminateOnly="false" />
+            android:indeterminateOnly="false"/>
 
         <EditText
             android:id="@+id/reviewContact"
