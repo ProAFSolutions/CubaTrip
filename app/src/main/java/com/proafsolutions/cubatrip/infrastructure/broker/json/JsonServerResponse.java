@@ -1,7 +1,5 @@
 package com.proafsolutions.cubatrip.infrastructure.broker.json;
 
-import com.proafsolutions.cubatrip.domain.model.Province;
-
 import java.util.List;
 
 /**

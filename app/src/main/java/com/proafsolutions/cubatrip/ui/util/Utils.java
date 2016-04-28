@@ -1,7 +1,7 @@
 package com.proafsolutions.cubatrip.ui.util;
 
 import com.proafsolutions.cubatrip.android.R;
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 
 /**
  * Created by Fily on 4/24/2016.

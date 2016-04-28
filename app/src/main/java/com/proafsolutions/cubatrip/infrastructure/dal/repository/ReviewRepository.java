@@ -1,8 +1,7 @@
 package com.proafsolutions.cubatrip.infrastructure.dal.repository;
 
 import com.activeandroid.query.Select;
-import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 
 import java.util.List;

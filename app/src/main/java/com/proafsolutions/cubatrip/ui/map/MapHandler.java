@@ -5,16 +5,18 @@ import android.graphics.Path;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
-import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
+import com.proafsolutions.cubatrip.android.R;
+import com.proafsolutions.cubatrip.domain.model.UserSettings;
+import com.proafsolutions.cubatrip.infrastructure.config.Constants;
+import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
+import com.proafsolutions.cubatrip.infrastructure.io.FileManager;
 import com.proafsolutions.cubatrip.ui.listener.MapHandlerListener;
 
 import org.mapsforge.core.graphics.Bitmap;
@@ -28,239 +30,188 @@ import org.mapsforge.core.model.Point;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
+import org.mapsforge.map.datastore.MapDataStore;
 import org.mapsforge.map.layer.Layer;
 import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.overlay.Polyline;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
+import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 
+/**
+ * Created by alex on 4/27/2016.
+ */
 public class MapHandler {
     private Activity activity;
     private MapView mapView;
-    private String currentArea;
     private TileCache tileCache;
     private GraphHopper hopper;
-    private File mapsFolder;
     private volatile boolean shortestPathRunning;
     private Marker startMarker, endMarker;
     private Polyline polylinePath, polylineTrack;
     private MapHandlerListener mapHandlerListener;
-    private static MapHandler mapHandler;
-    /**
-     * if user going to point on map to gain a location
-     */
-    private boolean needLocation;
-    /**
-     * need to know if path calculating status change; this will trigger MapActions function
-     */
-    private boolean needPathCal;
+    private boolean prepareInProgress;
+    private MyLocationOverlay myLocation;
+    private List<Marker> markers;
+    private PointList trackingPointList;
 
-    public static MapHandler getMapHandler() {
-        if (mapHandler == null) {
+    private UserSettings userSettings;
+
+    private static MapHandler _instance;
+
+    public static MapHandler getInstance() {
+        if (_instance == null) {
             reset();
         }
-        return mapHandler;
+        return _instance;
     }
 
     /**
      * reset class, build a new instance
      */
     public static void reset() {
-        mapHandler = new MapHandler();
+        _instance = new MapHandler();
+        MapNavigator.reset();
     }
 
+
     private MapHandler() {
-        setShortestPathRunning(false);
+        this.activity = null;
+        this.mapView = null;
+        shortestPathRunning = false;
         startMarker = null;
         endMarker = null;
         polylinePath = null;
-        needLocation = false;
-        needPathCal = false;
+        markers = new ArrayList<>();
+        userSettings = null;
     }
 
-    public void init(Activity activity, MapView mapView, String currentArea, File mapsFolder) {
+    public void init(Activity activity, MapView mapView) {
+
         this.activity = activity;
         this.mapView = mapView;
-        this.currentArea = currentArea;
-        this.mapsFolder = mapsFolder;
-        //        this.prepareInProgress = prepareInProgress;
-        tileCache = AndroidUtil
-                .createTileCache(activity, getClass().getSimpleName(), mapView.getModel().displayModel.getTileSize(),
-                        1f, mapView.getModel().frameBufferModel.getOverdrawFactor());
-    }
+        this.userSettings = RepositoryProvider.getUserSettingsRepository().getSettings();
 
-    /**
-     * load map to mapView
-     *
-     * @param areaFolder
-     */
-    public void loadMap(File areaFolder) {
-        logToast("Loading map: " + currentArea);
-        File mapFile = new File(areaFolder, currentArea + ".map");
-        mapView.getLayerManager().getLayers().clear();
-        TileRendererLayer tileRendererLayer =
-                new TileRendererLayer(tileCache, mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE) {
-                    @Override public boolean onTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
-                        return myOnTap(tapLatLong, layerXY, tapXY);
-                    }
-
-                };
-        tileRendererLayer.setMapFile(mapFile);
-        tileRendererLayer.setTextScale(0.8f);
-        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-        //        log("last location " + Variable.getVariable().getLastLocation());
-        if (Variable.getVariable().getLastLocation() == null) {
-            centerPointOnMap(tileRendererLayer.getMapDatabase().getMapFileInfo().boundingBox.getCenterPoint(), 6);
-        } else {
-            centerPointOnMap(Variable.getVariable().getLastLocation(), Variable.getVariable().getLastZoomLevel());
-        }
-
-        mapView.getLayerManager().getLayers().add(tileRendererLayer);
-        ViewGroup.LayoutParams params =
-                new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        activity.addContentView(mapView, params);
+        initMap();
+        initMyLocation();
         loadGraphStorage();
     }
 
-    /**
-     * center the LatLong point in the map and zoom map to zoomLevel
-     *
-     * @param latLong
-     * @param zoomLevel (if 0 use current zoomlevel)
-     */
+    public void initMyLocation(){
+        Drawable drawable = activity.getResources().getDrawable(R.drawable.user_location);
+        Bitmap myLocationIcon = AndroidGraphicFactory.convertToBitmap(drawable);
+        myLocation = new MyLocationOverlay(activity, mapView.getModel().mapViewPosition, myLocationIcon);
+        myLocation.enableMyLocation(true);
+        mapView.getLayerManager().getLayers().add(myLocation);
+    }
+
+    public void initMap(){
+        mapView.setClickable(true);
+        mapView.getMapScaleBar().setVisible(true);
+        mapView.setBuiltInZoomControls(true);
+        mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
+        mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
+        mapView.getModel().mapViewPosition.setCenter(new LatLong(25.7902358, -80.2463184));
+        mapView.getModel().mapViewPosition.setZoomLevel((byte) 16);
+        initTileCache();
+        initRendererLayer();
+    }
+
+    private void initTileCache() {
+        tileCache = AndroidUtil.createTileCache(activity, Constants.MAP_CACHE,mapView.getModel().displayModel.getTileSize(), 1f, mapView.getModel().frameBufferModel.getOverdrawFactor());
+    }
+
+    private void initRendererLayer() {
+        MapDataStore mapDataStore = new MapFile(new File(FileManager.getMapFolder(), Constants.MAP_FILE));
+        TileRendererLayer tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,  mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE){
+            @Override
+            public boolean onLongPress(LatLong tapLatLong, Point layerXY, Point tapXY) {
+                return super.onLongPress(tapLatLong, layerXY, tapXY);
+            }
+            @Override
+            public boolean onTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
+                return super.onTap(tapLatLong, layerXY, tapXY);
+            }
+        };
+        tileRendererLayer.setTextScale(0.8f);
+        tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
+
+        mapView.getLayerManager().getLayers().add(tileRendererLayer);
+    }
+
     public void centerPointOnMap(LatLong latLong, int zoomLevel) {
         if (zoomLevel == 0) {
-            mapView.getModel().mapViewPosition
-                    .setMapPosition(new MapPosition(latLong, mapView.getModel().mapViewPosition.getZoomLevel()));
-        } else {mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(latLong, (byte) zoomLevel));}
-    }
-
-
-    /**
-     * @return
-     */
-    public boolean isNeedLocation() {
-        return needLocation;
-    }
-
-    /**
-     * set in need a location from screen point (touch)
-     *
-     * @param needLocation
-     */
-    public void setNeedLocation(boolean needLocation) {
-        this.needLocation = needLocation;
-    }
-
-    private boolean myOnTap(LatLong tapLatLong, Point layerXY, Point tapXY) {
-        if (!isReady()) return false;
-
-        if (isShortestPathRunning()) {
-            return false;
+            mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(latLong, mapView.getModel().mapViewPosition.getZoomLevel()));
+        } else {
+            mapView.getModel().mapViewPosition.setMapPosition(new MapPosition(latLong, (byte) zoomLevel));
         }
-        if (needLocation) {
-            if (mapHandlerListener != null) {
-                mapHandlerListener.onPressLocation(tapLatLong);
-            }
-            needLocation = false;
-            return true;
-        }
-        return false;
     }
 
-    public void addMarkers(LatLong startPoint, LatLong endPoint) {
+    public void removeLayer(Layer layer) {
+        if (mapView.getLayerManager().getLayers().contains(layer)) {
+            mapView.getLayerManager().getLayers().remove(layer);
+        }
+    }
+
+    public void addMarker(LatLong p, int resource) {
+        Marker marker = createMarker(p, resource);
+        mapView.getLayerManager().getLayers().add(marker);
+        markers.add(marker);
+    }
+
+    public void addDefaultMarker(LatLong p) {
+        addMarker(p, R.drawable.source_location);
+    }
+
+    public void addStartMarker(LatLong startPoint) {
+        addSourceAndTargetMarkers(startPoint, null);
+    }
+
+    public void addEndMarker(LatLong endPoint) {
+        addSourceAndTargetMarkers(null, endPoint);
+    }
+
+    public void addSourceAndTargetMarkers(LatLong startPoint, LatLong endPoint) {
         Layers layers = mapView.getLayerManager().getLayers();
-        //        if (startPoint != null && endPoint != null) {
-        //            setShortestPathRunning(true);
-        //        }
         if (startPoint != null) {
-            removeLayer(layers, startMarker);
-            startMarker = createMarker(startPoint, R.drawable.ic_location_start_24dp);
+            removeLayer(startMarker);
+            startMarker = createMarker(startPoint, R.drawable.source_location);
             layers.add(startMarker);
         }
         if (endPoint != null) {
-            removeLayer(layers, endMarker);
-            endMarker = createMarker(endPoint, R.drawable.ic_location_end_24dp);
+            removeLayer(endMarker);
+            endMarker = createMarker(endPoint, R.drawable.target_location);
             layers.add(endMarker);
         }
     }
 
-    /**
-     * remove a layer from map layers
-     *
-     * @param layers
-     * @param layer
-     */
-    public void removeLayer(Layers layers, Layer layer) {
-        if (layers != null && layer != null && layers.contains(layer)) {
-            layers.remove(layer);
+    public void removeMarkers() {
+        Layers layers = mapView.getLayerManager().getLayers();
+        for (Marker marker: markers ) {
+            removeLayer(marker);
         }
     }
 
-    /**
-     * create a marker for map
-     *
-     * @param p
-     * @param resource
-     * @return
-     */
-    public Marker createMarker(LatLong p, int resource) {
+    private Marker createMarker(LatLong p, int resource) {
         Drawable drawable = activity.getResources().getDrawable(resource);
         Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
         return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);
     }
 
-    /**
-     * add start point marker on the map
-     *
-     * @param startPoint
-     */
-    public void addStartMarker(LatLong startPoint) {
-        addMarkers(startPoint, null);
-    }
-
-    /**
-     * add end point marker on the map
-     *
-     * @param endPoint
-     */
-    public void addEndMarker(LatLong endPoint) {
-        addMarkers(null, endPoint);
-    }
-
-    /**
-     * remove all markers and polyline from layers
-     */
-    public void removeMarkers() {
-        Layers layers = mapView.getLayerManager().getLayers();
-        if (startMarker != null) {
-            removeLayer(layers, startMarker);
-        }
-        if (startMarker != null) {
-            removeLayer(layers, endMarker);
-        }
-        if (polylinePath != null) {
-            removeLayer(layers, polylinePath);
-        }
-    }
-
-    /**
-     * load graph from storage: Use and ready to search the map
-     */
     private void loadGraphStorage() {
         new AsyncTask<Void, Void, Path>() {
             String error = "";
-
             protected Path doInBackground(Void... v) {
                 try {
                     GraphHopper tmpHopp = new GraphHopper().forMobile();
-                    tmpHopp.load(new File(mapsFolder, currentArea).getAbsolutePath());
+                    tmpHopp.load(new File(FileManager.getMapFolder(), Constants.MAP_GH_FOLDER).getAbsolutePath());
                     hopper = tmpHopp;
                 } catch (Exception e) {
                     error = "error: " + e.getMessage();
@@ -271,24 +222,14 @@ public class MapHandler {
             protected void onPostExecute(Path o) {
                 if (error != "") {
                     logToast("An error happened while creating graph:" + error);
-                } else {
                 }
-                Variable.getVariable().setPrepareInProgress(false);
+                prepareInProgress = false;
             }
         }.execute();
     }
 
-    /**
-     * calculate a path: start to end
-     *
-     * @param fromLat
-     * @param fromLon
-     * @param toLat
-     * @param toLon
-     */
     public void calcPath(final double fromLat, final double fromLon, final double toLat, final double toLon) {
-        Layers layers = mapView.getLayerManager().getLayers();
-        removeLayer(layers, polylinePath);
+        removeLayer(polylinePath);
         polylinePath = null;
         new AsyncTask<Void, Void, GHResponse>() {
             float time;
@@ -296,10 +237,10 @@ public class MapHandler {
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
                 GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
-                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
-                req.getHints().put("instructions", Variable.getVariable().getDirectionsON());
-                req.setVehicle(Variable.getVariable().getTravelMode());
-                req.setWeighting(Variable.getVariable().getWeighting());
+                req.setAlgorithm(userSettings.getRoutingAlgorithm());
+                req.getHints().put("instructions", userSettings.getDirectionsON());
+                req.setVehicle(userSettings.getTravelMode());
+                req.setWeighting(userSettings.getWeighting());
                 GHResponse resp = hopper.route(req);
                 time = sw.stop().getSeconds();
                 return resp;
@@ -307,73 +248,52 @@ public class MapHandler {
 
             protected void onPreExecute() {
                 super.onPreExecute();
-                setShortestPathRunning(true);
+                shortestPathRunning = true;
             }
 
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
-                    polylinePath = createPolyline(resp.getPoints(),
-                            activity.getResources().getColor(R.color.my_primary_dark_transparent), 20);
+                    polylinePath = createPolyline(resp.getBest().getPoints(), activity.getResources().getColor(R.color.colorPrimaryDark), 20);
                     mapView.getLayerManager().getLayers().add(polylinePath);
-                    if (Variable.getVariable().isDirectionsON()) {
-                        Navigator.getNavigator().setGhResponse(resp);
-                        //                        log("navigator: " + Navigator.getNavigator().toString());
+                    if (userSettings.getDirectionsON().equals(Constants.MAP_DIRECTION_ON)) {
+                        MapNavigator.getInstance().setGhResponse(resp);
                     }
                 } else {
                     logToast("Error:" + resp.getErrors());
                 }
                 try {
-                    activity.findViewById(R.id.map_nav_settings_path_finding).setVisibility(View.GONE);
-                    activity.findViewById(R.id.nav_settings_layout).setVisibility(View.VISIBLE);
+                   // activity.findViewById(R.id.map_nav_settings_path_finding).setVisibility(View.GONE);
+                   // activity.findViewById(R.id.nav_settings_layout).setVisibility(View.VISIBLE);
                 } catch (Exception e) {e.getStackTrace();}
-                setShortestPathRunning(false);
+                shortestPathRunning = false;
             }
         }.execute();
     }
 
-    /**
-     * @return true if already loaded
-     */
     boolean isReady() {
-        if (hopper != null) return true;
-        if (Variable.getVariable().isPrepareInProgress()) {
-            //   "Preparation still in progress";
+        if (hopper != null)
+            return true;
+        if (prepareInProgress) {
             return false;
         }
-        //        "Prepare finished but hopper not ready. This happens when there was an error while loading the files";
         return false;
     }
 
-    private PointList trackingPointList;
-
-    /**
-     * start tracking : reset polylineTrack & trackingPointList & remove polylineTrack if exist
-     */
     public void startTrack() {
         if (polylineTrack != null) {
-            removeLayer(mapView.getLayerManager().getLayers(), polylineTrack);
+            removeLayer(polylineTrack);
         }
         polylineTrack = null;
         trackingPointList = new PointList();
 
-        polylineTrack =
-                createPolyline(trackingPointList, activity.getResources().getColor(R.color.my_accent_transparent), 25);
+        polylineTrack = createPolyline(trackingPointList, activity.getResources().getColor(R.color.colorPrimaryDark), 25);
+
         mapView.getLayerManager().getLayers().add(polylineTrack);
     }
 
-    /**
-     * add a tracking point
-     *
-     * @param point
-     */
     public void addTrackPoint(LatLong point) {
         int i = mapView.getLayerManager().getLayers().indexOf(polylineTrack);
         ((Polyline) mapView.getLayerManager().getLayers().get(i)).getLatLongs().add(point);
-    }
-
-    public boolean saveTracking() {
-
-        return false;
     }
 
     /**
@@ -410,61 +330,38 @@ public class MapHandler {
         return shortestPathRunning;
     }
 
-    private void setShortestPathRunning(boolean shortestPathRunning) {
-        this.shortestPathRunning = shortestPathRunning;
-        if (mapHandlerListener != null && needPathCal) mapHandlerListener.pathCalculating(shortestPathRunning);
-    }
-
-    public void setNeedPathCal(boolean needPathCal) {
-        this.needPathCal = needPathCal;
-    }
-
-    /**
-     * @return GraphHopper object
-     */
     public GraphHopper getHopper() {
         return hopper;
     }
 
-    /**
-     * assign a new GraphHopper
-     *
-     * @param hopper
-     */
     public void setHopper(GraphHopper hopper) {
         this.hopper = hopper;
     }
 
-    /**
-     * only tell on object
-     *
-     * @param mapHandlerListener
-     */
+
     public void setMapHandlerListener(MapHandlerListener mapHandlerListener) {
         this.mapHandlerListener = mapHandlerListener;
     }
 
-    public Activity getActivity() {
-        return activity;
+    public List<Marker> getMarkers() {
+        return markers;
     }
 
-    /**
-     * send message to logcat
-     *
-     * @param str
-     */
+    public PointList getTrackingPointList() {
+        return trackingPointList;
+    }
+
+    public MyLocationOverlay getMyLocation() {
+        return myLocation;
+    }
+
+
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-----------------" + str);
     }
 
-
-    /**
-     * send message to logcat and Toast it on screen
-     *
-     * @param str: message
-     */
     private void logToast(String str) {
-        //        log(str);
         Toast.makeText(activity, str, Toast.LENGTH_LONG).show();
     }
+
 }

@@ -1,8 +1,9 @@
 package com.proafsolutions.cubatrip.infrastructure.dal.repository;
 
 import com.activeandroid.query.Select;
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
 
 import java.util.List;
 
@@ -30,11 +31,11 @@ public class ProductRepository extends AbstractRepository<Product>{
                 .execute();
     }
 
-    public List<Product> retrieveProductsByCategory(CategoryEnum category, long provinceId){
+    public List<Product> retrieveProductsByCategory(CategoryEnum category, ProvinceEnum province){
         return new Select()
                 .from(Product.class)
                 .where("category = ?", category)
-                .where("provinceId = ?", provinceId)
+                .where("province = ?", province)
                 .execute();
     }
 

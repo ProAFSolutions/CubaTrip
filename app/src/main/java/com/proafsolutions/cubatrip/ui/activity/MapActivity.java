@@ -1,17 +1,13 @@
 package com.proafsolutions.cubatrip.ui.activity;
 
-import android.location.Location;
-import android.location.LocationListener;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
+import android.support.v7.app.AppCompatActivity;
 
 import com.proafsolutions.cubatrip.ui.presenter.MapPresenter;
 
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
 
 public class MapActivity extends AppCompatActivity {
-
 
     private MapPresenter presenter;
 

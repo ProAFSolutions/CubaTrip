@@ -3,6 +3,7 @@ package com.proafsolutions.cubatrip.domain.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 
 import java.util.Date;
 

@@ -1,8 +1,9 @@
 package com.proafsolutions.cubatrip.domain.service;
 
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
@@ -49,9 +50,8 @@ public class ServiceCatalog implements IServiceCatalog {
     }
 
     @Override
-    public List<Product> getProductsByCategory(CategoryEnum category, long provinceId) {
-        return RepositoryProvider.getProductRepository()
-                                 .retrieveProductsByCategory(category, provinceId);
+    public List<Product> getProductsByCategory(CategoryEnum category, ProvinceEnum province) {
+        return RepositoryProvider.getProductRepository().retrieveProductsByCategory(category, province);
     }
 
     @Override

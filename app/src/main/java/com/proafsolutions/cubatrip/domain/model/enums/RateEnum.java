@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.domain.model;
+package com.proafsolutions.cubatrip.domain.model.enums;
 
 /**
  * Created by alex on 4/24/2016.

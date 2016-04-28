@@ -3,6 +3,8 @@ package com.proafsolutions.cubatrip.domain.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
 import com.proafsolutions.cubatrip.domain.specification.ProductDetails;
 import com.proafsolutions.cubatrip.domain.specification.GeoLocation;
 
@@ -66,8 +68,8 @@ public class Product extends Model{
     @Column( name = "category")
     private CategoryEnum category;
 
-    @Column( name = "provinceId", onDelete = Column.ForeignKeyAction.CASCADE)
-    private Province province;
+    @Column( name = "province")
+    private ProvinceEnum province;
 
     private ProductDetails details;
     private GeoLocation location;
@@ -76,7 +78,7 @@ public class Product extends Model{
         super();
     }
 
-    public Product(int remoteId, String name, String description, String hours, CategoryEnum category, Province province, ProductDetails details, GeoLocation location, List<String> images) {
+    public Product(int remoteId, String name, String description, String hours, CategoryEnum category, ProvinceEnum province, ProductDetails details, GeoLocation location, List<String> images) {
         this();
         this.remoteId = remoteId;
         this.name = name;
@@ -213,11 +215,11 @@ public class Product extends Model{
         this.category = category;
     }
 
-    public Province getProvince() {
+    public ProvinceEnum getProvince() {
         return province;
     }
 
-    public void setProvince(Province province) {
+    public void setProvince(ProvinceEnum province) {
         this.province = province;
     }
 

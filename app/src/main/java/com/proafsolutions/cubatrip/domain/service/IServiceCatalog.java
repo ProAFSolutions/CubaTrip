@@ -1,8 +1,9 @@
 package com.proafsolutions.cubatrip.domain.service;
 
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 
 import java.util.Date;
@@ -19,7 +20,7 @@ public interface IServiceCatalog {
 
     List<Product> getProductsByCategory(CategoryEnum category);
 
-    List<Product> getProductsByCategory(CategoryEnum category, long provinceId);
+    List<Product> getProductsByCategory(CategoryEnum category, ProvinceEnum province);
 
     void doCheckIn();
 

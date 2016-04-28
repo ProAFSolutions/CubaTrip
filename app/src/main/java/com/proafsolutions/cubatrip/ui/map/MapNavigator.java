@@ -3,36 +3,43 @@ package com.proafsolutions.cubatrip.ui.map;
 import com.graphhopper.GHResponse;
 import com.graphhopper.util.Helper;
 import com.graphhopper.util.Instruction;
+import com.proafsolutions.cubatrip.android.R;
+import com.proafsolutions.cubatrip.domain.model.UserSettings;
+import com.proafsolutions.cubatrip.infrastructure.config.Constants;
+import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 import com.proafsolutions.cubatrip.ui.listener.NavigatorListener;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
-
-public class Navigator {
+/**
+ * Created by alex on 4/27/2016.
+ */
+public class MapNavigator {
 
     private GHResponse ghResponse;
 
     private boolean on;
     private List<NavigatorListener> listeners;
-    private static Navigator navigator = null;
+    private static MapNavigator _instance = null;
 
 
-    private Navigator() {
+    private MapNavigator() {
         this.ghResponse = null;
         this.on = false;
         this.listeners = new ArrayList<>();
     }
 
-    /**
-     * @return Navigator object
-     */
-    public static Navigator getNavigator() {
-        if (navigator == null) {
-            navigator = new Navigator();
+    public static MapNavigator getInstance() {
+        if (_instance == null) {
+            _instance = new MapNavigator();
         }
-        return navigator;
+        return _instance;
+    }
+
+    public static void reset() {
+        _instance = new MapNavigator();
     }
 
     public GHResponse getGhResponse() {
@@ -41,17 +48,9 @@ public class Navigator {
 
     public void setGhResponse(GHResponse ghResponse) {
         this.ghResponse = ghResponse;
-        if (ghResponse == null) {
-
-        } else {
-        }
         setOn(ghResponse != null);
     }
 
-    /**
-     * @param distance (<li>Instruction: return instructions distance </li>
-     * @return a string  0.0 km (Exact one decimal place)
-     */
     public String getDistance(Instruction distance) {
         if (distance.getSign() == 4) return "";//finished
         double d = distance.getDistance();
@@ -59,73 +58,50 @@ public class Navigator {
         return (((int) (d / 100)) / 10f) + " km";
     }
 
-    /**
-     * @return distance of the whole journey
-     */
+
     public String getDistance() {
-        if (getGhResponse() == null) return 0 + " " + R.string.km;
+        if (getGhResponse() == null) return 0 + " km";
         double d = getGhResponse().getBest().getDistance();
         if (d < 1000) return Math.round(d) + " meter";
         return (((int) (d / 100)) / 10f) + " km";
     }
 
-    /**
-     * @return a string time of the journey H:MM
-     */
+
     public String getTime() {
         if (getGhResponse() == null) return " ";
-        int t = Math.round(getGhResponse().getMillis() / 60000);
+        int t = Math.round(getGhResponse().getBest().getTime() / 60000);
         if (t < 60) return t + " min";
         return t / 60 + " h: " + t % 60 + " m";
     }
 
-    /**
-     * @return a string time of the instruction min
-     */
+
     public String getTime(Instruction time) {
-        return Math.round(getGhResponse().getMillis() / 60000) + " min";
+        return Math.round(getGhResponse().getBest().getTime() / 60000) + " min";
     }
 
-
-    /**
-     * @return true is navigator is on
-     */
     public boolean isOn() {
         return on;
     }
 
-    /**
-     * set navigator on or off
-     *
-     * @param on
-     */
     public void setOn(boolean on) {
         this.on = on;
         broadcast();
     }
 
-    /**
-     * broadcast changes to listeners
-     */
     protected void broadcast() {
         for (NavigatorListener listener : listeners) {
             listener.statusChanged(isOn());
         }
     }
 
-    /**
-     * add listener to listener list
-     *
-     * @param listener
-     */
     public void addListener(NavigatorListener listener) {
         listeners.add(listener);
     }
 
     public String toString() {
         String s = "";
-        if (ghResponse.getInstructions() != null) {
-            for (Instruction i : ghResponse.getInstructions()) {
+        if (ghResponse.getBest().getInstructions() != null) {
+            for (Instruction i : ghResponse.getBest().getInstructions()) {
                 s += "------>\ntime <long>: " + i.getTime() + "\n" + "name: street name" + i.getName() + "\n" +
                         "annotation <InstructionAnnotation>" +
                         i.getAnnotation() + "\n" + "distance" + i.getDistance() + "\n" + "sign <int>:" + i.getSign() +
@@ -135,40 +111,21 @@ public class Navigator {
         return s;
     }
 
-
-    /**
-     * this method can only used when Variable class is ready!
-     *
-     * @param dark (ask for dark icon resId ?)
-     * @return int resId
-     */
-    public int getTravelModeResId(boolean dark) {
-        if (dark) {
-            switch (Variable.getVariable().getTravelMode()) {
-                case "foot":
-                    return R.drawable.ic_directions_walk_orange_24dp;
-                case "bike":
-                    return R.drawable.ic_directions_bike_orange_24dp;
-                case "car":
-                    return R.drawable.ic_directions_car_orange_24dp;
-            }
-        } else {
-            switch (Variable.getVariable().getTravelMode()) {
-                case "foot":
-                    return R.drawable.ic_directions_walk_white_24dp;
-                case "bike":
-                    return R.drawable.ic_directions_bike_white_24dp;
-                case "car":
-                    return R.drawable.ic_directions_car_white_24dp;
-            }
+    public int getTravelModeResId() {
+        UserSettings settings = RepositoryProvider.getUserSettingsRepository().getSettings();
+        switch (settings.getTravelMode()) {
+            case Constants.MAP_TAVEL_MODE_FOOT:
+                return R.drawable.ic_directions_walk_orange_24dp;
+            case Constants.MAP_TAVEL_MODE_BIKE:
+                return R.drawable.ic_directions_bike_orange_24dp;
+            case Constants.MAP_TAVEL_MODE_CAR:
+                return R.drawable.ic_directions_car_orange_24dp;
         }
-        throw new NullPointerException("this method can only used when Variable class is ready!");
+
+        return 0;
     }
 
-    /**
-     * @param itemData
-     * @return int resId to instruction direction's sign icon
-     */
+
     public int getDirectionSign(Instruction itemData) {
         switch (itemData.getSign()) {
             case -6:
@@ -194,35 +151,10 @@ public class Navigator {
             case 6:
                 return R.drawable.ic_roundabout;
         }
-        return 0;
+        return -1;
     }
 
-    /**
-     * LEAVE_ROUNDABOUT = -6; -
-     * <p/>
-     * TURN_SHARP_LEFT = -3;
-     * <p/>
-     * TURN_LEFT = -2;
-     * <p/>
-     * TURN_SLIGHT_LEFT = -1;
-     * <p/>
-     * CONTINUE_ON_STREET = 0;
-     * <p/>
-     * TURN_SLIGHT_RIGHT = 1;
-     * <p/>
-     * TURN_RIGHT = 2;
-     * <p/>
-     * TURN_SHARP_RIGHT = 3;
-     * <p/>
-     * FINISH = 4;
-     * <p/>
-     * REACHED_VIA = 5; -
-     * <p/>
-     * USE_ROUNDABOUT = 6 -;
-     *
-     * @param instruction
-     * @return direction
-     */
+
     public String getDirectionDescription(Instruction instruction) {
         if (instruction.getSign() == 4) return "Navigation End";//4
         String str;

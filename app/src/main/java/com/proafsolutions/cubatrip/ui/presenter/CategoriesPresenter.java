@@ -10,7 +10,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;

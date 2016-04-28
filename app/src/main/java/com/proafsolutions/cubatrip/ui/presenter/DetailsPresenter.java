@@ -8,13 +8,12 @@ import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 import com.proafsolutions.cubatrip.ui.activity.ReviewsActivity;
-import com.proafsolutions.cubatrip.ui.util.Utils;
 
 import java.util.Date;
 import java.util.List;

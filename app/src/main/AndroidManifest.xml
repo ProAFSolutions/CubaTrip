@@ -24,28 +24,11 @@
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
         <!-- END Activities -->
-
-       <!-- START Database Settings -->
-        <meta-data
-            android:name="AA_DB_NAME"
-            android:value="/mnt/sdcard/Download/cubatrip.db" />
-        <meta-data
-            android:name="AA_DB_VERSION"
-            android:value="1" />
-        <meta-data
-            android:name="AA_MODELS"
-            android:value="com.proafsolutions.cubatrip.domain.model.Product, com.proafsolutions.cubatrip.domain.model.Review, com.proafsolutions.cubatrip.domain.model.Province" />
-        <meta-data
-            android:name="AA_SERIALIZERS"
-            android:value="com.proafsolutions.cubatrip.domain.serializer.StringListSerializer, com.proafsolutions.cubatrip.domain.serializer.StringMapSerializer, com.proafsolutions.cubatrip.domain.serializer.DateSerializer" />
-        <!-- END Database Settings -->
-
 
         <!-- START Services -->
         <service

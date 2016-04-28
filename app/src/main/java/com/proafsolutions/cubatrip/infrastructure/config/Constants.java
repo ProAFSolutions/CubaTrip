@@ -20,17 +20,25 @@ public interface Constants {
     public static final String WEB_API_USERNAME= "proafasolutions";
     public static final String WEB_API_PASSWORD= "CUB@trip_Pr0@FS0luti0ns2016";
 
-    //app folder name
-    public static final String APP_FOLDER_NAME = "cubatrip";
+    //app folders
+    public static final String FOLDER_APP = "cubatrip";
+    public static final String FOLDER_APP_DATABASE = "data";
+    public static final String FOLDER_APP_MAP = "maps";
+    public static final String FOLDER_APP_RESOURCES = "resources";
 
     // database
     public static final String DATABASE_NAME = "cubatrip.db";
+    public static final int DATABASE_VERSION = 1;
 
     // maps
-    public static final String MAPS_FOLDER = "maps";
     public static final String MAP_FILE = "cuba.map";
-    public static final String MAP_OSM_FILE = "cuba-gh";
+    public static final String MAP_GH_FOLDER = "cuba-gh";
+
     public static final String MAP_TAVEL_MODE_CAR= "car";
     public static final String MAP_TAVEL_MODE_FOOT= "foot";
     public static final String MAP_TAVEL_MODE_BIKE= "bike";
+
+    public static final String MAP_CACHE = "mapcache";
+
+    public static final String MAP_DIRECTION_ON= "on";
 }

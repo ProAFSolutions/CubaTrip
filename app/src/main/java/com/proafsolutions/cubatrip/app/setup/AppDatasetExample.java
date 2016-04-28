@@ -2,15 +2,14 @@ package com.proafsolutions.cubatrip.app.setup;
 
 import android.util.Log;
 
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.Province;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.specification.GeoLocation;
 import com.proafsolutions.cubatrip.domain.specification.ProductDetails;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProductRepository;
-import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProvinceRepository;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
 import java.util.ArrayList;
@@ -26,30 +25,18 @@ public class AppDatasetExample {
 
     public AppDatasetExample(boolean init){
         if(init){
-            createProvince();
             createProducts();
             createReviews();
         }
         printOutProducts();
     }
 
-    public void createProvince() {
-        ProvinceRepository repo = RepositoryProvider.getProvinceRepository();
-        if(repo.loadAll().size() == 0){
-            Province province = new Province("Habana");
-            repo.save(province);
-            Log.i("AppSetup","Province inserted: " + province.getId());
 
-            Province province2 = new Province("Camaguey");
-            repo.save(province2);
-            Log.i("AppSetup","Province inserted: " + province2.getId());
-        }
-    }
 
     public void createProducts() {
         ProductRepository prodRepo = RepositoryProvider.getProductRepository();
 
-        Province province = RepositoryProvider.getProvinceRepository().loadAll().get(0);
+        ProvinceEnum province = ProvinceEnum.LA_HABANA;
 
         Map<String, String> carretaServices = new HashMap<String, String>();
         carretaServices.put("Dishes", "SeaFood, Italian Food, Cuban Buffet");
@@ -148,14 +135,10 @@ public class AppDatasetExample {
 
     public void printOutProducts(){
 
-        for (Province P :RepositoryProvider.getProvinceRepository().loadAll()) {
-            Log.i("AppSetup", (P.getName() != null ? P.getName() : "NULL"));
-        }
-
         List<Product> prods = RepositoryProvider.getProductRepository().loadAll();
         for (Product P : prods) {
             Log.i("AppSetup", String.format("Id: %s, Name: %s, Province: %s, Services Count: %s, Images: %s",
-                P.getId(), P.getName(), P.getProvince().getName(), P.getServices().size(), P.getImages().size()
+                P.getId(), P.getName(), P.getProvince().getDescriptor(), P.getServices().size(), P.getImages().size()
             ));
         }
 
