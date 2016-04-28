@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.ui.location;
+package com.proafsolutions.cubatrip.ui.map;
 
 import android.Manifest;
 import android.app.Activity;

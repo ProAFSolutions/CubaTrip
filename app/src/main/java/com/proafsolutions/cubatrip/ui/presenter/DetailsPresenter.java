@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
+import com.proafsolutions.cubatrip.domain.model.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
@@ -93,7 +94,7 @@ public class DetailsPresenter extends AbstractPresenter {
         reviewNew.setDate(new Date());
         reviewNew.setSync(false);
         reviewNew.setProduct(product);
-        reviewNew.setRate(Utils.GetRateEnum((int)rating));
+        reviewNew.setRate(RateEnum.getRate((int)rating));
         reviewNew.setContact(reviewContact);
 
         ServiceCatalog.getInstance().doProductReview(reviewNew);

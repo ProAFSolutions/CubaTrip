@@ -18,7 +18,7 @@ import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.infrastructure.config.Constants;
 import com.proafsolutions.cubatrip.infrastructure.io.FileLocator;
 import com.proafsolutions.cubatrip.ui.activity.MapActivity;
-import com.proafsolutions.cubatrip.ui.location.MyLocationOverlay;
+import com.proafsolutions.cubatrip.ui.map.MyLocationOverlay;
 
 import org.mapsforge.core.graphics.Bitmap;
 import org.mapsforge.core.graphics.Cap;
