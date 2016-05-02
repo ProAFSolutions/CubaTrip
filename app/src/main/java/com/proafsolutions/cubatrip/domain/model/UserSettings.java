@@ -42,15 +42,12 @@ public class UserSettings extends Model{
     private int lastZoomLevel;
 
     // latitude,longitude
-    @Column(name = "last_zoom_level")
+    @Column(name = "last_location")
     private String  lastLocation;
-
 
     public UserSettings(){
         super();
     }
-
-
 
     public String getTravelMode() {
         return travelMode;

@@ -1,7 +1,6 @@
 package com.proafsolutions.cubatrip.infrastructure.broker;
 
-import com.proafsolutions.cubatrip.infrastructure.broker.json.JsonProduct;
-import com.proafsolutions.cubatrip.infrastructure.broker.json.JsonServerResponse;
+import com.proafsolutions.cubatrip.infrastructure.broker.json.JsonReview;
 
 import java.util.List;
 
@@ -14,11 +13,7 @@ import retrofit2.http.GET;
  */
 public interface IServerAPIClient {
 
-   @GET("api/CubaTrip/FullData")
-   Call<JsonServerResponse> getFullData();
-
-   @GET("api/CubaTrip/Products")
-   Call<List<JsonProduct>> getProducts();
-
+   @GET("api/CubaTrip/Review")
+   Call<List<JsonReview>> getReviews();
 
 }

@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.domain.serializer;
+package com.proafsolutions.cubatrip.domain.model.serializer;
 
 import com.activeandroid.serializer.TypeSerializer;
 import com.google.gson.reflect.TypeToken;

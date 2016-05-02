@@ -6,12 +6,15 @@ import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvi
 /**
  * Created by alejandro.clavijo on 4/28/2016.
  */
-public class ConfigurationManager {
+public class GlobalConfig {
 
+    public static boolean downloadInProgress = false;
 
-    public static UserSettings getUserSettings(){
+    public static UserSettings loadUserSettings(){
         return RepositoryProvider.getUserSettingsRepository().getSettings();
     }
 
-
+    public static void saveUserSettings(UserSettings userSettings){
+        RepositoryProvider.getUserSettingsRepository().save(userSettings);
+    }
 }

@@ -14,8 +14,8 @@ import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.UserSettings;
+import com.proafsolutions.cubatrip.infrastructure.config.GlobalConfig;
 import com.proafsolutions.cubatrip.infrastructure.config.Constants;
-import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 import com.proafsolutions.cubatrip.infrastructure.io.FileManager;
 import com.proafsolutions.cubatrip.ui.listener.MapHandlerListener;
 
@@ -97,7 +97,7 @@ public class MapHandler {
 
         this.activity = activity;
         this.mapView = mapView;
-        this.userSettings = RepositoryProvider.getUserSettingsRepository().getSettings();
+        this.userSettings = GlobalConfig.loadUserSettings();
 
         initMap();
         initMyLocation();

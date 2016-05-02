@@ -1,7 +1,5 @@
 package com.proafsolutions.cubatrip.infrastructure.io;
 
-import android.util.Log;
-
 import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -15,7 +13,7 @@ import java.util.zip.ZipInputStream;
  */
 public class ZipManager {
 
-    public void unzip(String zipFilePath, String destDirectory) throws IOException {
+    public static void unzip(String zipFilePath, String destDirectory) throws IOException {
         File destDir = new File(destDirectory);
         if (destDir.exists()) {
             recursiveDelete(destDir);
@@ -44,7 +42,7 @@ public class ZipManager {
     }
 
 
-    private void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
+    private static void extractFile(ZipInputStream zipIn, String filePath) throws IOException {
         BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(filePath));
         byte[] bytesIn = new byte[8 * 1024];
         int read = 0;
@@ -55,7 +53,7 @@ public class ZipManager {
     }
 
 
-    public void recursiveDelete(File fileOrDirectory) {
+    public static void recursiveDelete(File fileOrDirectory) {
         if (fileOrDirectory.isDirectory()) for (File child : fileOrDirectory.listFiles())
             recursiveDelete(child);
         try {

@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.Review;
-import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
+import com.proafsolutions.cubatrip.domain.service.BLServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.ReviewsActivity;
 import com.proafsolutions.cubatrip.ui.adapter.ListReviewsAdapter;
 
@@ -35,12 +35,12 @@ public class ReviewsPresenter extends AbstractPresenter {
     public void RefreshList()
     {
         long IdProduct = getActivityParameters().getLong("idProduct");
-        Product product = ServiceCatalog.getInstance().getProductById(IdProduct);
+        Product product = BLServiceCatalog.getInstance().getProductById(IdProduct);
 
         TextView text = (TextView)activity.findViewById(R.id.productText);
         text.setText(product.getName());
 
-        reviews = ServiceCatalog.getInstance().getReviews(IdProduct);
+        reviews = BLServiceCatalog.getInstance().getReviews(IdProduct);
 
         String[] stringsNames = new String[reviews.size()];
 

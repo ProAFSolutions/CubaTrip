@@ -12,7 +12,8 @@ import android.widget.TextView;
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
+import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
+import com.proafsolutions.cubatrip.domain.service.BLServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
@@ -90,7 +91,7 @@ public class CategoriesPresenter extends AbstractPresenter {
 
     public void RefreshList(CategoryEnum category)
     {
-        products = ServiceCatalog.getInstance().getProductsByCategory(category);
+        products = BLServiceCatalog.getInstance().getProductsByCategory(CategoryEnum.HOTEL, ProvinceEnum.LA_HABANA);
 
         String[] stringsNames = new String[products.size()];
 

@@ -7,8 +7,8 @@ import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
 import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
-import com.proafsolutions.cubatrip.domain.specification.GeoLocation;
-import com.proafsolutions.cubatrip.domain.specification.ProductDetails;
+import com.proafsolutions.cubatrip.domain.model.specification.GeoLocation;
+import com.proafsolutions.cubatrip.domain.model.specification.ProductDetails;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProductRepository;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
@@ -23,15 +23,13 @@ import java.util.Map;
 public class AppDatasetExample {
 
 
-    public AppDatasetExample(boolean init){
-        if(init){
+    public AppDatasetExample(){
+        if(RepositoryProvider.getProductRepository().loadAll().size() == 0){
             createProducts();
             createReviews();
         }
         printOutProducts();
     }
-
-
 
     public void createProducts() {
         ProductRepository prodRepo = RepositoryProvider.getProductRepository();

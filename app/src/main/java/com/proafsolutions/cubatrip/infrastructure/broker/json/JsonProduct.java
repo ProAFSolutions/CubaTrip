@@ -5,7 +5,7 @@ package com.proafsolutions.cubatrip.infrastructure.broker.json;
  */
 public class JsonProduct {
 
-    private int productId;
+    private long productId;
 
     private String name;
 
@@ -21,13 +21,15 @@ public class JsonProduct {
 
     private String url;
 
+    private String[] images;
+
     public JsonProduct(){}
 
-    public int getProductId() {
+    public long getProductId() {
         return productId;
     }
 
-    public void setProductId(int productId) {
+    public void setProductId(long productId) {
         this.productId = productId;
     }
 
@@ -85,5 +87,13 @@ public class JsonProduct {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String[] getImages() {
+        return images;
+    }
+
+    public void setImages(String[] images) {
+        this.images = images;
     }
 }

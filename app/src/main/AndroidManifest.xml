@@ -2,15 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.proafsolutions.cubatrip.android">
 
-    <!-- START Permission Settings -->
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <!-- START Permissions -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
-    <!-- END Permission Settings -->
+    <!-- END Permissions -->
     <application
         android:name="com.proafsolutions.cubatrip.app.main.CubaTripApp"
         android:allowBackup="true"
@@ -28,16 +28,44 @@
             </intent-filter>
         </activity>
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity" />
         <!-- END Activities -->
 
-        <!-- START Services -->
-        <service
-            android:name="com.proafsolutions.cubatrip.app.service.UpdateService"
-            android:enabled="true"
-            android:exported="true" />
-        <!-- END Services -->
+        <!-- START Database Settings -->
+        <meta-data
+            android:name="AA_DB_NAME"
+            android:value="/mnt/sdcard/Download/cubatrip/data/cubatrip.db" />
+        <meta-data
+            android:name="AA_DB_VERSION"
+            android:value="1" />
+        <meta-data
+            android:name="AA_MODELS"
+            android:value="com.proafsolutions.cubatrip.domain.model.Product, com.proafsolutions.cubatrip.domain.model.Review, com.proafsolutions.cubatrip.domain.model.ProductCheckIn,  com.proafsolutions.cubatrip.domain.model.UserSettings" />
+        <meta-data
+            android:name="AA_SERIALIZERS"
+            android:value="com.proafsolutions.cubatrip.domain.model.serializer.StringListSerializer, com.proafsolutions.cubatrip.domain.model.serializer.StringMapSerializer, com.proafsolutions.cubatrip.domain.model.serializer.DateSerializer" />
+        <!-- END Database Settings -->
 
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity"></activity>
+        <!-- START Receiver & Services -->
+        <receiver
+            android:name="com.proafsolutions.cubatrip.app.service.InternetConnectionReceiver"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":cubatripReceiver">
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <service
+            android:name="com.proafsolutions.cubatrip.app.service.ReviewsUpdateService"
+            android:enabled="true"
+            android:exported="true"
+            android:process=":cubatripReceiver">
+        </service>
+        <!-- END Receiver -->
+
+
     </application>
 
 </manifest>

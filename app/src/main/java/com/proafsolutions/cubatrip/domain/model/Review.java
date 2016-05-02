@@ -49,6 +49,12 @@ public class Review extends Model {
         this.contact = contact;
     }
 
+    public Review(RateEnum rate, String comments, String contact, Date date, Product product) {
+        this(rate, comments, product);
+        this.contact = contact;
+        this.date = date;
+    }
+
     //Getter and Setter
     public RateEnum getRate() {
         return rate;

@@ -12,9 +12,6 @@ public interface Constants {
     public static final String ACTIVITY_PARAM_LATITUDE = "latitude";
     public static final String ACTIVITY_PARAM_TARVEL_MODE = "car";
 
-    //Actions
-    public static final String ANDROID_ACTION_CONNECTIVITY_CHANGE = ConnectivityManager.CONNECTIVITY_ACTION;
-
     //Remote Server
     public static final String WEB_API_BASE_URL = "http://localhost:60503/";
     public static final String WEB_API_USERNAME= "proafasolutions";
@@ -22,7 +19,7 @@ public interface Constants {
 
     //app folders
     public static final String FOLDER_APP = "cubatrip";
-    public static final String FOLDER_APP_DATABASE = "data";
+    public static final String FOLDER_APP_UPDATE = "update";
     public static final String FOLDER_APP_MAP = "maps";
     public static final String FOLDER_APP_RESOURCES = "resources";
 

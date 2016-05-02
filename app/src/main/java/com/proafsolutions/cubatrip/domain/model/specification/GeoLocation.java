@@ -1,4 +1,4 @@
-package com.proafsolutions.cubatrip.domain.specification;
+package com.proafsolutions.cubatrip.domain.model.specification;
 
 /**
  * Created by alex on 4/17/2016.

@@ -5,8 +5,8 @@ import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
-import com.proafsolutions.cubatrip.domain.specification.ProductDetails;
-import com.proafsolutions.cubatrip.domain.specification.GeoLocation;
+import com.proafsolutions.cubatrip.domain.model.specification.ProductDetails;
+import com.proafsolutions.cubatrip.domain.model.specification.GeoLocation;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -77,6 +77,12 @@ public class Product extends Model{
     public Product() {
         super();
     }
+
+    public Product(int remoteId) {
+        this();
+        this.remoteId = remoteId;
+    }
+
 
     public Product(int remoteId, String name, String description, String hours, CategoryEnum category, ProvinceEnum province, ProductDetails details, GeoLocation location, List<String> images) {
         this();

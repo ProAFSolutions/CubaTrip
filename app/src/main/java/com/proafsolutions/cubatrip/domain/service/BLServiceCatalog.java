@@ -13,23 +13,22 @@ import java.util.List;
 /**
  * Created by alex on 4/17/2016.
  */
-public class ServiceCatalog implements IServiceCatalog {
+public class BLServiceCatalog implements IBLService {
 
-    private static volatile IServiceCatalog INSTANCE = null;
+    private static volatile IBLService INSTANCE = null;
 
-    protected ServiceCatalog(){}
+    protected BLServiceCatalog(){}
 
-    public static IServiceCatalog getInstance() {
+    public static IBLService getInstance() {
         if (INSTANCE == null) {
-            synchronized (ServiceCatalog.class) {
+            synchronized (BLServiceCatalog.class) {
                 if (INSTANCE == null) {
-                    INSTANCE = new ServiceCatalog();
+                    INSTANCE = new BLServiceCatalog();
                 }
             }
         }
         return INSTANCE;
     }
-
 
     @Override
     public Product getProductById(long id) {
@@ -41,12 +40,6 @@ public class ServiceCatalog implements IServiceCatalog {
     public Product getProductByRemoteId(long remoteId) {
         return RepositoryProvider.getProductRepository()
                                  .retrieveProductByRemoteId(remoteId);
-    }
-
-    @Override
-    public List<Product> getProductsByCategory(CategoryEnum category) {
-        return RepositoryProvider.getProductRepository()
-                                 .retrieveProductsByCategory(category);
     }
 
     @Override
@@ -62,6 +55,16 @@ public class ServiceCatalog implements IServiceCatalog {
     @Override
     public void doProductReview(Review review) {
         RepositoryProvider.getReviewRepository().save(review);
+    }
+
+    @Override
+    public void pushPendingReviews() {
+
+    }
+
+    @Override
+    public void addNewReviews(List<Review> reviews) {
+        RepositoryProvider.getReviewRepository().saveAll(reviews);
     }
 
     @Override
