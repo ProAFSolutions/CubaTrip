@@ -1,62 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.proafsolutions.cubatrip.ui.activity.MenuActivity" android:background="@android:color/background_light"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
-    <ImageView
-        android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" android:src="@drawable/logo"/>
-
-
-    <LinearLayout android:id="@+id/fullLayout"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        >
+        android:layout_height="wrap_content" android:orientation="vertical">
 
-        <LinearLayout android:id="@+id/linLayout1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:layout_height="400px"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:id="@+id/menuCategory">
 
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:layout_marginLeft="4dp" >
+            <ImageView
+                android:id="@+id/ImageProduct"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/category"
+                android:scaleType="fitXY"></ImageView>
 
-                        <ImageButton
-                            android:id="@+id/imgRestaurants"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
-                            android:layout_gravity="center"
-                            android:background="@mipmap/food_cat"
-                            android:onClick="onImageSelectClick"/>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@android:color/background_light"  />
 
-                        <TextView
-                            android:id="@+id/txtCategories"
-                            android:layout_width="80dp"
-                            android:layout_height="wrap_content"
-                            android:text="Categories"
-                            android:textColor="#1E88E5"
-                            android:textStyle="bold"  android:layout_gravity="center|left"
-                            android:gravity="center"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"  android:textSize="18sp"  android:text="Categories" android:textColor="@android:color/background_light"/>
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="400px"
+            android:orientation="vertical"
+            android:background="@color/colorPrimary"
+            android:id="@+id/menuMap" >
+
+            <ImageView
+                android:id="@+id/ImageProduct2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:src="@drawable/map"
+                android:scaleType="fitXY"></ImageView>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.8dp"
+                android:background="@android:color/background_light"  />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"  android:textSize="18sp"  android:text="Localizations" android:textColor="@android:color/background_light"/>
+        </LinearLayout>
+
+    </LinearLayout>
 
 
-</LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:id="@+id/linearLayout2" android:orientation="horizontal"></LinearLayout>
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="155dp"
+        android:layout_height="44dp" android:src="@drawable/logo"
+        android:adjustViewBounds="true"
+        android:layout_above="@+id/linearLayout2"
+        android:layout_centerHorizontal="true" />
+
+
+</RelativeLayout>
+
