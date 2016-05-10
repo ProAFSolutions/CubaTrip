@@ -3,6 +3,8 @@ package com.proafsolutions.cubatrip.ui.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -54,6 +56,31 @@ public class CategoriesActivity extends AppCompatActivity {
 
     public void onImageSelectClick(View view){
         presenter.ClickImage(view.getId());
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_details, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+
+        switch (item.getItemId())
+        {
+           /*case R.id.menu_bookmark:
+                // Single menu item is selected do something
+                // Ex: launching new activity/screen or show alert message
+                Toast.makeText(AndroidMenusActivity.this, "Bookmark is Selected", Toast.LENGTH_SHORT).show();
+                return true;*/
+
+            default:
+                Toast.makeText(CategoriesActivity.this, "Option is Selected", Toast.LENGTH_SHORT).show();
+                return super.onOptionsItemSelected(item);
+        }
     }
 
 }

@@ -37,29 +37,6 @@
         </LinearLayout>
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="400px"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary"
-            android:id="@+id/menuMap" >
-
-            <ImageView
-                android:id="@+id/ImageProduct2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/map"
-                android:scaleType="fitXY"></ImageView>
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@android:color/background_light"  />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"  android:textSize="18sp"  android:text="Localizations" android:textColor="@android:color/background_light"/>
-        </LinearLayout>
 
     </LinearLayout>
 

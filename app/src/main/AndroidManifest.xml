@@ -21,15 +21,15 @@
 
         <!-- START Activities -->
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity" />
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
-
-        </activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity"></activity>
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity" />
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.MenuActivity">
+        </activity>
+
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
