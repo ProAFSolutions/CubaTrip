@@ -3,6 +3,7 @@ package com.proafsolutions.cubatrip.domain.model;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.proafsolutions.cubatrip.domain.model.specification.GeoLocation;
 
 import java.util.Date;
 
@@ -18,6 +19,12 @@ public class ProductCheckIn  extends Model {
     @Column(name = "date")
     private Date date;
 
+    @Column(name = "latitude")
+    private String latitude;
+
+    @Column(name = "longitude")
+    private String longitude;
+
     @Column(name = "comments")
     private String comments;
 
@@ -28,16 +35,22 @@ public class ProductCheckIn  extends Model {
         super();
     }
 
-    public ProductCheckIn(String userEmail, Product product) {
+    public ProductCheckIn(String userEmail, GeoLocation location, Product product) {
         this();
         this.userEmail = userEmail;
         this.product = product;
         this.date = new Date();
+        this.latitude = location.getLatitude();
+        this.longitude = location.getLongitude();
     }
 
-    public ProductCheckIn(String userEmail, String comments, Product product) {
-        this(userEmail, product);
+    public ProductCheckIn(String userEmail, GeoLocation location, String comments, Product product) {
+        this(userEmail, location, product);
         this.comments = comments;
+    }
+
+    public GeoLocation getGeoLocation(){
+        return new GeoLocation(latitude, longitude);
     }
 
     public Date getDate() {
@@ -62,5 +75,29 @@ public class ProductCheckIn  extends Model {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(String latitude) {
+        this.latitude = latitude;
+    }
+
+    public String getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(String longitude) {
+        this.longitude = longitude;
     }
 }

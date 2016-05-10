@@ -28,18 +28,16 @@ import org.mapsforge.core.model.LatLong;
 import org.mapsforge.core.model.MapPosition;
 import org.mapsforge.core.model.Point;
 import org.mapsforge.map.android.graphics.AndroidGraphicFactory;
+import org.mapsforge.map.android.layer.MyLocationOverlay;
 import org.mapsforge.map.android.util.AndroidUtil;
 import org.mapsforge.map.android.view.MapView;
-import org.mapsforge.map.datastore.MapDataStore;
 import org.mapsforge.map.layer.Layer;
 import org.mapsforge.map.layer.Layers;
 import org.mapsforge.map.layer.cache.TileCache;
 import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.overlay.Polyline;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
-import org.mapsforge.map.reader.MapFile;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -101,25 +99,28 @@ public class MapHandler {
 
         initMap();
         initMyLocation();
-        loadGraphStorage();
+        //loadGraphStorage();
     }
 
     public void initMyLocation(){
         Drawable drawable = activity.getResources().getDrawable(R.drawable.user_location);
         Bitmap myLocationIcon = AndroidGraphicFactory.convertToBitmap(drawable);
+        myLocationIcon.incrementRefCount();
         myLocation = new MyLocationOverlay(activity, mapView.getModel().mapViewPosition, myLocationIcon);
-        myLocation.enableMyLocation(true);
+        myLocation.setSnapToLocationEnabled(true);
         mapView.getLayerManager().getLayers().add(myLocation);
+        myLocation.enableMyLocation(true);
     }
 
     public void initMap(){
+
         mapView.setClickable(true);
         mapView.getMapScaleBar().setVisible(true);
         mapView.setBuiltInZoomControls(true);
         mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
         mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
         mapView.getModel().mapViewPosition.setCenter(new LatLong(25.7902358, -80.2463184));
-        mapView.getModel().mapViewPosition.setZoomLevel((byte) 16);
+        mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
         initTileCache();
         initRendererLayer();
     }
@@ -129,8 +130,7 @@ public class MapHandler {
     }
 
     private void initRendererLayer() {
-        MapDataStore mapDataStore = new MapFile(new File(FileManager.getMapFolder(), Constants.MAP_FILE));
-        TileRendererLayer tileRendererLayer = new TileRendererLayer(tileCache, mapDataStore,  mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE){
+        TileRendererLayer tileRendererLayer = new TileRendererLayer(tileCache,  mapView.getModel().mapViewPosition, false, true, AndroidGraphicFactory.INSTANCE){
             @Override
             public boolean onLongPress(LatLong tapLatLong, Point layerXY, Point tapXY) {
                 return super.onLongPress(tapLatLong, layerXY, tapXY);
@@ -140,9 +140,9 @@ public class MapHandler {
                 return super.onTap(tapLatLong, layerXY, tapXY);
             }
         };
+        tileRendererLayer.setMapFile(new File(FileManager.getMapFolder(), Constants.MAP_FILE));
         tileRendererLayer.setTextScale(0.8f);
         tileRendererLayer.setXmlRenderTheme(InternalRenderTheme.OSMARENDER);
-
         mapView.getLayerManager().getLayers().add(tileRendererLayer);
     }
 
@@ -351,9 +351,9 @@ public class MapHandler {
         return trackingPointList;
     }
 
-    public MyLocationOverlay getMyLocation() {
-        return myLocation;
-    }
+//    public MyLocationOverlay getMyLocation() {
+//        return myLocation;
+//    }
 
 
     private void log(String str) {

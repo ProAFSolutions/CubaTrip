@@ -28,8 +28,8 @@ public interface Constants {
     public static final int DATABASE_VERSION = 1;
 
     // maps
-    public static final String MAP_FILE = "cuba.map";
-    public static final String MAP_GH_FOLDER = "cuba-gh";
+    public static final String MAP_FILE = "florida.map";
+    public static final String MAP_GH_FOLDER = "florida-gh";
 
     public static final String MAP_TAVEL_MODE_CAR= "car";
     public static final String MAP_TAVEL_MODE_FOOT= "foot";

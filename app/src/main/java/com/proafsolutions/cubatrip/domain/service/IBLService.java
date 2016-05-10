@@ -1,5 +1,6 @@
 package com.proafsolutions.cubatrip.domain.service;
 
+import com.proafsolutions.cubatrip.domain.model.ProductCheckIn;
 import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
@@ -26,7 +27,7 @@ public interface IBLService {
 
     List<Review> getReviewsFrom(long productId, Date from);
 
-    void doCheckIn();
+    void doCheckIn(ProductCheckIn checkIn);
 
     void doProductReview(Review review);
 

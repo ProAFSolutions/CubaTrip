@@ -17,6 +17,7 @@ public class MapPresenter extends AbstractPresenter {
 
 
     public MapPresenter(MapActivity activity) {
+
         this.activity = activity;
     }
 
@@ -34,7 +35,7 @@ public class MapPresenter extends AbstractPresenter {
 
     public void destroy()
     {
-        mapView.destroyAll();
+        mapView.destroy();
         MapHandler.reset();
     }
 }

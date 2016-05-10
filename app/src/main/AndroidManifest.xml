@@ -20,13 +20,13 @@
         android:theme="@style/AppTheme">
 
         <!-- START Activities -->
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity" />
-        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity">
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity" />
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity" />
         <!-- END Activities -->

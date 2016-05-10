@@ -35,7 +35,6 @@ public class StringMapSerializer extends TypeSerializer{
         if (data == null) {
             return null;
         }
-
         Type type = new TypeToken<Map<String, String>>(){}.getType();
         return JsonConverter.toObject(data.toString(), type);
     }

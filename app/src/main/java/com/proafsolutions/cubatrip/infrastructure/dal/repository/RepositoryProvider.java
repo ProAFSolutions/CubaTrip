@@ -11,6 +11,8 @@ public class RepositoryProvider {
 
     private static final UserSettingsRepository _userSettingsRepository = new UserSettingsRepository();
 
+    private static final CheckInRepository _checkInRepository = new CheckInRepository();
+
 
     public static ProductRepository getProductRepository() {
         return _productRepository;
@@ -22,5 +24,9 @@ public class RepositoryProvider {
 
     public static UserSettingsRepository getUserSettingsRepository() {
         return _userSettingsRepository;
+    }
+
+    public static CheckInRepository getCheckInRepository() {
+        return _checkInRepository;
     }
 }

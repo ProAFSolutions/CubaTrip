@@ -30,8 +30,7 @@ public class JsonConverter {
     }
 
     public static <T> void writeJson(T object, File jsonFile) throws IOException {
-        String fileName = "update_" + String.valueOf(new Date().getTime()) + ".json";
-        FileWriter writer = new FileWriter(new File(FileManager.getUpdateFolder(), fileName));
+        FileWriter writer = new FileWriter(jsonFile);
         writer.write(_converter.toJson(object));
         writer.flush();
         writer.close();

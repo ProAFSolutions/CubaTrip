@@ -1,5 +1,6 @@
 package com.proafsolutions.cubatrip.domain.service;
 
+import com.proafsolutions.cubatrip.domain.model.ProductCheckIn;
 import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
@@ -48,8 +49,8 @@ public class BLServiceCatalog implements IBLService {
     }
 
     @Override
-    public void doCheckIn() {
-
+    public void doCheckIn(ProductCheckIn checkIn) {
+        RepositoryProvider.getCheckInRepository().save(checkIn);
     }
 
     @Override

@@ -35,11 +35,8 @@ dependencies {
     compile 'com.squareup.retrofit2:retrofit:2.0.2'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
 
-    compile 'org.mapsforge:mapsforge-map-android:0.6.0'
-    compile 'org.mapsforge:mapsforge-map-writer:0.6.0'
-    compile('org.mapsforge:mapsforge-map-android-extras:0.6.0') {
-        transitive = false
-    }
+    compile 'org.mapsforge:mapsforge-map-android:0.5.0'
+
     compile('com.graphhopper:graphhopper:0.7-SNAPSHOT') {
         exclude group: 'com.google.protobuf', module: 'protobuf-java'
         exclude group: 'org.openstreetmap.osmosis', module: 'osmosis-osm-binary'
