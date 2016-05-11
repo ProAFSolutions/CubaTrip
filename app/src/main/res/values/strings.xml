@@ -26,6 +26,7 @@
     <string name="Categories">Categories</string>
     <string name="Settings">Settings</string>
     <string name="AboutApp">About</string>
+    <string name="Maps">Maps</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"

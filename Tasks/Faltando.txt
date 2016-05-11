@@ -3,7 +3,7 @@
  Background
 
 -Menu (SETTING)   OK
- Crear menu para toda la app.
+ Crear menu para toda la app. OK
  
 -Categorias
  Cargar imagen de cada producto.

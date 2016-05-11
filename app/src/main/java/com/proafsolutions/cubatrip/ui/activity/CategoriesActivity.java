@@ -1,5 +1,6 @@
 package com.proafsolutions.cubatrip.ui.activity;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
@@ -68,19 +69,26 @@ public class CategoriesActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        Intent launchNewIntent = null;
 
         switch (item.getItemId())
         {
-           /*case R.id.menu_bookmark:
-                // Single menu item is selected do something
-                // Ex: launching new activity/screen or show alert message
-                Toast.makeText(AndroidMenusActivity.this, "Bookmark is Selected", Toast.LENGTH_SHORT).show();
-                return true;*/
+           case R.id.menuCategory:
+                launchNewIntent = new Intent(CategoriesActivity.this,CategoriesActivity.class);
+               startActivityForResult(launchNewIntent, 0);
+                return true;
 
-            default:
-                Toast.makeText(CategoriesActivity.this, "Option is Selected", Toast.LENGTH_SHORT).show();
-                return super.onOptionsItemSelected(item);
+            case R.id.menuMap:
+                 launchNewIntent = new Intent(CategoriesActivity.this,MapActivity.class);
+                startActivityForResult(launchNewIntent, 0);
+                return true;
+
+            //default:
+              //  Toast.makeText(CategoriesActivity.this, "Option is Selected", Toast.LENGTH_SHORT).show();
+                //return super.onOptionsItemSelected(item);
         }
+
+        return true;
     }
 
 }

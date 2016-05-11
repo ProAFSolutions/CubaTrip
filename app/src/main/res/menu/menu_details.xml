@@ -13,8 +13,15 @@
                 app:showAsAction="always" >
             </item>
             <item
+                android:id="@+id/menuCategory"
                 android:orderInCategory="120"
                 android:title="@string/Categories"
+                app:showAsAction="always" >
+            </item>
+            <item
+                android:id="@+id/menuMap"
+                android:orderInCategory="130"
+                android:title="@string/Maps"
                 app:showAsAction="always" >
             </item>
             <item

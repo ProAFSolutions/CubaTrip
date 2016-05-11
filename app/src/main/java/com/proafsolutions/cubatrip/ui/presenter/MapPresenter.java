@@ -54,11 +54,11 @@ public class MapPresenter extends AbstractPresenter {
 
     public void Start()
     {
-        String lon = this.getActivityParameters().getString("longitude");
-        String lat = this.getActivityParameters().getString("latitude");
+        //String lon = this.getActivityParameters().getString("longitude");
+       // String lat = this.getActivityParameters().getString("latitude");
 
-        Double logLong = Double.parseDouble(lon);
-        Double latLong = Double.parseDouble(lat);
+       // Double logLong = Double.parseDouble(lon);
+       // Double latLong = Double.parseDouble(lat);
        // this.mapView.getModel().mapViewPosition.setCenter(new LatLong(logLong, latLong));
         this.mapView.getModel().mapViewPosition.setCenter(new LatLong(23.1355443, -82.3620573));
         this.mapView.getModel().mapViewPosition.setZoomLevel((byte) 16);
