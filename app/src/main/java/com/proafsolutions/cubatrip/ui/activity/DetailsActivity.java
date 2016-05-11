@@ -21,7 +21,7 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         presenter = new DetailsPresenter(DetailsActivity.this);
         presenter.LoadProduct();
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.buttonMap);
+       /* FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.buttonMap);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -39,7 +39,7 @@ public class DetailsActivity extends AppCompatActivity {
                 // .setAction("Action", null).show();
                 presenter.NewReview();
             }
-        });
+        });*/
 
         RatingBar ratingBar = (RatingBar)findViewById(R.id.reviewRating);
 
