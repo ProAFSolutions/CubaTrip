@@ -2,6 +2,8 @@ package com.proafsolutions.cubatrip.app.setup;
 
 import android.util.Log;
 
+import com.graphhopper.routing.AlgorithmOptions;
+import com.proafsolutions.cubatrip.domain.model.UserSettings;
 import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
@@ -9,6 +11,7 @@ import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.model.specification.GeoLocation;
 import com.proafsolutions.cubatrip.domain.model.specification.ProductDetails;
+import com.proafsolutions.cubatrip.infrastructure.config.Constants;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.ProductRepository;
 import com.proafsolutions.cubatrip.infrastructure.dal.repository.RepositoryProvider;
 
@@ -27,8 +30,22 @@ public class AppDatasetExample {
         if(RepositoryProvider.getProductRepository().loadAll().size() == 0){
             createProducts();
             createReviews();
+            createUserSettings();
         }
         printOutProducts();
+    }
+
+    public void createUserSettings(){
+        UserSettings settings = new UserSettings();
+        settings.setRoutingAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+        settings.setTravelMode(Constants.MAP_ROUTES_TAVEL_MODE_CAR);
+        settings.setDirectionsON(Constants.MAP_ROUTES_DIRECTION_ON);
+        settings.setWeighting(Constants.MAP_ROUTES_WEIGHTING_FASTEST);
+        settings.setLastLocation(null);
+        settings.setZoomLevelMax(20);
+        settings.setZoomLevelMin(8);
+        settings.setLastZoomLevel(12);
+        RepositoryProvider.getUserSettingsRepository().save(settings);
     }
 
     public void createProducts() {

@@ -1,15 +1,22 @@
 package com.proafsolutions.cubatrip.ui.map;
 
+import android.Manifest;
 import android.app.Activity;
+import android.content.Context;
+import android.content.pm.PackageManager;
 import android.graphics.Path;
 import android.graphics.drawable.Drawable;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.support.v4.app.ActivityCompat;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.graphhopper.GHRequest;
 import com.graphhopper.GHResponse;
 import com.graphhopper.GraphHopper;
+import com.graphhopper.routing.AlgorithmOptions;
 import com.graphhopper.util.PointList;
 import com.graphhopper.util.StopWatch;
 import com.proafsolutions.cubatrip.android.R;
@@ -38,6 +45,7 @@ import org.mapsforge.map.layer.overlay.Marker;
 import org.mapsforge.map.layer.overlay.Polyline;
 import org.mapsforge.map.layer.renderer.TileRendererLayer;
 import org.mapsforge.map.rendertheme.InternalRenderTheme;
+
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -99,11 +107,44 @@ public class MapHandler {
 
         initMap();
         initMyLocation();
-        //loadGraphStorage();
+        addTestTarget();
+        loadGraphStorage();
+        drawTestRoute();
+    }
+
+    private LatLong getTestLocation() {
+        return new LatLong(25.8862788,-80.3373307);
+    }
+
+    private void addTestTarget() {
+        this.addMarker(getTestLocation(), R.drawable.target_location);
+    }
+
+    private void drawTestRoute() {
+        calcPath(getCurrentLocation().latitude,
+                 getCurrentLocation().longitude,
+                 getTestLocation().latitude,
+                 getTestLocation().longitude);
+    }
+
+    public LatLong getCurrentLocation() {
+        LocationManager locationManager = (LocationManager) activity.getSystemService(Context.LOCATION_SERVICE);
+        boolean isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
+        if (isGPSEnabled) {
+            if (ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+                ActivityCompat.checkSelfPermission(activity, Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+                locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 0, 0.0f, myLocation);
+                Location location = locationManager.getLastKnownLocation(LocationManager.GPS_PROVIDER);
+                if (location != null) {
+                   return new LatLong(location.getLatitude(), location.getLongitude());
+                }
+            }
+        }
+        return null;
     }
 
     public void initMyLocation(){
-        Drawable drawable = activity.getResources().getDrawable(R.drawable.user_location);
+        Drawable drawable = activity.getResources().getDrawable(R.drawable.source_location);
         Bitmap myLocationIcon = AndroidGraphicFactory.convertToBitmap(drawable);
         myLocationIcon.incrementRefCount();
         myLocation = new MyLocationOverlay(activity, mapView.getModel().mapViewPosition, myLocationIcon);
@@ -113,13 +154,12 @@ public class MapHandler {
     }
 
     public void initMap(){
-
         mapView.setClickable(true);
         mapView.getMapScaleBar().setVisible(true);
         mapView.setBuiltInZoomControls(true);
         mapView.getMapZoomControls().setZoomLevelMin((byte) 10);
         mapView.getMapZoomControls().setZoomLevelMax((byte) 20);
-        mapView.getModel().mapViewPosition.setCenter(new LatLong(25.7902358, -80.2463184));
+        mapView.getModel().mapViewPosition.setCenter(getTestLocation());
         mapView.getModel().mapViewPosition.setZoomLevel((byte) 12);
         initTileCache();
         initRendererLayer();
@@ -155,7 +195,7 @@ public class MapHandler {
     }
 
     public void removeLayer(Layer layer) {
-        if (mapView.getLayerManager().getLayers().contains(layer)) {
+        if (layer != null && mapView.getLayerManager().getLayers().contains(layer)) {
             mapView.getLayerManager().getLayers().remove(layer);
         }
     }
@@ -202,6 +242,7 @@ public class MapHandler {
     private Marker createMarker(LatLong p, int resource) {
         Drawable drawable = activity.getResources().getDrawable(resource);
         Bitmap bitmap = AndroidGraphicFactory.convertToBitmap(drawable);
+        bitmap.incrementRefCount();
         return new Marker(p, bitmap, 0, -bitmap.getHeight() / 2);
     }
 
@@ -211,7 +252,7 @@ public class MapHandler {
             protected Path doInBackground(Void... v) {
                 try {
                     GraphHopper tmpHopp = new GraphHopper().forMobile();
-                    tmpHopp.load(new File(FileManager.getMapFolder(), Constants.MAP_GH_FOLDER).getAbsolutePath());
+                    tmpHopp.load(new File(FileManager.getMapFolder(), Constants.MAP_ROUTES_GH_FOLDER).getAbsolutePath());
                     hopper = tmpHopp;
                 } catch (Exception e) {
                     error = "error: " + e.getMessage();
@@ -231,16 +272,16 @@ public class MapHandler {
     public void calcPath(final double fromLat, final double fromLon, final double toLat, final double toLon) {
         removeLayer(polylinePath);
         polylinePath = null;
+
         new AsyncTask<Void, Void, GHResponse>() {
             float time;
-
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
                 GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
-                req.setAlgorithm(userSettings.getRoutingAlgorithm());
-                req.getHints().put("instructions", userSettings.getDirectionsON());
-                req.setVehicle(userSettings.getTravelMode());
-                req.setWeighting(userSettings.getWeighting());
+                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                req.getHints().put("instructions", true);
+                req.setVehicle(Constants.MAP_ROUTES_TAVEL_MODE_CAR);
+                req.setWeighting(Constants.MAP_ROUTES_WEIGHTING_FASTEST);
                 GHResponse resp = hopper.route(req);
                 time = sw.stop().getSeconds();
                 return resp;
@@ -253,10 +294,11 @@ public class MapHandler {
 
             protected void onPostExecute(GHResponse resp) {
                 if (!resp.hasErrors()) {
-                    polylinePath = createPolyline(resp.getBest().getPoints(), activity.getResources().getColor(R.color.colorPrimaryDark), 20);
+                    polylinePath = createPolyline(resp.getBest().getPoints(), activity.getResources().getColor(R.color.colorGoogle), 10);
                     mapView.getLayerManager().getLayers().add(polylinePath);
-                    if (userSettings.getDirectionsON().equals(Constants.MAP_DIRECTION_ON)) {
+                    if (userSettings.isDirectionsON() == Constants.MAP_ROUTES_DIRECTION_ON) {
                         MapNavigator.getInstance().setGhResponse(resp);
+                        Log.i("MapHandler", MapNavigator.getInstance().toString());
                     }
                 } else {
                     logToast("Error:" + resp.getErrors());
@@ -308,8 +350,8 @@ public class MapHandler {
         Paint paintStroke = AndroidGraphicFactory.INSTANCE.createPaint();
 
         paintStroke.setStyle(Style.STROKE);
-        paintStroke.setStrokeJoin(Join.ROUND);
-        paintStroke.setStrokeCap(Cap.ROUND);
+        paintStroke.setStrokeJoin(Join.BEVEL);
+        paintStroke.setStrokeCap(Cap.SQUARE);
         paintStroke.setColor(color);
         //        paintStroke.setDashPathEffect(new float[]{25, 25});
         paintStroke.setStrokeWidth(strokeWidth);
@@ -350,11 +392,6 @@ public class MapHandler {
     public PointList getTrackingPointList() {
         return trackingPointList;
     }
-
-//    public MyLocationOverlay getMyLocation() {
-//        return myLocation;
-//    }
-
 
     private void log(String str) {
         Log.i(this.getClass().getSimpleName(), "-----------------" + str);

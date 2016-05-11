@@ -28,7 +28,7 @@ public class UserSettings extends Model{
 
     //instructions on or off; default true (on)
     @Column(name = "directions_on")
-    private String directionsON;
+    private boolean directionsON;
 
     @Column(name = "zoom_level_max")
     private int zoomLevelMax;
@@ -73,11 +73,11 @@ public class UserSettings extends Model{
         this.routingAlgorithm = routingAlgorithm;
     }
 
-    public String getDirectionsON() {
+    public boolean isDirectionsON() {
         return directionsON;
     }
 
-    public void setDirectionsON(String directionsON) {
+    public void setDirectionsON(boolean directionsON) {
         this.directionsON = directionsON;
     }
 

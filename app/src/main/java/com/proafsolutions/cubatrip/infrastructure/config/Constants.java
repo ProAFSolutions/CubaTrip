@@ -29,13 +29,16 @@ public interface Constants {
 
     // maps
     public static final String MAP_FILE = "florida.map";
-    public static final String MAP_GH_FOLDER = "florida-gh";
-
-    public static final String MAP_TAVEL_MODE_CAR= "car";
-    public static final String MAP_TAVEL_MODE_FOOT= "foot";
-    public static final String MAP_TAVEL_MODE_BIKE= "bike";
-
     public static final String MAP_CACHE = "mapcache";
 
-    public static final String MAP_DIRECTION_ON= "on";
+    //Routes
+    public static final String MAP_ROUTES_GH_FOLDER = "florida-gh";
+    public static final String MAP_ROUTES_TAVEL_MODE_CAR = "car";
+    public static final String MAP_ROUTES_TAVEL_MODE_FOOT = "foot";
+    public static final String MAP_ROUTES_TAVEL_MODE_BIKE = "bike";
+
+    public static final String MAP_ROUTES_WEIGHTING_FASTEST = "fastest";
+    public static final String MAP_ROUTES_WEIGHTING_SHORTEST = "shortest";
+
+    public static final boolean MAP_ROUTES_DIRECTION_ON = true;
 }

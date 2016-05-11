@@ -114,11 +114,11 @@ public class MapNavigator {
     public int getTravelModeResId() {
         UserSettings settings = RepositoryProvider.getUserSettingsRepository().getSettings();
         switch (settings.getTravelMode()) {
-            case Constants.MAP_TAVEL_MODE_FOOT:
+            case Constants.MAP_ROUTES_TAVEL_MODE_FOOT:
                 return R.drawable.ic_directions_walk_orange_24dp;
-            case Constants.MAP_TAVEL_MODE_BIKE:
+            case Constants.MAP_ROUTES_TAVEL_MODE_BIKE:
                 return R.drawable.ic_directions_bike_orange_24dp;
-            case Constants.MAP_TAVEL_MODE_CAR:
+            case Constants.MAP_ROUTES_TAVEL_MODE_CAR:
                 return R.drawable.ic_directions_car_orange_24dp;
         }
 
