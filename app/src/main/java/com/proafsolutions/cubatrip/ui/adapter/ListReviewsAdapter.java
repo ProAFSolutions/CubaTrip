@@ -10,7 +10,10 @@ import android.widget.TextView;
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Review;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
+import java.util.Locale;
 
 /**
  * Created by Fily on 4/20/2016.
@@ -36,11 +39,17 @@ public class ListReviewsAdapter extends ArrayAdapter<String> {
         TextView textValue = (TextView) rowView.findViewById(R.id.ratingValue);
         TextView ratingText = (TextView) rowView.findViewById(R.id.ratingText);
         TextView textDescription = (TextView) rowView.findViewById(R.id.secondLine);
+        TextView textDate = (TextView) rowView.findViewById(R.id.dateText);
+        SimpleDateFormat format = new SimpleDateFormat("MMM dd,yyyy");
+        String date = format.format(productList.get(position).getDate());
+
        // ImageView imageView = (ImageView) rowView.findViewById(R.id.icon);
         textView.setText(productList.get(position).getContact());
         textDescription.setText(productList.get(position).getComments());
         textValue.setText("("+ productList.get(position).getRate().getRate()+")");
         ratingText.setText(productList.get(position).getRate().toString());
+
+        textDate.setText(date+" by ");
         //String s = valuesTitle[position];
       //  imageView.setImageResource(R.mipmap.no_image);
 

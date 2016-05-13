@@ -2,9 +2,15 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.proafsolutions.cubatrip.android">
 
+<<<<<<< .mine
     <!-- START Permissions -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+=======
+    <!-- START Permission Settings -->
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+>>>>>>> .theirs
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -20,18 +26,40 @@
         android:theme="@style/AppTheme">
 
         <!-- START Activities -->
+<<<<<<< .mine
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity">
+=======
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MapActivity" />
+>>>>>>> .theirs
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity"></activity>
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity" />
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.MenuActivity">
+        </activity>
+
+        <activity android:name="com.proafsolutions.cubatrip.ui.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+<<<<<<< .mine
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.CategoriesActivity" />
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.DetailsActivity" />
+=======
+
+
+>>>>>>> .theirs
         <activity android:name="com.proafsolutions.cubatrip.ui.activity.ReviewsActivity" />
         <!-- END Activities -->
 
+<<<<<<< .mine
         <!-- START Database Settings -->
+
+=======
+
+        <!-- START Database Settings -->
+>>>>>>> .theirs
         <meta-data
             android:name="AA_DB_NAME"
             android:value="/mnt/sdcard/Download/cubatrip/data/cubatrip.db" />

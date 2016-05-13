@@ -16,6 +16,7 @@ import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
 import com.proafsolutions.cubatrip.domain.service.BLServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.CategoriesActivity;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
+import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
 import com.proafsolutions.cubatrip.ui.util.Utils;
 
@@ -106,4 +107,5 @@ public class CategoriesPresenter extends AbstractPresenter {
         params.putLong("idProduct",products.get(position).getId());
         this.openNewActivityPassingData(DetailsActivity.class,params);
     }
+
 }

@@ -1,0 +1,25 @@
+-Splash
+ Logo
+ Background
+
+-Menu (SETTING)   OK
+ Crear menu para toda la app. OK
+ 
+-Categorias
+ Cargar imagen de cada producto.
+ Cargar valor de Rating.
+ Ordenar por Rating o por prioridad(pagos)
+
+-Detalles Producto
+ Cargar imagen del producto.(Slide con varias imagenes)
+ Enviar mensaje al lugar.
+ Revisar valor de Rating.
+ 
+-Reviews
+ Nueva pantalla para review sin entrar al detalle de un producto.
+
+-Download Lugares de cuba
+ Nueva pantalla por provincias para realizar la descarga de la data.
+
+-Pantalla de Bienvenida
+ Acceso a toda la app y mostrar propagando o otra informacion relevante.

@@ -20,11 +20,12 @@
                 android:src="@mipmap/userreview_ico" />-->
 
             <TextView
+                android:id="@+id/dateText"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center|left"
                 android:gravity="center"
-                android:text="Contact:  "
+                android:text="Date:  "
                 android:textSize="18sp" android:textStyle="bold"/>
 
             <TextView
