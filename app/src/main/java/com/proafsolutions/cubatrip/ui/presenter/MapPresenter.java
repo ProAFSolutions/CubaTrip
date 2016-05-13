@@ -15,9 +15,7 @@ public class MapPresenter extends AbstractPresenter {
     private MapActivity activity;
     private MapView mapView;
 
-
     public MapPresenter(MapActivity activity) {
-
         this.activity = activity;
     }
 

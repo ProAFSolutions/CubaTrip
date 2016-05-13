@@ -1,24 +1,16 @@
 package com.proafsolutions.cubatrip.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.proafsolutions.cubatrip.android.R;
-import com.proafsolutions.cubatrip.domain.model.CategoryEnum;
-import com.proafsolutions.cubatrip.ui.adapter.ListAdapter;
+import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.ui.presenter.CategoriesPresenter;
 
 

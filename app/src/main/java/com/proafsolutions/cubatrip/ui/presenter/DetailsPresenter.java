@@ -8,13 +8,13 @@ import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.domain.model.Product;
-import com.proafsolutions.cubatrip.domain.model.RateEnum;
 import com.proafsolutions.cubatrip.domain.model.Review;
-import com.proafsolutions.cubatrip.domain.service.ServiceCatalog;
+import com.proafsolutions.cubatrip.domain.model.enums.RateEnum;
+import com.proafsolutions.cubatrip.domain.service.BLServiceCatalog;
 import com.proafsolutions.cubatrip.ui.activity.DetailsActivity;
 import com.proafsolutions.cubatrip.ui.activity.MapActivity;
 import com.proafsolutions.cubatrip.ui.activity.ReviewsActivity;
-import com.proafsolutions.cubatrip.util.Utils;
+import com.proafsolutions.cubatrip.ui.util.Utils;
 
 import java.util.Date;
 import java.util.List;
@@ -40,7 +40,7 @@ public class DetailsPresenter extends AbstractPresenter {
     public void LoadProduct()
     {
       long IdProduct = getActivityParameters().getLong("idProduct");
-      product =   ServiceCatalog.getInstance().getProductById(IdProduct);
+      product =   BLServiceCatalog.getInstance().getProductById(IdProduct);
 
         RefreshReviews();
 
@@ -94,10 +94,10 @@ public class DetailsPresenter extends AbstractPresenter {
         reviewNew.setDate(new Date());
         reviewNew.setSync(false);
         reviewNew.setProduct(product);
-        reviewNew.setRate(Utils.GetRateEnum((int)rating));
+        reviewNew.setRate(RateEnum.getRate((int)rating));
         reviewNew.setContact(reviewContact);
 
-        ServiceCatalog.getInstance().doProductReview(reviewNew);
+        BLServiceCatalog.getInstance().doProductReview(reviewNew);
         RefreshReviews();
 
     }
@@ -105,7 +105,7 @@ public class DetailsPresenter extends AbstractPresenter {
 
     public void RefreshReviews()
     {
-        List<Review> reviews =   ServiceCatalog.getInstance().getReviews(product.getId());
+        List<Review> reviews =   BLServiceCatalog.getInstance().getReviews(product.getId());
 
         if(reviews.size()==0) {
             ((RatingBar) activity.findViewById(R.id.ratingBar)).setRating(0);
@@ -137,7 +137,7 @@ public class DetailsPresenter extends AbstractPresenter {
     public void ChangeRate()
     {
         RatingBar r = (RatingBar)activity.findViewById(R.id.reviewRating);
-        RateEnum rate = Utils.GetRateEnum((int)r.getRating());
+        RateEnum rate = RateEnum.getRate((int)r.getRating());
         ((TextView)activity.findViewById(R.id.WriteReviewText)).setText("Write Review ("+rate.toString()+")");
     }
 }
