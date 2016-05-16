@@ -71,7 +71,7 @@ public class CategoriesActivity extends AppCompatActivity {
                 return true;
 
             case R.id.menuMap:
-                 launchNewIntent = new Intent(CategoriesActivity.this,MapActivity.class);
+                launchNewIntent = new Intent(CategoriesActivity.this,MapActivity.class);
                 startActivityForResult(launchNewIntent, 0);
                 return true;
 

@@ -10,13 +10,47 @@
     tools:context="com.proafsolutions.cubatrip.ui.activity.DetailsActivity">
 
 
-    <ImageView
+   <!-- <ImageView
         android:id="@+id/ImageProduct"
         android:layout_width="match_parent"
         android:layout_height="700px"
-        android:src="@drawable/image_test"
-        android:scaleType="fitXY"></ImageView>
+        android:src="@drawable/no_image"
+        android:scaleType="fitXY"></ImageView>-->
 
+    <ViewFlipper
+        android:id="@+id/ImageProduct"
+        android:layout_width="match_parent"
+        android:layout_height="800px">
+
+    </ViewFlipper>
+
+    <LinearLayout
+        android:id="@+id/optionImages"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" android:gravity="right">
+
+        <Button
+            android:id="@+id/prev"
+            android:layout_width="0dp"
+            android:layout_height="140px"
+            android:layout_weight="1"
+            android:text="PREVIOUS"
+            android:textColor="@android:color/background_light"
+            android:backgroundTint="@color/colorGoogle"/>
+
+        <Button
+            android:id="@+id/next"
+            android:layout_width="0dp"
+            android:layout_height="140px"
+            android:layout_weight="1"
+            android:text="NEXT"
+            android:textColor="@android:color/background_light"
+            android:backgroundTint="@color/colorGoogle"
+            />
+
+
+    </LinearLayout>
 
 
     <LinearLayout
@@ -57,13 +91,14 @@
                 android:layout_height="wrap_content"
                 android:numStars="5"
                 android:stepSize="0.1"
-                android:rating="2.4"
+                android:rating="2"
                 android:isIndicator="true"
                 android:scaleX="0.4"
                 android:scaleY="0.4"
                 android:transformPivotX="0dp"
                 android:transformPivotY="0dp"
                 android:max="5"
+                android:progressTint="@android:color/holo_orange_dark"
                 android:indeterminateOnly="false" />
 
             <TextView
@@ -72,6 +107,8 @@
                 android:layout_height="26dip"
                 android:ellipsize="marquee"
                 android:text="(5) Reviews"
+                android:onClick="onClick"
+                android:clickable="true"
                 android:textSize="12sp" android:textColor="@android:color/background_light"
                 android:layout_toRightOf="@+id/ratingBar"
                 android:layout_marginTop="15px"
@@ -91,19 +128,20 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
             <LinearLayout
-                android:id="@+id/button"
+                android:id="@+id/buttonNavigate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:orientation="vertical" >
 
                 <ImageView
-                    android:id="@+id/img"
+                    android:id="@+id/imgNavigate"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginLeft="15dp"
-                    android:src="@android:drawable/ic_dialog_map" />
+                    android:src="@android:drawable/ic_dialog_map"
+                    android:clickable="true"/>
 
                 <TextView
                     android:id="@+id/textView2"
@@ -111,10 +149,66 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_margin="5dp"
-                    android:text="NAVIGATE TO"
+                    android:text="@string/Navigate"
                     android:textSize="9sp" android:textColor="@android:color/white"
                     />
             </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonEmail"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imgEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="22dp"
+                    android:src="@android:drawable/ic_dialog_email"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="@string/Email"
+                    android:textSize="9sp" android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/buttonReview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:orientation="vertical" >
+
+                <ImageView
+                    android:id="@+id/imgReview"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginLeft="15dp"
+                    android:src="@android:drawable/btn_star_big_off"
+                    android:clickable="true"/>
+
+                <TextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_margin="5dp"
+                    android:text="@string/WriteReviewButton"
+                    android:textSize="9sp" android:textColor="@android:color/white"
+                    />
+            </LinearLayout>
+
+
         </LinearLayout>
 
 
@@ -202,7 +296,10 @@
             android:layout_width="match_parent"
             android:layout_height="0.5dp"
             android:background="@color/colorPrimaryDark" />-->
-
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="20sp" />
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -239,6 +336,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignWithParentIfMissing="true"
             android:text="@string/WriteReview"
+            android:layout_marginTop="15sp"
             android:textSize="18sp" android:textColor="@color/colorPrimary" android:layout_marginLeft="10dp"/>
 
 
@@ -281,6 +379,11 @@
             android:text="Post"
             android:textColor="@android:color/background_light"
             app:backgroundTint="@color/colorPrimary"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="20sp" />
     </LinearLayout>
 
     <LinearLayout

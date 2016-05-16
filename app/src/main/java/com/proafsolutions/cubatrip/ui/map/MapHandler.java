@@ -109,7 +109,20 @@ public class MapHandler {
         initMyLocation();
         addTestTarget();
         loadGraphStorage();
-        drawTestRoute();
+        // drawTestRoute();
+    }
+
+
+   //Current Product Location
+    public void init(Activity activity, MapView mapView,double latitude, double longitude) {
+
+        this.activity = activity;
+        this.mapView = mapView;
+        this.userSettings = GlobalConfig.loadUserSettings();
+
+        initMap();
+        loadGraphStorage();
+        CurrentProduct(latitude,longitude);
     }
 
     private LatLong getTestLocation() {
@@ -117,7 +130,18 @@ public class MapHandler {
     }
 
     private void addTestTarget() {
+
         this.addMarker(getTestLocation(), R.drawable.target_location);
+    }
+
+    private void CurrentProduct(double latitude, double longitude)
+    {
+        this.addMarker(new LatLong(latitude,longitude), R.drawable.target_location);
+    }
+
+    private void addTestTarget(double latitude, double longitude) {
+       LatLong location = new LatLong(latitude,longitude);
+        this.addMarker(location, R.drawable.target_location);
     }
 
     private void drawTestRoute() {

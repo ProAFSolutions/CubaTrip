@@ -20,6 +20,8 @@
     <string name="Wifi">Wifi</string>
     <string name="About">About This Place</string>
     <string name="WriteReview">Write Review</string>
+    <string name="WriteReviewButton">WRITE REVIEW</string>
+    <string name="AddReview">Add Review</string>
     <string name="Menu">Menu</string>
     <string name="Start">Start</string>
     <string name="Reviews">Reviews</string>
@@ -27,8 +29,11 @@
     <string name="Settings">Settings</string>
     <string name="AboutApp">About</string>
     <string name="Maps">Maps</string>
+    <string name="Email">SEND MESSAGE</string>
     <string name="title_activity_scrolling">ScrollingActivity</string>
+    <string name="Navigate"> NAVIGATE TO</string>
     <string name="large_text">
+
         "Material is the metaphor.\n\n"
 
         "A material metaphor is the unifying theory of a rationalized space and a system of motion."

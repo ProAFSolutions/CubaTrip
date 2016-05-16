@@ -18,10 +18,19 @@
             android:id="@+id/productText"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+
+            android:gravity="right"
             android:text="Example application"
-            android:textSize="20sp"   android:textColor="#1E88E5"
+            android:textSize="16sp"   android:textColor="#1E88E5"
             android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:gravity="left"
+            android:text="Reviews"
+            android:textSize="16sp"
+          />
 
         <ListView
             android:id="@+id/listReviews"

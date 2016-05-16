@@ -26,7 +26,7 @@
                 android:layout_gravity="center|left"
                 android:gravity="center"
                 android:text="Date:  "
-                android:textSize="18sp" android:textStyle="bold"/>
+                android:textSize="16sp" android:textStyle="bold"/>
 
             <TextView
                 android:id="@+id/firstLine"
@@ -35,7 +35,7 @@
                 android:layout_gravity="center|left"
                 android:gravity="center"
                 android:text="Name"
-                android:textSize="18sp" />
+                android:textSize="16sp" />
         </LinearLayout>
 
 
@@ -61,11 +61,11 @@
                 android:text="(5)"
                 android:textSize="12sp" android:layout_marginLeft="15px" android:textStyle="bold"/>
             <ImageView
+                android:id="@+id/rating1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="TODO"
                 android:src="@android:drawable/btn_star_big_on" />
-
 
             <TextView
                 android:id="@+id/ratingText"

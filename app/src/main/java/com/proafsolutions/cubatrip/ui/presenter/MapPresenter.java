@@ -28,6 +28,13 @@ public class MapPresenter extends AbstractPresenter {
     {
         mapView = new MapView(activity);
         activity.setContentView(this.mapView);
+        //Verify Params
+        if(getActivityParameters()!=null) {
+            double latitude = Double.parseDouble(getActivityParameters().getString("latitude"));
+            double longitude =Double.parseDouble(getActivityParameters().getString("longitude"));
+            MapHandler.getInstance().init(activity, mapView,latitude,longitude);
+        }
+        else
         MapHandler.getInstance().init(activity, mapView);
     }
 
