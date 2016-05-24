@@ -7,9 +7,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
+import com.proafsolutions.cubatrip.domain.model.Review;
 import com.proafsolutions.cubatrip.domain.model.enums.CategoryEnum;
 import com.proafsolutions.cubatrip.domain.model.Product;
 import com.proafsolutions.cubatrip.domain.model.enums.ProvinceEnum;
@@ -92,7 +94,7 @@ public class CategoriesPresenter extends AbstractPresenter {
 
     public void RefreshList(CategoryEnum category)
     {
-        products = BLServiceCatalog.getInstance().getProductsByCategory(CategoryEnum.HOTEL, ProvinceEnum.LA_HABANA);
+        products = BLServiceCatalog.getInstance().getProductsByCategory(category, ProvinceEnum.LA_HABANA);
 
         String[] stringsNames = new String[products.size()];
 
@@ -107,5 +109,7 @@ public class CategoriesPresenter extends AbstractPresenter {
         params.putLong("idProduct",products.get(position).getId());
         this.openNewActivityPassingData(DetailsActivity.class,params);
     }
+
+
 
 }

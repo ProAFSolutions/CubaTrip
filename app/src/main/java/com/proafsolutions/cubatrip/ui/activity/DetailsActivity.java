@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RatingBar;
+import android.widget.TextView;
 
 import com.proafsolutions.cubatrip.android.R;
 import com.proafsolutions.cubatrip.ui.presenter.DetailsPresenter;
@@ -26,6 +27,8 @@ public class DetailsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_details);
         presenter = new DetailsPresenter(DetailsActivity.this);
         presenter.LoadProduct();
+
+
         ImageView navigate = (ImageView) findViewById(R.id.imgNavigate);
         navigate.setOnClickListener(new View.OnClickListener() {
             @Override

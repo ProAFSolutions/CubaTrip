@@ -20,7 +20,7 @@
     <ViewFlipper
         android:id="@+id/ImageProduct"
         android:layout_width="match_parent"
-        android:layout_height="800px">
+        android:layout_height="650px">
 
     </ViewFlipper>
 
@@ -70,6 +70,7 @@
             android:layout_alignWithParentIfMissing="true"
             android:gravity="center_vertical"
             android:text="Example application"
+            android:focusableInTouchMode="true"
             android:textSize="18sp" android:textColor="@android:color/background_light"/>
 
         <TextView

@@ -37,7 +37,7 @@ public class AppDatasetExample {
 
     public void createUserSettings(){
         UserSettings settings = new UserSettings();
-        settings.setRoutingAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+        settings.setRoutingAlgorithm("dijkstrabi");
         settings.setTravelMode(Constants.MAP_ROUTES_TAVEL_MODE_CAR);
         settings.setDirectionsON(Constants.MAP_ROUTES_DIRECTION_ON);
         settings.setWeighting(Constants.MAP_ROUTES_WEIGHTING_FASTEST);

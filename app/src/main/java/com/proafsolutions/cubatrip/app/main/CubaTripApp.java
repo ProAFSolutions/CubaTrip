@@ -1,5 +1,12 @@
 package com.proafsolutions.cubatrip.app.main;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
+import android.util.Log;
+
 import com.activeandroid.ActiveAndroid;
 import com.activeandroid.app.Application;
 import com.proafsolutions.cubatrip.app.setup.AppDatasetExample;

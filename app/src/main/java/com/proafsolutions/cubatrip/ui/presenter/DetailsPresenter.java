@@ -1,6 +1,7 @@
 package com.proafsolutions.cubatrip.ui.presenter;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
@@ -8,10 +9,14 @@ import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.Snackbar;
 import android.view.GestureDetector;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.Gallery;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RatingBar;
@@ -80,30 +85,49 @@ public class DetailsPresenter extends AbstractPresenter {
 
         ((TextView)activity.findViewById(R.id.ServicesText)).setText(product.getServices().get("Dishes"));
 
-        LoadImages();
 
-        if(images.size()>1) {
-            // Get the ViewFlipper
-            ViewFlipper mViewFlipper = (ViewFlipper) activity.findViewById(R.id.ImageProduct);
-            mViewFlipper.setInAnimation(activity, android.R.anim.fade_in);
-            mViewFlipper.setOutAnimation(activity, android.R.anim.fade_out);
+        //LoadImages
+        // Get the ViewFlipper
+        ViewFlipper mViewFlipper = (ViewFlipper) activity.findViewById(R.id.ImageProduct);
+        mViewFlipper.setInAnimation(activity, android.R.anim.fade_in);
+        mViewFlipper.setOutAnimation(activity, android.R.anim.fade_out);
+        boolean hasImage = false;
 
-            // Add all the images to the ViewFlipper
-           for (int i = 0; i < images.size(); i++) {
+        for(int i=0; i<product.getImages().size();i++)
+        {
+            File imgFile = new File(FileManager.getResourcesFolder()+"/"+product.getProvince().toString()+"/"+product.getId()+"/"+product.getImages().get(i).toString());
+
+            if(imgFile.exists()){
+
+                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
                 ImageView imageView = new ImageView(activity);
                 imageView.setScaleType(ImageView.ScaleType.FIT_XY);
-               // imageView.setImageResource(R.drawable.image_test);
-               imageView.setImageBitmap(images.get(i));
+                // imageView.setAdjustViewBounds(true); // set the ImageView bounds to match the Drawable's dimensions
+                //  imageView.setLayoutParams(new Gallery.LayoutParams(AppBarLayout.LayoutParams.WRAP_CONTENT,
+                //        AppBarLayout.LayoutParams.WRAP_CONTENT));
+                imageView.setImageBitmap(myBitmap);
                 mViewFlipper.addView(imageView);
+                hasImage = true;
+
             }
 
         }
-        else
+
+        if(!hasImage)
         {
+
             LinearLayout linearLayout = (LinearLayout) activity.findViewById(R.id.optionImages);
             linearLayout.setVisibility(View.INVISIBLE);
-        }
+            //mViewFlipper.getLayoutParams().height=100;
+            mViewFlipper.setBackgroundColor(Color.BLACK);
 
+            TextView valueNoImage = new TextView(getCurrentActivity());
+            valueNoImage.setText("NOT IMAGES");
+            valueNoImage.setTextColor(Color.WHITE);
+            valueNoImage.setGravity(Gravity.CENTER_VERTICAL | Gravity.CENTER_HORIZONTAL);
+            valueNoImage.setLayoutParams(new LinearLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            mViewFlipper.addView(valueNoImage);
+        }
 
     }
 
@@ -117,31 +141,6 @@ public class DetailsPresenter extends AbstractPresenter {
     {
         ViewFlipper mViewFlipper = (ViewFlipper) activity.findViewById(R.id.ImageProduct);
         mViewFlipper.showPrevious();
-    }
-    public void LoadImages()
-    {
-        images = new ArrayList<Bitmap>();
-
-        for(int i=0; i<product.getImages().size();i++)
-        {
-            File imgFile = new File(FileManager.getResourcesFolder()+"/"+product.getProvince().toString()+"/"+product.getId()+"/"+product.getImages().get(i).toString());
-
-            if(imgFile.exists()){
-
-                Bitmap myBitmap = BitmapFactory.decodeFile(imgFile.getAbsolutePath());
-                images.add(myBitmap);
-
-            }
-            else
-            {
-                //Not image
-                Bitmap drawable = BitmapFactory.decodeResource(activity.getResources(),
-                        R.drawable.no_image);
-                images.add(drawable);
-            }
-        }
-
-
     }
 
     public void SetLocation()

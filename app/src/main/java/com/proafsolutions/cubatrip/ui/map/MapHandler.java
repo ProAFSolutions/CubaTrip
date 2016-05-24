@@ -302,7 +302,7 @@ public class MapHandler {
             protected GHResponse doInBackground(Void... v) {
                 StopWatch sw = new StopWatch().start();
                 GHRequest req = new GHRequest(fromLat, fromLon, toLat, toLon);
-                req.setAlgorithm(AlgorithmOptions.DIJKSTRA_BI);
+                req.setAlgorithm("dijkstrabi");
                 req.getHints().put("instructions", true);
                 req.setVehicle(Constants.MAP_ROUTES_TAVEL_MODE_CAR);
                 req.setWeighting(Constants.MAP_ROUTES_WEIGHTING_FASTEST);
