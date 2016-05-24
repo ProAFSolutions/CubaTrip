@@ -12,31 +12,58 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
 
-        <LinearLayout
+        <View
             android:layout_width="match_parent"
-            android:layout_height="400px"
-            android:orientation="vertical"
-            android:background="@color/colorPrimary"
-            android:id="@+id/menuCategory">
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="5sp" />
 
-            <ImageView
-                android:id="@+id/ImageProduct"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:src="@drawable/category"
-                android:scaleType="fitXY"></ImageView>
+        <LinearLayout android:id="@+id/parent_chat_layout"
+        android:orientation="horizontal" android:layout_height="match_parent" android:layout_width="match_parent">
 
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.8dp"
-                android:background="@android:color/background_light"  />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"  android:textSize="18sp"  android:text="Categories" android:textColor="@android:color/background_light"/>
+        <ImageView
+            android:id="@+id/image" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:id="@+id/chat_layout2"
+            android:layout_width="match_parent"  android:layout_height="match_parent"  >
+        <TextView android:id="@+id/text"  android:layout_height="wrap_content"
+            android:layout_width="wrap_content" android:text="CATEGORIES"
+            android:layout_gravity="center_horizontal|center" android:layout_marginLeft="50px"
+            android:textSize="20sp"/>
+
+         </LinearLayout>
+
         </LinearLayout>
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark"  />
 
+        <LinearLayout android:id="@+id/parent_chat_layout2"
+            android:orientation="horizontal" android:layout_height="match_parent" android:layout_width="match_parent">
+
+
+            <ImageView
+                android:id="@+id/image2" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/ic_launcher"/>
+
+            <LinearLayout
+                android:id="@+id/chat_layout3"
+                android:layout_width="match_parent"  android:layout_height="match_parent"  >
+                <TextView android:id="@+id/text2"  android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:text="REVIEWS"
+                    android:layout_gravity="center_horizontal|center" android:layout_marginLeft="50px"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark"  />
 
     </LinearLayout>
 

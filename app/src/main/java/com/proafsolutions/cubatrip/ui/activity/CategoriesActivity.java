@@ -75,6 +75,11 @@ public class CategoriesActivity extends AppCompatActivity {
                 startActivityForResult(launchNewIntent, 0);
                 return true;
 
+            case R.id.menuStart:
+                launchNewIntent = new Intent(CategoriesActivity.this,MenuActivity.class);
+                startActivityForResult(launchNewIntent, 0);
+                return true;
+
             //default:
               //  Toast.makeText(CategoriesActivity.this, "Option is Selected", Toast.LENGTH_SHORT).show();
                 //return super.onOptionsItemSelected(item);
