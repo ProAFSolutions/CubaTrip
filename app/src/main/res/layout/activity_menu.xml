@@ -5,12 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.proafsolutions.cubatrip.ui.activity.MenuActivity" android:background="@android:color/background_light"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical"    >
+
+    <ScrollView android:layout_width="match_parent"
+        android:id="@+id/menu"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content" android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:scaleType="fitXY"
+            android:layout_height="450px" android:src="@drawable/background1"/>
 
         <View
             android:layout_width="match_parent"
@@ -22,7 +31,7 @@
 
 
         <ImageView
-            android:id="@+id/image" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/ic_launcher"/>
+            android:id="@+id/image" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/category_ico"/>
 
         <LinearLayout
             android:id="@+id/chat_layout2"
@@ -41,18 +50,18 @@
             android:layout_height="0.5dp"
             android:background="@color/colorPrimaryDark"  />
 
-        <LinearLayout android:id="@+id/parent_chat_layout2"
+        <LinearLayout android:id="@+id/parent_chat_layout3"
             android:orientation="horizontal" android:layout_height="match_parent" android:layout_width="match_parent">
 
 
             <ImageView
-                android:id="@+id/image2" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/ic_launcher"/>
+                android:id="@+id/image3" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/maps_ico"/>
 
             <LinearLayout
-                android:id="@+id/chat_layout3"
+                android:id="@+id/chat_layout4"
                 android:layout_width="match_parent"  android:layout_height="match_parent"  >
-                <TextView android:id="@+id/text2"  android:layout_height="wrap_content"
-                    android:layout_width="wrap_content" android:text="REVIEWS"
+                <TextView android:id="@+id/text3"  android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:text="MAPS"
                     android:layout_gravity="center_horizontal|center" android:layout_marginLeft="50px"
                     android:textSize="20sp"/>
 
@@ -65,9 +74,62 @@
             android:layout_height="0.5dp"
             android:background="@color/colorPrimaryDark"  />
 
+        <LinearLayout android:id="@+id/parent_chat_layout2"
+            android:orientation="horizontal" android:layout_height="match_parent" android:layout_width="match_parent">
+
+
+            <ImageView
+                android:id="@+id/image2" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/wifi_ico"/>
+
+            <LinearLayout
+                android:id="@+id/chat_layout3"
+                android:layout_width="match_parent"  android:layout_height="match_parent"  >
+                <TextView android:id="@+id/text2"  android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:text="WIFI"
+                    android:layout_gravity="center_horizontal|center" android:layout_marginLeft="50px"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="5sp" />
+
+
+
+        <LinearLayout android:id="@+id/parent_chat_layout4"
+            android:orientation="horizontal" android:layout_height="match_parent" android:layout_width="match_parent">
+
+
+            <ImageView
+                android:id="@+id/image4" android:layout_height="250px" android:layout_width="250px" android:src="@mipmap/settings_ico"/>
+
+            <LinearLayout
+                android:id="@+id/chat_layout5"
+                android:layout_width="match_parent"  android:layout_height="match_parent"  >
+                <TextView android:id="@+id/text4"  android:layout_height="wrap_content"
+                    android:layout_width="wrap_content" android:text="SETTINGS"
+                    android:layout_gravity="center_horizontal|center" android:layout_marginLeft="50px"
+                    android:textSize="20sp"/>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.5dp"
+            android:background="@color/colorPrimaryDark" android:layout_marginTop="5sp" />
+
+
     </LinearLayout>
 
-
+    </ScrollView>
 
     <LinearLayout
         android:layout_width="match_parent"
