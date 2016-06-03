@@ -41,8 +41,8 @@
 
                         <ImageButton
                             android:id="@+id/imgRestaurants"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/food_cat"
                             android:onClick="onImageSelectClick"/>
@@ -64,8 +64,8 @@
 
                         <ImageButton
                             android:id="@+id/imgNightlife"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/night_cat" android:onClick="onImageSelectClick" />
 
@@ -86,8 +86,8 @@
 
                         <ImageButton
                             android:id="@+id/imgShopping"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/shopping_cat" android:onClick="onImageSelectClick" />
 
@@ -108,8 +108,8 @@
 
                         <ImageButton
                             android:id="@+id/imgSport"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/sport_cat" android:onClick="onImageSelectClick"/>
 
@@ -130,8 +130,8 @@
 
                         <ImageButton
                             android:id="@+id/imgArt"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/art_cat" android:onClick="onImageSelectClick"/>
 
@@ -152,8 +152,8 @@
 
                         <ImageButton
                             android:id="@+id/imgAutomotive"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/car_cat" android:onClick="onImageSelectClick"/>
 
@@ -174,8 +174,8 @@
 
                         <ImageButton
                             android:id="@+id/imgBeauty"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/beauty_car" android:onClick="onImageSelectClick"/>
 
@@ -196,8 +196,8 @@
 
                         <ImageButton
                             android:id="@+id/imgEducation"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/education_cat" android:onClick="onImageSelectClick"/>
 
@@ -218,8 +218,8 @@
 
                         <ImageButton
                             android:id="@+id/imgEvents"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/event_cat" android:onClick="onImageSelectClick"/>
 
@@ -240,8 +240,8 @@
 
                         <ImageButton
                             android:id="@+id/imgMedical"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/medical_cat" android:onClick="onImageSelectClick"/>
 
@@ -262,8 +262,8 @@
 
                         <ImageButton
                             android:id="@+id/imgServices"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/services_cat" android:onClick="onImageSelectClick"/>
 
@@ -286,8 +286,8 @@
 
                         <ImageButton
                             android:id="@+id/imgHotel"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/hotel_cat" android:onClick="onImageSelectClick"/>
 
@@ -308,8 +308,8 @@
 
                         <ImageButton
                             android:id="@+id/imgPets"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/pet_cat" android:onClick="onImageSelectClick"/>
 
@@ -330,8 +330,8 @@
 
                         <ImageButton
                             android:id="@+id/imgGas"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/gas_cat" android:onClick="onImageSelectClick"/>
 
@@ -352,8 +352,8 @@
 
                         <ImageButton
                             android:id="@+id/imgWifi"
-                            android:layout_width="90dp"
-                            android:layout_height="90dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:background="@mipmap/wifi_cat" android:onClick="onImageSelectClick"/>
 
